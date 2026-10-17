@@ -1,0 +1,19 @@
+{
+  "mainNavigation": "مرکزی مینو",
+  "dashboard": "ڈیش بورڈ",
+  "quickScan": "فوری جانچ",
+  "diseaseCheck": "بیماری کی جانچ",
+  "farms": "فارم",
+  "soilHealth": "مٹی کی صحت",
+  "history": "تاریخ",
+  "weather": "موسم",
+  "admin": "ایڈمن",
+  "profile": "پروفائل",
+  "logout": "لاگ آؤٹ",
+  "menu": "مینو",
+  "openMenu": "مینو کھولیں",
+  "closeMenu": "مینو بند کریں",
+  "notifications": "اطلاعات",
+  "notificationsWithCount": "اطلاعات، {count} نئی",
+  "backToDashboard": "ڈیش بورڈ پر واپس جائیں"
+}

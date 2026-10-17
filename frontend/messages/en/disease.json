@@ -1,0 +1,43 @@
+{
+  "noConfidentResult": "No confident result",
+  "page": {
+    "title": "Disease Check",
+    "description": "Take a photo of one leaf to check it for disease.",
+    "noFarmDescription": "Select or create a farm to start a Disease Check."
+  },
+  "cropSelect": {
+    "question": "Which crop is this leaf from?",
+    "notSure": "Not sure"
+  },
+  "flow": {
+    "previewAlt": "Preview of the selected leaf photo",
+    "submit": "Check for Disease",
+    "checkingTitle": "Checking your leaf...",
+    "checkingDescription": "This can take up to a minute. Please keep this page open.",
+    "analyzingWithCrop": "Looking for {crop} diseases",
+    "analyzingDetectedCrop": "Working out the crop from the photo",
+    "checkAnother": "Check Another Leaf"
+  },
+  "health": {
+    "healthy": "Healthy",
+    "unhealthy": "Diseased"
+  },
+  "results": {
+    "farm": "Farm: <strong>{value}</strong>",
+    "crop": "Crop: <strong>{value}</strong>",
+    "farmId": "Farm ID",
+    "cropNotSpecified": "Not specified",
+    "uncertainTitle": "Not sure from this photo",
+    "uncertainDescription": "It may be one of the results below. Retake the photo in good light, close to one leaf, to confirm.",
+    "closelyRelated": "It could also be",
+    "possibleResults": "Possible results",
+    "note": "Note",
+    "warning": "Photo quality"
+  },
+  "warnings": {
+    "BLURRY_IMAGE": "The photo looks blurry. Hold the phone steady and tap to focus on the leaf.",
+    "LOW_LIGHT": "The photo is too dark. Take it in daylight.",
+    "OVEREXPOSED": "The photo is too bright. Avoid direct sunlight on the leaf.",
+    "CROP_MISMATCH": "The leaf may not belong to the crop you selected."
+  }
+}

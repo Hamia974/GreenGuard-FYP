@@ -1,0 +1,97 @@
+{
+  "title": "ایڈمن ڈیش بورڈ",
+  "description": "صارفین، تجزیوں، AI سروسز اور پلیٹ فارم کی حالت کی نگرانی کریں۔",
+  "tabs": {
+    "overview": "جائزہ",
+    "users": "صارفین",
+    "predictions": "تجزیے"
+  },
+  "accessDenied": {
+    "title": "رسائی کی اجازت نہیں",
+    "description": "ایڈمن ڈیش بورڈ صرف منتظم (ایڈمن) اکاؤنٹس کے لیے ہے۔"
+  },
+  "statuses": {
+    "Healthy": "درست",
+    "Unhealthy": "خرابی",
+    "Degraded": "کمزور کارکردگی",
+    "Mock Mode": "آزمائشی (Mock) موڈ",
+    "Online": "آن لائن",
+    "Unreachable": "رابطہ نہیں ہو رہا",
+    "Connected": "منسلک",
+    "Active": "فعال",
+    "Inactive": "غیر فعال",
+    "Not used — integration layer": "استعمال میں نہیں — رپورٹ کی سطح"
+  },
+  "aiModules": {
+    "imageModule": "بیماری کی تشخیص (ماڈیول 1)",
+    "soilModule": "مٹی اور غذائی اجزاء کی صحت (ماڈیول 2)",
+    "weatherModule": "موسمی خطرہ (ماڈیول 3)",
+    "fusionModule": "مربوط رپورٹ (ماڈیول 4)"
+  },
+  "systemHealthItems": {
+    "backend": "بیک اینڈ سرور",
+    "database": "PostgreSQL ڈیٹا بیس",
+    "aiServices": "AI سروسز",
+    "weatherApi": "موسم کا ماڈیول (ماڈیول 3)"
+  },
+  "overview": {
+    "totalUsers": "کل صارفین",
+    "activeUsers": "{count} فعال",
+    "totalPredictions": "کل تجزیے",
+    "totalPredictionsDescription": "اب تک کیے گئے AI تجزیے",
+    "systemStatus": "نظام کی حالت",
+    "systemStatusDescription": "پلیٹ فارم کی مجموعی حالت",
+    "aiMonitoring": "AI کی نگرانی",
+    "systemHealth": "نظام کی صحت",
+    "platformStatistics": "پلیٹ فارم کے اعداد و شمار",
+    "mostDetectedDisease": "سب سے زیادہ پائی جانے والی بیماری",
+    "notEnoughData": "ابھی کافی ڈیٹا موجود نہیں",
+    "mostRecommendedCrop": "سب سے زیادہ تجویز کردہ فصل",
+    "notAvailableYet": "ابھی دستیاب نہیں"
+  },
+  "usersPage": {
+    "searchPlaceholder": "نام یا ای میل سے تلاش کریں...",
+    "status": "حالت",
+    "sortByName": "نام",
+    "emptyTitle": "کوئی صارف نہیں ملا",
+    "emptyDescription": "اپنی تلاش یا فلٹر تبدیل کر کے دیکھیں۔",
+    "activate": "فعال کریں",
+    "deactivate": "غیر فعال کریں",
+    "table": {
+      "name": "نام",
+      "email": "ای میل",
+      "role": "کردار",
+      "status": "حالت",
+      "actions": "اقدامات"
+    }
+  },
+  "userDetail": {
+    "backToUsers": "واپس صارفین پر جائیں",
+    "predictionCount": "تجزیوں کی تعداد",
+    "registrationDate": "رجسٹریشن کی تاریخ",
+    "activateAccount": "اکاؤنٹ فعال کریں",
+    "deactivateAccount": "اکاؤنٹ غیر فعال کریں",
+    "deleteAccount": "اکاؤنٹ حذف کریں",
+    "confirmDelete": "حذف کرنے کی تصدیق کریں"
+  },
+  "predictionsPage": {
+    "searchPlaceholder": "بیماری یا صارف کے نام سے تلاش کریں...",
+    "status": "حالت",
+    "statuses": {
+      "completed": "مکمل",
+      "pending": "زیرِ التوا",
+      "processing": "جاری",
+      "failed": "ناکام"
+    },
+    "emptyTitle": "کوئی تجزیہ نہیں ملا",
+    "emptyDescription": "اپنی تلاش یا فلٹر تبدیل کر کے دیکھیں۔",
+    "uncertain": "غیر یقینی",
+    "table": {
+      "user": "صارف",
+      "disease": "بیماری (ماڈیول 1)",
+      "confidence": "اعتماد کی سطح",
+      "created": "تاریخ",
+      "actions": "اقدامات"
+    }
+  }
+}

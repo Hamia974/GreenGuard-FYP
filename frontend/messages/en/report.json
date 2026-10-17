@@ -1,0 +1,43 @@
+{
+  "moduleLabel": "Module {number}",
+  "legacyNotice": "This report was created with an older version of GreenGuard, so some sections may be missing.",
+  "notFound": "This report could not be found, or you don't have access to it.",
+  "newScan": "Run Another Quick Scan",
+  "header": {
+    "title": "Analysis Report",
+    "description": "Each section below shows the result of one independent check.",
+    "id": "Report ID:",
+    "completed": "Completed"
+  },
+  "plantImage": {
+    "imageAlt": "Uploaded leaf photo",
+    "noImage": "No photo available",
+    "uploadDate": "Uploaded on",
+    "crop": "Crop",
+    "cropSelectedByYou": "selected by you",
+    "cropDetected": "detected from the photo"
+  },
+  "sections": {
+    "disease": {
+      "title": "Disease Detection",
+      "source": "From the leaf photo",
+      "sourceWithVersion": "From the leaf photo · model {version}",
+      "unavailable": "The disease check was not available for this report."
+    },
+    "soil": {
+      "title": "Soil & Nutrient Health",
+      "source": "From your farm's latest Soil Test"
+    },
+    "weather": {
+      "title": "Weather Risk",
+      "source": "From live weather at your farm",
+      "environmentalRisk": "Weather Risk to Crops",
+      "unavailable": "Weather data was not available for this report."
+    }
+  },
+  "soilCallout": {
+    "title": "No Soil Test on record for this farm",
+    "description": "Answer a few simple questions, and your soil and nutrient health will appear here in future reports.",
+    "action": "Start Soil Test"
+  }
+}

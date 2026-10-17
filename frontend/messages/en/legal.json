@@ -1,0 +1,71 @@
+{
+  "backToSignUp": "Back to Sign Up",
+  "lastUpdated": "Last updated: {date}",
+  "placeholderNotice": "This page contains placeholder content for development purposes. Final legal copy will be provided before production launch.",
+  "privacy": {
+    "title": "Privacy Policy",
+    "sections": {
+      "s1": {
+        "title": "1. Information We Collect",
+        "body": "We collect information you provide directly, such as your name, email address, and password, as well as data generated through your use of GreenGuard, including uploaded crop images, soil inputs, and prediction history."
+      },
+      "s2": {
+        "title": "2. How We Use Your Information",
+        "body": "Your information is used to provide plant health diagnostics, generate recommendations, maintain your account, and improve the reliability of our AI modules."
+      },
+      "s3": {
+        "title": "3. Data Storage",
+        "body": "Account and prediction data is stored in a PostgreSQL database and handled according to industry-standard security practices, including password hashing and JWT-based authentication."
+      },
+      "s4": {
+        "title": "4. Data Sharing",
+        "body": "GreenGuard does not sell your personal data. Information may be shared with the AI processing modules strictly to generate your requested diagnosis and recommendations."
+      },
+      "s5": {
+        "title": "5. Your Rights",
+        "body": "You may update your profile information at any time and may request account deletion by contacting the GreenGuard team."
+      },
+      "s6": {
+        "title": "6. Changes to This Policy",
+        "body": "We may update this Privacy Policy periodically. Material changes will be communicated through the application."
+      },
+      "s7": {
+        "title": "7. Contact",
+        "body": "Questions about this Privacy Policy can be directed to the GreenGuard team through the support channels listed in the application."
+      }
+    }
+  },
+  "terms": {
+    "title": "Terms & Conditions",
+    "sections": {
+      "s1": {
+        "title": "1. Acceptance of Terms",
+        "body": "By creating an account or using GreenGuard, you agree to be bound by these Terms & Conditions. If you do not agree, please do not use the platform."
+      },
+      "s2": {
+        "title": "2. Description of Service",
+        "body": "GreenGuard is an AI-powered plant health monitoring and agricultural decision support system. It provides crop image analysis, soil and crop recommendations, weather risk assessment, and fused diagnostic reports to help farmers make informed decisions."
+      },
+      "s3": {
+        "title": "3. User Accounts",
+        "body": "You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account. You must provide accurate information when registering."
+      },
+      "s4": {
+        "title": "4. Acceptable Use",
+        "body": "You agree not to misuse the platform, including attempting to disrupt the service, uploading unlawful content, or reverse-engineering the AI models that power GreenGuard."
+      },
+      "s5": {
+        "title": "5. AI-Generated Recommendations",
+        "body": "Predictions, diagnoses, and recommendations produced by GreenGuard's AI modules are provided for informational purposes and do not replace professional agronomic advice. GreenGuard makes no guarantee of accuracy or crop outcomes."
+      },
+      "s6": {
+        "title": "6. Changes to These Terms",
+        "body": "We may update these Terms & Conditions from time to time. Continued use of GreenGuard after changes are posted constitutes acceptance of the revised terms."
+      },
+      "s7": {
+        "title": "7. Contact",
+        "body": "Questions about these Terms & Conditions can be directed to the GreenGuard team through the support channels listed in the application."
+      }
+    }
+  }
+}

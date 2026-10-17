@@ -1,0 +1,12 @@
+# Runs Module 2 on its own:  docker compose up --build
+# Backend can copy the service block below into the project-wide compose file.
+# PORT is read from .env in this folder if present (default 8002).
+services:
+  soil-nutrient-module:
+    build: .
+    image: greenguard-module2:1.1.0
+    ports:
+      - "${PORT:-8002}:${PORT:-8002}"
+    environment:
+      PORT: ${PORT:-8002}
+    restart: unless-stopped

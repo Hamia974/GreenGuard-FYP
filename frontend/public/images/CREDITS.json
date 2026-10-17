@@ -1,0 +1,305 @@
+[
+  {
+    "category": "crop",
+    "slug": "ash_gourd",
+    "filename": "ash_gourd.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Benincasa_hispida_compose.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "bitter_gourd",
+    "filename": "bitter_gourd.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Bitter_gourd_fruit.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "bottle_gourd",
+    "filename": "bottle_gourd.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Courge_encore_verte.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "chickpea",
+    "filename": "chickpea.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Chickpea_pods.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "cotton",
+    "filename": "cotton.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:CottonPlant.JPG",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "cucumber",
+    "filename": "cucumber.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:ARS_cucumber.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "eggplant",
+    "filename": "eggplant.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Solanum_melongena_24_08_2012_(1).JPG",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "maize",
+    "filename": "maize.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Corn_on_the_cob.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "potato",
+    "filename": "potato.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Patates.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "rice",
+    "filename": "rice.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:20201102.Hengnan.Hybrid_rice_Sanyou-1.6.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "ridge_gourd",
+    "filename": "ridge_gourd.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ridged_gourd,_angled_luffa,_Chinese_okra.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "snake_gourd",
+    "filename": "snake_gourd.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Snake_Gourd.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "sugarcane",
+    "filename": "sugarcane.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sugarcane_field_(1).jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "tomato",
+    "filename": "tomato.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tomato_je.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "crop",
+    "slug": "wheat",
+    "filename": "wheat.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Vehnäpelto_6.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "soil_type",
+    "slug": "sandy",
+    "filename": "sandy.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sandy_soil_-_geograph.org.uk_-_1214933.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "soil_type",
+    "slug": "sandy_loam",
+    "filename": "sandy_loam.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sandy_loam.JPG",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "soil_type",
+    "slug": "loamy",
+    "filename": "loamy.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Loam_soil_of_Hesbaye.jpg",
+    "license": "CC BY-SA 2.0",
+    "author": "Peter Van den Bossche"
+  },
+  {
+    "category": "soil_type",
+    "slug": "clay_loam",
+    "filename": "clay_loam.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Nc-red-clay-soil-1.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "soil_type",
+    "slug": "clay",
+    "filename": "clay.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Dry_Cracked_Mud_(4957b8b2-f52c-43b0-acc2-ead42cf6f03b).jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "soil_type",
+    "slug": "saline_affected",
+    "filename": "saline_affected.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Salinity.jpg",
+    "license": "See source page (Wikimedia Commons)",
+    "author": "See source page (Wikimedia Commons)"
+  },
+  {
+    "category": "irrigation_source",
+    "slug": "canal",
+    "filename": "canal.jpg",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=78655049",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "author": "Torbenbrinker"
+  },
+  {
+    "category": "irrigation_source",
+    "slug": "tube_well",
+    "filename": "tube_well.jpg",
+    "source_url": "https://www.flickr.com/photos/148158860@N03/36660662706",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "JIRCAS"
+  },
+  {
+    "category": "irrigation_source",
+    "slug": "rain_fed",
+    "filename": "rain_fed.jpg",
+    "source_url": "https://www.flickr.com/photos/61732052@N02/9421742217",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "2 million+ views. Humbled and thanks!"
+  },
+  {
+    "category": "irrigation_source",
+    "slug": "drip",
+    "filename": "drip.jpg",
+    "source_url": "https://www.flickr.com/photos/20260568@N07/5571239036",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "JobyOne"
+  },
+  {
+    "category": "irrigation_source",
+    "slug": "flood_basin",
+    "filename": "flood_basin.jpg",
+    "source_url": "https://www.flickr.com/photos/16287002@N00/7052883283",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "Richard Allaway"
+  },
+  {
+    "category": "symptom",
+    "slug": "yellowing_older_leaves",
+    "filename": "yellowing_older_leaves.jpg",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=7384318",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "author": "Rasbak"
+  },
+  {
+    "category": "symptom",
+    "slug": "purple_reddish_tint",
+    "filename": "purple_reddish_tint.jpg",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=20434272",
+    "license": "CC BY-SA 2.5",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+    "author": "عمرو بن كلثوم"
+  },
+  {
+    "category": "symptom",
+    "slug": "brown_scorched_leaf_edges",
+    "filename": "brown_scorched_leaf_edges.jpg",
+    "source_url": "https://www.flickr.com/photos/62295966@N07/14741279494",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "author": "Plant pests and diseases"
+  },
+  {
+    "category": "symptom",
+    "slug": "stunted_growth",
+    "filename": "stunted_growth.jpg",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=35039172",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en/",
+    "author": "Alandmanson"
+  },
+  {
+    "category": "symptom",
+    "slug": "poor_flowering_or_fruiting",
+    "filename": "poor_flowering_or_fruiting.jpg",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=164082183",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "author": "Andikan Efiok Eduok"
+  },
+  {
+    "category": "symptom",
+    "slug": "weak_stems",
+    "filename": "weak_stems.jpg",
+    "source_url": "https://www.flickr.com/photos/13194817@N00/52195739359",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "author": "krossbow"
+  },
+  {
+    "category": "symptom",
+    "slug": "interveinal_chlorosis_older_leaves",
+    "filename": "interveinal_chlorosis_older_leaves.jpg",
+    "source_url": "https://www.flickr.com/photos/62295966@N07/14840241853",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "author": "Plant pests and diseases"
+  },
+  {
+    "category": "symptom",
+    "slug": "interveinal_chlorosis_young_leaves",
+    "filename": "interveinal_chlorosis_young_leaves.jpg",
+    "source_url": "https://www.flickr.com/photos/62295966@N07/15429757132",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "author": "Plant pests and diseases"
+  },
+  {
+    "category": "symptom",
+    "slug": "leaf_curling_brittle",
+    "filename": "leaf_curling_brittle.jpg",
+    "source_url": "https://www.flickr.com/photos/62295966@N07/15157898149",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "author": "Plant pests and diseases"
+  },
+  {
+    "category": "symptom",
+    "slug": "short_internodes_small_leaves",
+    "filename": "short_internodes_small_leaves.jpg",
+    "source_url": "https://www.flickr.com/photos/62295966@N07/8715637184",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "author": "Plant pests and diseases"
+  }
+]

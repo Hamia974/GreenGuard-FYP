@@ -1,0 +1,24 @@
+{
+  "title": "Prediction History",
+  "description": "Review all your previous AI-generated plant health analyses.",
+  "emptyTitle": "No Prediction History Yet",
+  "emptyDescription": "Start your first AI analysis to begin building your prediction history.",
+  "emptyAction": "Analyze Your First Plant",
+  "filters": {
+    "searchPlaceholder": "Search prediction history...",
+    "from": "From",
+    "to": "To"
+  },
+  "card": {
+    "moduleLabel": "Disease Detection (Module 1)",
+    "confidenceBadge": "{value}% · {level}",
+    "confidenceLevels": {
+      "veryHigh": "Very High",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "confirmDelete": "Delete this prediction?",
+    "viewReport": "View Report"
+  }
+}

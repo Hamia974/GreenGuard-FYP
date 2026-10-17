@@ -1,0 +1,172 @@
+{
+  "page": {
+    "title": "مٹی اور غذائی اجزاء کی صحت",
+    "description": "چند آسان سوالات اور آپ کے مٹی میٹر کی ریڈنگ، لیبارٹری ٹیسٹ کی ضرورت نہیں۔",
+    "noFarmDescription": "مٹی اور غذائی اجزاء کی جانچ کے لیے فارم منتخب کریں یا نیا فارم بنائیں۔",
+    "submitError": "مٹی اور غذائی اجزاء کی جانچ مکمل نہیں ہو سکی۔ براہ کرم دوبارہ کوشش کریں۔",
+    "startAnother": "نئی جانچ شروع کریں"
+  },
+  "wizard": {
+    "stepOf": "مرحلہ {step} از {total}",
+    "submit": "میری مٹی کی رپورٹ دکھائیں",
+    "analyzing": "جانچ ہو رہی ہے...",
+    "questions": {
+      "crop": "آپ کون سی فصل اگا رہے ہیں؟",
+      "growthStage": "آپ کی فصل کس مرحلے پر ہے؟",
+      "soilType": "آپ کی مٹی دیکھنے اور چھونے میں کیسی ہے؟",
+      "lastFertilizerType": "آپ نے آخری بار کون سی کھاد ڈالی تھی؟",
+      "daysSinceFertilizer": "کتنا عرصہ پہلے؟",
+      "irrigationSource": "آپ اپنے کھیت کو پانی کیسے دیتے ہیں؟",
+      "irrigationAdequacy": "آپ کی فصل کو پانی کتنا ملتا ہے؟",
+      "symptoms": "کیا آپ کو پتوں پر ان میں سے کچھ نظر آتا ہے؟"
+    },
+    "weatherStep": {
+      "title": "ہم {farm} کا موجودہ موسم خود معلوم کر لیں گے۔",
+      "description": "درجہ حرارت، نمی اور پچھلے 7 دن کی بارش آپ کے فارم کے مقام سے لی جاتی ہے، آپ کو یہ درج کرنے کی ضرورت نہیں۔"
+    },
+    "meterStep": {
+      "intro": "جمع کرانے سے پہلے اپنے مٹی میٹر سے یہ تین ریڈنگ لیں۔ ان سے پتہ چلتا ہے کہ کہیں آپ کی مٹی غذائی اجزاء کو روک تو نہیں رہی۔ تینوں ریڈنگ ضروری ہیں۔",
+      "ph": "مٹی کا pH (میٹر سے)",
+      "phPlaceholder": "4.5 – 8.5",
+      "soilMoisture": "مٹی کی نمی % (میٹر سے)",
+      "soilMoisturePlaceholder": "0 – 100",
+      "light": "روشنی کی شدت، لکس میں (میٹر سے)",
+      "lightPlaceholder": "0 – 120,000"
+    },
+    "symptomsHint": "یہ تصویریں صرف مثال کے لیے ہیں تاکہ آپ اپنے پودے سے ملا کر دیکھ سکیں، یہ تشخیص نہیں ہیں۔ جو کچھ بھی نظر آئے، سب پر نشان لگائیں۔",
+    "symptomPhotoAlt": "مثال کی تصویر: {symptom}",
+    "noneOfThese": "ان میں سے کوئی نہیں — پودا ٹھیک لگ رہا ہے"
+  },
+  "options": {
+    "growthStage": {
+      "seedling": "نرسری / چھوٹا پودا",
+      "vegetative": "بڑھوتری کا مرحلہ",
+      "flowering": "پھول آنا",
+      "fruiting_grain_filling": "پھل لگنا / دانہ بننا",
+      "maturity": "پکائی"
+    },
+    "soilType": {
+      "sandy": "ریتلی",
+      "sandy_loam": "ریتلی میرا",
+      "loamy": "میرا",
+      "clay_loam": "چکنی میرا",
+      "clay": "چکنی",
+      "saline_affected": "کلر زدہ / شور زدہ"
+    },
+    "soilTypeHint": {
+      "sandy": "بھربھری، کرکری، ہلکے رنگ کی، پانی جلدی نکل جاتا ہے",
+      "sandy_loam": "زیادہ تر ریتلی، مٹھی میں تھوڑی دیر ڈھیلی گیند بنتی ہے",
+      "loamy": "گہرے رنگ کی، بھربھری، آسانی سے ٹوٹ جاتی ہے",
+      "clay_loam": "گیلی ہو تو تھوڑی چپچپی",
+      "clay": "چپچپی، سخت، خشک ہو کر پھٹ جاتی ہے",
+      "saline_affected": "سطح پر سفید تہہ یا دھبے"
+    },
+    "lastFertilizerType": {
+      "Urea": "یوریا",
+      "DAP": "ڈی اے پی (DAP)",
+      "NPK_blend": "این پی کے (NPK) مکسچر",
+      "MOP_SOP": "پوٹاش (MOP / SOP)",
+      "FYM_compost": "گوبر کی کھاد / کمپوسٹ",
+      "No_Fertilizer": "کوئی نہیں",
+      "Dont_know": "معلوم نہیں"
+    },
+    "daysSinceFertilizer": {
+      "lt_15_days": "2 ہفتوں سے کم پہلے",
+      "15_30_days": "2 سے 4 ہفتے پہلے",
+      "30_60_days": "1 سے 2 مہینے پہلے",
+      "60_90_days": "2 سے 3 مہینے پہلے",
+      "gt_90_days": "3 مہینے سے زیادہ پہلے",
+      "not_applicable": "لاگو نہیں"
+    },
+    "irrigationSource": {
+      "canal": "نہر",
+      "tube_well": "ٹیوب ویل",
+      "rain_fed": "بارانی",
+      "drip": "ڈرپ (قطرہ قطرہ) آبپاشی",
+      "flood_basin": "کھلا پانی / کیاری"
+    },
+    "irrigationAdequacy": {
+      "insufficient": "کم — مٹی اکثر خشک رہتی ہے",
+      "adequate": "بالکل ٹھیک",
+      "excessive": "زیادہ — مٹی میں اکثر پانی کھڑا رہتا ہے"
+    },
+    "symptoms": {
+      "yellowing_older_leaves": "پرانے پتے پورے کے پورے ہلکے پیلے ہو رہے ہیں",
+      "purple_reddish_tint": "پتوں یا تنوں پر جامنی یا سرخی مائل رنگ",
+      "brown_scorched_leaf_edges": "پتوں کے کنارے بھورے، خشک اور \"جلے ہوئے\" لگتے ہیں",
+      "stunted_growth": "پودا توقع سے صاف طور پر چھوٹا یا پستہ قد ہے",
+      "poor_flowering_or_fruiting": "پھول یا پھل بہت کم یا بالکل نہیں لگ رہے",
+      "weak_stems": "تنے پتلے، ڈھیلے یا آسانی سے جھک جانے والے",
+      "interveinal_chlorosis_older_leaves": "پرانے پتے رگوں کے درمیان پیلے، رگیں سبز",
+      "interveinal_chlorosis_young_leaves": "نئے پتے رگوں کے درمیان پیلے، رگیں سبز",
+      "leaf_curling_brittle": "پتے مڑ رہے ہیں، پھٹ رہے ہیں یا نوکوں سے بھربھرے ہیں",
+      "short_internodes_small_leaves": "چھوٹے چھوٹے پتے تنے پر گچھوں کی صورت میں"
+    }
+  },
+  "results": {
+    "notSupportedTitle": "اس فصل کے لیے ابھی دستیاب نہیں",
+    "notSupportedDescription": "اس فصل کے لیے غذائی اجزاء اور مٹی کی حالت کا تجزیہ ابھی دستیاب نہیں۔",
+    "soilHealth": "مٹی کی صحت",
+    "soilConditionTitle": "مٹی کی حالت غذائی اجزاء کے جذب ہونے میں رکاوٹ بن سکتی ہے",
+    "needsAttention": "توجہ کی ضرورت",
+    "lookingFine": "ٹھیک ہے",
+    "overallNutrientHealth": "غذائی اجزاء کی مجموعی حالت: {label}",
+    "soilConditions": "مٹی کی حالت",
+    "notProvided": "درج نہیں کیا گیا",
+    "reliable": "✓ یہ نتیجہ قابلِ اعتماد لگتا ہے۔",
+    "metrics": {
+      "ph": "pH",
+      "soilMoisture": "مٹی کی نمی",
+      "light": "روشنی کی شدت"
+    },
+    "healthLabels": {
+      "good": "اچھی",
+      "moderate": "درمیانی",
+      "poor": "کمزور"
+    },
+    "metricStatuses": {
+      "ok": "ٹھیک",
+      "moderate": "توجہ درکار",
+      "critical": "سنگین مسئلہ"
+    },
+    "nutrients": {
+      "Nitrogen": "نائٹروجن",
+      "Phosphorus": "فاسفورس",
+      "Potassium": "پوٹاشیم",
+      "Magnesium": "میگنیشیم",
+      "Zinc": "زنک",
+      "Boron": "بوران"
+    },
+    "riskLevels": {
+      "high": "زیادہ خطرہ",
+      "medium": "درمیانہ خطرہ",
+      "low": "کم خطرہ"
+    },
+    "nutrientOverview": {
+      "title": "غذائی اجزاء کا خلاصہ",
+      "description": "ہر پٹی بتاتی ہے کہ مٹی کے تجزیے کو اس غذائی جزو کے خطرے کی سطح پر کتنا یقین ہے۔ یہ آپ کی مٹی میں اس جزو کی مقدار نہیں ہے۔",
+      "confidenceValue": "یقین: <num>{value}</num>",
+      "tableCaption": "ہر غذائی جزو کے خطرے کی سطح پر مٹی کے تجزیے کا یقین",
+      "nutrientColumn": "غذائی جزو",
+      "confidenceColumn": "یقین",
+      "riskColumn": "خطرے کی سطح",
+      "notReported": "رپورٹ نہیں کیا گیا",
+      "missing": "اس نتیجے میں شامل نہیں: {nutrients}",
+      "empty": "اس تجزیے کے لیے چارٹ بنانے کو غذائی اجزاء کے نتائج دستیاب نہیں ہیں۔"
+    },
+    "conditions": {
+      "description": "آپ کے میٹر کی ریڈنگز کا اُس مناسب حد سے موازنہ جو GreenGuard کا مٹی کا ماڈیول اس فصل کے لیے استعمال کرتا ہے۔",
+      "idealBetween": "اس فصل کے لیے مناسب حد: <num>{low}</num> – <num>{high}</num>",
+      "idealAtLeast": "اس فصل کے لیے مناسب حد: <num>{low}</num> یا اس سے زیادہ",
+      "rangeUnavailable": "مناسب حد دستیاب نہیں",
+      "withinRange": "مناسب حد کے اندر",
+      "belowRange": "مناسب حد سے کم",
+      "aboveRange": "مناسب حد سے زیادہ",
+      "belowRangeBy": "مناسب حد سے <num>{gap}</num> کم",
+      "aboveRangeBy": "مناسب حد سے <num>{gap}</num> زیادہ",
+      "invalidReading": "یہ ریڈنگ ممکنہ پیمانے سے باہر ہے، اس لیے اسے گراف پر نہیں دکھایا گیا۔",
+      "legendIdeal": "اس فصل کے لیے مناسب حد",
+      "legendReading": "آپ کی ریڈنگ"
+    }
+  }
+}

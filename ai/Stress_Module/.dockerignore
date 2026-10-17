@@ -1,0 +1,19 @@
+# Only requirements.txt, api/, models/, tests/ and samples/ are copied into the image;
+# excluding everything else keeps the build context small. Patterns without a leading
+# **/ only match at the top level, so caches use **/ to catch every subfolder.
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+**/.ipynb_checkpoints/
+.env
+*.zip
+*.log
+data/
+scripts/
+training/
+docs/
+config/
+README.md
+docker-compose.yml
+.git/
+

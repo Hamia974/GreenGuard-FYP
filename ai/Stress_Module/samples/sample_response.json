@@ -1,0 +1,119 @@
+{
+  "crop_supported": true,
+  "module2a": {
+    "nitrogen_risk": {
+      "level": "high",
+      "confidence": 0.95
+    },
+    "phosphorus_risk": {
+      "level": "low",
+      "confidence": 0.39
+    },
+    "potassium_risk": {
+      "level": "medium",
+      "confidence": 0.55
+    },
+    "magnesium_risk": {
+      "level": "high",
+      "confidence": 0.41
+    },
+    "zinc_risk": {
+      "level": "low",
+      "confidence": 0.7
+    },
+    "boron_risk": {
+      "level": "high",
+      "confidence": 0.42
+    },
+    "overall_nutrient_health": "moderate",
+    "input_typicality": {
+      "anomaly_score": 0.065,
+      "flag": "typical"
+    },
+    "model_version": "module2a-v5"
+  },
+  "module2b": {
+    "ph": {
+      "current": 4.5,
+      "ideal_range": [
+        6.0,
+        7.5
+      ],
+      "gap": 1.5,
+      "status": "critical",
+      "nutrient_lockout_note": "Soil is strongly acidic. This severely limits potassium, nitrogen, phosphorus, calcium, and magnesium — and can raise aluminum/manganese to toxic levels. Fertilizer alone will not fix this; consider liming. A laboratory soil test is recommended to confirm and guide correction."
+    },
+    "soil_moisture": {
+      "current": 62.0,
+      "ideal_range": [
+        50.0,
+        70.0
+      ],
+      "gap": 0.0,
+      "status": "ok"
+    },
+    "light": {
+      "current": 28000.0,
+      "ideal_range": [
+        25000.0,
+        null
+      ],
+      "gap": 0.0,
+      "status": "ok"
+    },
+    "crop_supported": true
+  },
+  "overall_soil_health_score": 47.5,
+  "overall_soil_health_label": "poor",
+  "recommendation_notes": {
+    "headline": "Nitrogen needs attention first.",
+    "needs_attention": [
+      {
+        "nutrient": "Nitrogen",
+        "level": "high",
+        "confidence_pct": 95,
+        "confidence_text": "95% confident — strong match",
+        "why": "yellowing on your older leaves, sandy soil (nutrients wash out faster), no fertilizer applied"
+      },
+      {
+        "nutrient": "Boron",
+        "level": "high",
+        "confidence_pct": 42,
+        "confidence_text": "42% confident — based on limited signs",
+        "why": "sandy soil (nutrients wash out faster), no fertilizer applied"
+      },
+      {
+        "nutrient": "Magnesium",
+        "level": "high",
+        "confidence_pct": 41,
+        "confidence_text": "41% confident — based on limited signs",
+        "why": "sandy soil (nutrients wash out faster), no fertilizer applied"
+      },
+      {
+        "nutrient": "Potassium",
+        "level": "medium",
+        "confidence_pct": 55,
+        "confidence_text": "55% confident — possible",
+        "why": "sandy soil (nutrients wash out faster), no fertilizer applied"
+      }
+    ],
+    "looking_fine": [
+      {
+        "nutrient": "Phosphorus",
+        "level": "low",
+        "confidence_pct": 39,
+        "confidence_text": "39% confident — based on limited signs"
+      },
+      {
+        "nutrient": "Zinc",
+        "level": "low",
+        "confidence_pct": 70,
+        "confidence_text": "70% confident — likely"
+      }
+    ],
+    "caveat": "This advice is based on your answers and soil-meter readings. A soil lab test can add exact nutrient levels if you need them.",
+    "soil_condition_note": "Soil is strongly acidic. This severely limits potassium, nitrogen, phosphorus, calcium, and magnesium — and can raise aluminum/manganese to toxic levels. Fertilizer alone will not fix this; consider liming. A laboratory soil test is recommended to confirm and guide correction."
+  },
+  "model_version": "module2-orchestrator-v1",
+  "module2a_model_version": "module2a-v5"
+}

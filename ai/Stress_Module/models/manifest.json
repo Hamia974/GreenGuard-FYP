@@ -1,0 +1,21 @@
+{
+  "model_version": "module2a-v5",
+  "artifacts": {
+    "module2a_nitrogen_risk.joblib": "d73dec575708f0da4146b367aaa2199caf2e668f4398b607025565a4d18c088d",
+    "module2a_phosphorus_risk.joblib": "84fb486afed1f5751f5fbe7aa236854a0acc088df8167aad7b447d07ce2a3523",
+    "module2a_potassium_risk.joblib": "ca16184c01e6041615954f1cbeae861d86db286a42e9182587b38f32df6158a1",
+    "module2a_magnesium_risk.joblib": "56a10ad29b8a7363470ad0b1c8d14bac925c944f20b1691c26667c156e6f82dd",
+    "module2a_zinc_risk.joblib": "ce69cefa968be374f7fe18844643bb9bf5ae72036c9eac02de2f9fff987911a5",
+    "module2a_boron_risk.joblib": "0f384b03592b06a3443b42652a0fc20ca7ee9e2c4e98ae6f9335ab5234ed1df4",
+    "module2a_ordinal_encoder.joblib": "fa6a0f8215e92a5fc8d2419f12816f54437b14aed9d5c998fc54b3a7b8c1e021",
+    "module2a_anomaly_detector.joblib": "bcba1aa289d05020575cad9d6969a19c0ef4cd01034db1d04e71c2d7f431f632",
+    "module2a_schema.json": "10b7c25553f8f4b970161972b0b32d6e81246b1ade8f9c3e4460643feec1d298"
+  },
+  "trained_with": {
+    "scikit-learn": "1.9.0",
+    "xgboost": "3.4.1",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "joblib": "1.6.0"
+  }
+}

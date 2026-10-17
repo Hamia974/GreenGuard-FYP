@@ -1,0 +1,52 @@
+{
+  "title": "Profile & Settings",
+  "description": "Manage your personal information, security, and account.",
+  "loadError": "Unable to load your profile. Please try again.",
+  "memberSince": "Member since {date}",
+  "sections": {
+    "profileInformation": "Profile Information",
+    "changePassword": "Change Password",
+    "manageFarmsDescription": "Add, edit, or remove the farms used for weather analysis and predictions.",
+    "dangerZone": "Danger Zone"
+  },
+  "accountInfo": {
+    "title": "Account Information",
+    "email": "Email",
+    "accountType": "Account Type",
+    "memberSince": "Member Since",
+    "accountId": "Account ID",
+    "emailVerification": "Email Verification",
+    "verified": "Verified",
+    "notVerified": "Not verified",
+    "resendVerification": "Resend link",
+    "verificationSent": "Verification email sent. Check your inbox."
+  },
+  "editProfile": {
+    "success": "Profile updated successfully.",
+    "photoPreviewAlt": "Profile preview",
+    "changePhoto": "Change Photo",
+    "photoHint": "PNG, JPG, or JPEG. Max 5 MB.",
+    "imageErrors": {
+      "unsupportedFormat": "Unsupported image format. Use JPG, JPEG, or PNG.",
+      "tooLarge": "Image size must not exceed 5 MB."
+    },
+    "fullName": "Full Name",
+    "email": "Email",
+    "emailLocked": "Email address cannot be changed."
+  },
+  "changePassword": {
+    "success": "Password changed successfully.",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "submit": "Change Password",
+    "submitting": "Updating..."
+  },
+  "deleteAccount": {
+    "title": "Delete Account",
+    "warning": "Deleting your account permanently removes all associated data, including your farms and prediction history. This action cannot be undone.",
+    "currentPassword": "Current Password",
+    "typeToConfirm": "Type <word>DELETE</word> to confirm",
+    "submit": "Permanently Delete My Account"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "generic": "Something went wrong. Please try again.",
+  "network": "Unable to reach the server. Please check your connection.",
+  "rateLimited": "Too many attempts. Please wait a minute and try again.",
+  "boundary": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again, and contact support if the problem continues.",
+    "retry": "Try Again"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or may have been moved."
+  }
+}

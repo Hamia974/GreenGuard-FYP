@@ -1,0 +1,58 @@
+{
+  "addFarm": "Add Farm",
+  "manageFarms": "Manage Farms",
+  "goToFarms": "Go to Farms",
+  "noFarmSelected": "No farm selected",
+  "backToFarms": "Back to Farms",
+  "card": {
+    "active": "Active",
+    "confirmDelete": "Delete this farm?",
+    "setActive": "Set Active"
+  },
+  "form": {
+    "farmName": "Farm Name",
+    "farmNamePlaceholder": "e.g. Green Valley Farm",
+    "address": "Address",
+    "addressPlaceholder": "e.g. Village Baghbanpura, Lahore, Punjab",
+    "useCurrentLocation": "Use Current Location",
+    "locationUnsupported": "Your browser does not support device GPS location.",
+    "locationUnavailable": "Unable to retrieve your location. Please enter your farm address and use Find Location instead.",
+    "location": {
+      "title": "Farm Location",
+      "hint": "Enter your village, tehsil, district or a nearby landmark in the address, then tap Find Location.",
+      "findLocation": "Find Location",
+      "finding": "Finding location...",
+      "or": "or",
+      "found": "Location found",
+      "saved": "Farm location is set",
+      "multipleFound": "Multiple locations found",
+      "selectCorrect": "Please select the correct location",
+      "checkAndConfirm": "Please check this is your farm's area, then confirm it.",
+      "confirm": "Confirm Location",
+      "change": "Change Location",
+      "notFound": "We couldn't find this address. Please enter a more complete address, such as village, district, or nearby landmark.",
+      "serviceError": "Unable to find location. Please check your internet connection and try again.",
+      "addressChanged": "Address changed, please find the location again.",
+      "coordinates": "Location coordinates",
+      "currentLocation": "Current Location",
+      "mapPreview": "Map of the selected farm location"
+    }
+  },
+  "list": {
+    "title": "My Farms",
+    "description": "Manage the farms used for weather analysis and plant health predictions.",
+    "loadError": "Unable to load your farms. Please try again.",
+    "emptyTitle": "No farms yet",
+    "emptyDescription": "Add your first farm to start tracking weather risk and plant health predictions."
+  },
+  "create": {
+    "description": "Enter your farm's name and address. We'll find its location for weather insights.",
+    "submit": "Create Farm",
+    "submitting": "Creating..."
+  },
+  "edit": {
+    "title": "Edit Farm",
+    "description": "Update your farm details and location.",
+    "notFound": "This farm could not be found. It may have been deleted."
+  }
+}

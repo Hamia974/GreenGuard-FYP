@@ -1,0 +1,125 @@
+# Local/self-hosted orchestration for GreenGuard: PostgreSQL, the Django
+# backend, and the Next.js frontend. No secrets live in this file -- the
+# backend reads its full configuration from backend/.env (see
+# backend/.env.example); database credentials are shared with the `db`
+# service via the root .env file (see .env.example).
+#
+# Module 1 (Disease Detection) is NOT part of this stack: it is an external
+# hosted service reached via DISEASE_MODULE_URL + GREENGUARD_API_KEY in
+# backend/.env (or mocked with ENABLE_MOCK_AI=True).
+#
+# Usage (see README.md "Docker" for details):
+#   cp .env.example .env
+#   cp backend/.env.example backend/.env   # fill in real values
+#   docker compose up --build -d
+#   docker compose exec backend python manage.py migrate
+#   docker compose down        # stops containers, keeps the data volumes
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-greenguard_db}
+      POSTGRES_USER: ${DATABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-postgres}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER:-postgres} -d ${DATABASE_NAME:-greenguard_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    environment:
+      # Overrides backend/.env's DATABASE_HOST=localhost so the backend
+      # reaches Postgres over the compose network instead.
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      # Same root-.env values the `db` service is initialised with, so the
+      # backend can never drift from the database's real credentials.
+      DATABASE_NAME: ${DATABASE_NAME:-greenguard_db}
+      DATABASE_USER: ${DATABASE_USER:-postgres}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-postgres}
+      # Overrides backend/.env's WEATHER_MODULE_URL=http://localhost:8001 so
+      # the backend reaches Module 3 (Weather Risk) over the compose network
+      # instead. Ignored while ENABLE_MOCK_AI=True (see backend/.env).
+      WEATHER_MODULE_URL: http://weather-module:8001
+      # Overrides backend/.env's STRESS_MODULE_URL=http://localhost:8002 so
+      # the backend reaches Module 2 (Soil & Nutrient / Stress Module) over
+      # the compose network instead. Ignored while ENABLE_MOCK_AI=True.
+      STRESS_MODULE_URL: http://stress-module:8002
+    depends_on:
+      db:
+        condition: service_healthy
+      weather-module:
+        condition: service_healthy
+      stress-module:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend_media:/app/media
+      - backend_logs:/app/logs
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/', timeout=5)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  weather-module:
+    # AI Module 3 (Weather Risk Engine) -- the real, delivered microservice.
+    # Its own Dockerfile/requirements.txt are used as-is (see
+    # ai/Weather_Module/Weather_Module/README.md); not modified for compose.
+    build: ./ai/Weather_Module/Weather_Module
+    ports:
+      - "8001:8001"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health', timeout=5)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  stress-module:
+    # AI Module 2 (Soil & Nutrient / "Stress Module") -- the real, delivered
+    # microservice (Module 2A nutrient-risk ML + Module 2B pH/moisture/light
+    # rules). Its own Dockerfile/requirements.txt are used as-is (see
+    # ai/Stress_Module/docker-compose.yml, whose service block this mirrors).
+    build: ./ai/Stress_Module
+    ports:
+      - "8002:8002"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8002/health', timeout=5)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8000/api/v1}
+        NEXT_PUBLIC_APP_NAME: ${NEXT_PUBLIC_APP_NAME:-GreenGuard}
+        NEXT_PUBLIC_ENVIRONMENT: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/', (r) => process.exit(r.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  postgres_data:
+  backend_media:
+  backend_logs:

@@ -1,0 +1,64 @@
+{
+  "currentConditions": "Current Conditions",
+  "environmentalRisk": "Weather Risk to Crops",
+  "unavailableTitle": "Weather not available",
+  "unavailableDescription": "We couldn't get the weather for this farm right now. Please try again later.",
+  "metrics": {
+    "temperature": "Temperature",
+    "humidity": "Humidity",
+    "windSpeed": "Wind Speed",
+    "rainfall": "Rainfall",
+    "rainfallLast7Days": "Rain (last 7 days)"
+  },
+  "riskLevels": {
+    "Low": "Low",
+    "Moderate": "Moderate",
+    "High": "High"
+  },
+  "risks": {
+    "fungalDisease": "Fungal Disease",
+    "heatStress": "Heat Stress",
+    "drought": "Drought"
+  },
+  "forecast": {
+    "title": "Tomorrow's Forecast",
+    "unavailable": "Tomorrow's forecast is not available right now.",
+    "predictedRisk": "Expected risk tomorrow",
+    "fungal": "Fungal: {level}",
+    "heat": "Heat: {level}",
+    "drought": "Drought: {level}",
+    "caveat": "This forecast is an estimate and may not be exact, especially for temperature."
+  },
+  "preview": {
+    "notInContract": "Not available yet",
+    "uvWind": {
+      "title": "UV & Wind Details",
+      "description": "UV index, wind direction and gusts will appear here."
+    },
+    "map": {
+      "title": "Farm Map",
+      "description": "A weather map of your farms will appear here."
+    }
+  },
+  "dashboard": {
+    "title": "Weather",
+    "description": "Live weather and crop risk for your farm.",
+    "updatedAt": "Updated at {time}",
+    "noFarmDescription": "Select or create a farm to see its live weather and crop risk.",
+    "loadError": "Unable to load weather data. Please try again."
+  },
+  "test": {
+    "title": "Weather Test",
+    "description": "Check today's weather and see if your crops are at risk.",
+    "noFarmDescription": "Select or create a farm to run a Weather Test.",
+    "readyTitle": "Ready to check the weather at {farm}",
+    "readyDescription": "We'll check today's weather at your farm and tell you if it puts your crops at risk.",
+    "start": "Check Weather",
+    "testingTitle": "Checking the weather at {farm}...",
+    "testingDescription": "This only takes a few seconds.",
+    "error": "We couldn't check the weather right now. Please try again.",
+    "complete": "Weather check complete",
+    "cropRisk": "Risk to Your Crops",
+    "testAgain": "Check Again"
+  }
+}

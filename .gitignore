@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.sqlite3-journal
+*.log
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+.ruff_cache/
+htmlcov/
+
+# Django
+media/
+staticfiles/
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Secrets and credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+credentials*.json
+service-account*.json
+
+# Database dumps and local data directories
+*.sql
+*.dump
+*.backup
+postgres_data/
+pgdata/
+
+# Logs
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node.js / Next.js
+node_modules/
+.next/
+out/
+dist/
+*.tsbuildinfo
+
+# Docker (local-only overrides)
+docker-compose.override.yml
+compose.override.yml
+
+# AI delivery archives (the extracted folders under ai/ are tracked instead)
+ai/*.zip
+
+# Claude Code per-user settings
+.claude/settings.local.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+.pytest_cache/
+.mypy_cache/
+
+# Coverage
+.coverage
+coverage/
+
+# Temporary
+*.tmp
+*.swp
+*.bak

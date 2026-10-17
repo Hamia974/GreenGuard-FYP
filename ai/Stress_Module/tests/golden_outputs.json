@@ -1,0 +1,480 @@
+{
+  "scenario_1_severe_deficiency": {
+    "crop_supported": true,
+    "module2a": {
+      "nitrogen_risk": {
+        "level": "high",
+        "confidence": 0.9
+      },
+      "phosphorus_risk": {
+        "level": "medium",
+        "confidence": 0.41
+      },
+      "potassium_risk": {
+        "level": "high",
+        "confidence": 0.48
+      },
+      "magnesium_risk": {
+        "level": "high",
+        "confidence": 0.42
+      },
+      "zinc_risk": {
+        "level": "low",
+        "confidence": 0.75
+      },
+      "boron_risk": {
+        "level": "medium",
+        "confidence": 0.43
+      },
+      "overall_nutrient_health": "poor",
+      "input_typicality": {
+        "anomaly_score": 0.034,
+        "flag": "typical"
+      },
+      "model_version": "module2a-v5"
+    },
+    "module2b": {
+      "ph": {
+        "current": 4.7,
+        "ideal_range": [
+          6.0,
+          7.5
+        ],
+        "gap": 1.3,
+        "status": "critical",
+        "nutrient_lockout_note": "Soil is strongly acidic. This severely limits potassium, nitrogen, phosphorus, calcium, and magnesium — and can raise aluminum/manganese to toxic levels. Fertilizer alone will not fix this; consider liming. A laboratory soil test is recommended to confirm and guide correction."
+      },
+      "soil_moisture": {
+        "current": 28.0,
+        "ideal_range": [
+          50.0,
+          70.0
+        ],
+        "gap": 22.0,
+        "status": "critical"
+      },
+      "light": {
+        "current": 30000.0,
+        "ideal_range": [
+          25000.0,
+          null
+        ],
+        "gap": 0.0,
+        "status": "ok"
+      },
+      "crop_supported": true
+    },
+    "overall_soil_health_score": 25.0,
+    "overall_soil_health_label": "poor",
+    "recommendation_notes": {
+      "headline": "Nitrogen needs attention first.",
+      "needs_attention": [
+        {
+          "nutrient": "Nitrogen",
+          "level": "high",
+          "confidence_pct": 90,
+          "confidence_text": "90% confident — strong match",
+          "why": "yellowing on your older leaves, sandy soil (nutrients wash out faster), no fertilizer applied, not enough water"
+        },
+        {
+          "nutrient": "Potassium",
+          "level": "high",
+          "confidence_pct": 48,
+          "confidence_text": "48% confident — based on limited signs",
+          "why": "sandy soil (nutrients wash out faster), no fertilizer applied, not enough water"
+        },
+        {
+          "nutrient": "Magnesium",
+          "level": "high",
+          "confidence_pct": 42,
+          "confidence_text": "42% confident — based on limited signs",
+          "why": "sandy soil (nutrients wash out faster), no fertilizer applied, not enough water"
+        },
+        {
+          "nutrient": "Boron",
+          "level": "medium",
+          "confidence_pct": 43,
+          "confidence_text": "43% confident — based on limited signs",
+          "why": "sandy soil (nutrients wash out faster), no fertilizer applied, not enough water"
+        },
+        {
+          "nutrient": "Phosphorus",
+          "level": "medium",
+          "confidence_pct": 41,
+          "confidence_text": "41% confident — based on limited signs",
+          "why": "sandy soil (nutrients wash out faster), no fertilizer applied, not enough water"
+        }
+      ],
+      "looking_fine": [
+        {
+          "nutrient": "Zinc",
+          "level": "low",
+          "confidence_pct": 75,
+          "confidence_text": "75% confident — likely"
+        }
+      ],
+      "caveat": "This advice is based on your answers and soil-meter readings. A soil lab test can add exact nutrient levels if you need them.",
+      "soil_condition_note": "Soil is strongly acidic. This severely limits potassium, nitrogen, phosphorus, calcium, and magnesium — and can raise aluminum/manganese to toxic levels. Fertilizer alone will not fix this; consider liming. A laboratory soil test is recommended to confirm and guide correction."
+    },
+    "model_version": "module2-orchestrator-v1",
+    "module2a_model_version": "module2a-v5"
+  },
+  "scenario_2_healthy_crop": {
+    "crop_supported": true,
+    "module2a": {
+      "nitrogen_risk": {
+        "level": "low",
+        "confidence": 0.83
+      },
+      "phosphorus_risk": {
+        "level": "low",
+        "confidence": 0.91
+      },
+      "potassium_risk": {
+        "level": "low",
+        "confidence": 0.94
+      },
+      "magnesium_risk": {
+        "level": "low",
+        "confidence": 0.78
+      },
+      "zinc_risk": {
+        "level": "low",
+        "confidence": 0.87
+      },
+      "boron_risk": {
+        "level": "low",
+        "confidence": 0.59
+      },
+      "overall_nutrient_health": "good",
+      "input_typicality": {
+        "anomaly_score": 0.107,
+        "flag": "typical"
+      },
+      "model_version": "module2a-v5"
+    },
+    "module2b": {
+      "ph": {
+        "current": 6.5,
+        "ideal_range": [
+          5.5,
+          7.5
+        ],
+        "gap": 0.0,
+        "status": "ok",
+        "nutrient_lockout_note": "pH is in a good range — most nutrients, including phosphorus and micronutrients like zinc and iron, are readily available to your plant."
+      },
+      "soil_moisture": {
+        "current": 62.0,
+        "ideal_range": [
+          60.0,
+          80.0
+        ],
+        "gap": 0.0,
+        "status": "ok"
+      },
+      "light": {
+        "current": 32000.0,
+        "ideal_range": [
+          25000.0,
+          null
+        ],
+        "gap": 0.0,
+        "status": "ok"
+      },
+      "crop_supported": true
+    },
+    "overall_soil_health_score": 100.0,
+    "overall_soil_health_label": "good",
+    "recommendation_notes": {
+      "headline": "No nutrient problems detected — your crop looks well fed.",
+      "needs_attention": [],
+      "looking_fine": [
+        {
+          "nutrient": "Nitrogen",
+          "level": "low",
+          "confidence_pct": 83,
+          "confidence_text": "83% confident — likely"
+        },
+        {
+          "nutrient": "Phosphorus",
+          "level": "low",
+          "confidence_pct": 91,
+          "confidence_text": "91% confident — strong match"
+        },
+        {
+          "nutrient": "Potassium",
+          "level": "low",
+          "confidence_pct": 94,
+          "confidence_text": "94% confident — strong match"
+        },
+        {
+          "nutrient": "Magnesium",
+          "level": "low",
+          "confidence_pct": 78,
+          "confidence_text": "78% confident — likely"
+        },
+        {
+          "nutrient": "Zinc",
+          "level": "low",
+          "confidence_pct": 87,
+          "confidence_text": "87% confident — strong match"
+        },
+        {
+          "nutrient": "Boron",
+          "level": "low",
+          "confidence_pct": 59,
+          "confidence_text": "59% confident — possible"
+        }
+      ],
+      "caveat": "This advice is based on your answers and soil-meter readings. A soil lab test can add exact nutrient levels if you need them."
+    },
+    "model_version": "module2-orchestrator-v1",
+    "module2a_model_version": "module2a-v5"
+  },
+  "scenario_3_saline_zinc_lockout": {
+    "crop_supported": true,
+    "module2a": {
+      "nitrogen_risk": {
+        "level": "low",
+        "confidence": 0.8
+      },
+      "phosphorus_risk": {
+        "level": "medium",
+        "confidence": 0.55
+      },
+      "potassium_risk": {
+        "level": "medium",
+        "confidence": 0.51
+      },
+      "magnesium_risk": {
+        "level": "low",
+        "confidence": 0.66
+      },
+      "zinc_risk": {
+        "level": "high",
+        "confidence": 0.98
+      },
+      "boron_risk": {
+        "level": "medium",
+        "confidence": 0.58
+      },
+      "overall_nutrient_health": "moderate",
+      "input_typicality": {
+        "anomaly_score": 0.041,
+        "flag": "typical"
+      },
+      "model_version": "module2a-v5"
+    },
+    "module2b": {
+      "ph": {
+        "current": 8.4,
+        "ideal_range": [
+          6.0,
+          7.5
+        ],
+        "gap": 0.9,
+        "status": "moderate",
+        "nutrient_lockout_note": "Soil is strongly alkaline. Zinc, iron, manganese, and copper are likely severely locked up, and phosphorus is bound with calcium. This is a common issue in alkaline/calcareous soils and is a frequent cause of zinc deficiency regardless of fertilizer history. A laboratory soil test is recommended to confirm and guide correction."
+      },
+      "soil_moisture": {
+        "current": 38.0,
+        "ideal_range": [
+          50.0,
+          75.0
+        ],
+        "gap": 12.0,
+        "status": "moderate"
+      },
+      "light": {
+        "current": 29000.0,
+        "ideal_range": [
+          25000.0,
+          null
+        ],
+        "gap": 0.0,
+        "status": "ok"
+      },
+      "crop_supported": true
+    },
+    "overall_soil_health_score": 60.0,
+    "overall_soil_health_label": "moderate",
+    "recommendation_notes": {
+      "headline": "Zinc needs attention first.",
+      "needs_attention": [
+        {
+          "nutrient": "Zinc",
+          "level": "high",
+          "confidence_pct": 98,
+          "confidence_text": "98% confident — strong match",
+          "why": "yellowing between the veins of young leaves, salt-affected soil (locks up zinc so roots can't take it in), not enough water"
+        },
+        {
+          "nutrient": "Boron",
+          "level": "medium",
+          "confidence_pct": 58,
+          "confidence_text": "58% confident — possible",
+          "why": "salt-affected soil (makes nutrient uptake harder), not enough water"
+        },
+        {
+          "nutrient": "Phosphorus",
+          "level": "medium",
+          "confidence_pct": 55,
+          "confidence_text": "55% confident — possible",
+          "why": "salt-affected soil (phosphorus binds with calcium and becomes unavailable), not enough water"
+        },
+        {
+          "nutrient": "Potassium",
+          "level": "medium",
+          "confidence_pct": 51,
+          "confidence_text": "51% confident — possible",
+          "why": "salt-affected soil (makes nutrient uptake harder), not enough water"
+        }
+      ],
+      "looking_fine": [
+        {
+          "nutrient": "Nitrogen",
+          "level": "low",
+          "confidence_pct": 80,
+          "confidence_text": "80% confident — likely"
+        },
+        {
+          "nutrient": "Magnesium",
+          "level": "low",
+          "confidence_pct": 66,
+          "confidence_text": "66% confident — likely"
+        }
+      ],
+      "caveat": "This advice is based on your answers and soil-meter readings. A soil lab test can add exact nutrient levels if you need them.",
+      "soil_condition_note": "Soil is strongly alkaline. Zinc, iron, manganese, and copper are likely severely locked up, and phosphorus is bound with calcium. This is a common issue in alkaline/calcareous soils and is a frequent cause of zinc deficiency regardless of fertilizer history. A laboratory soil test is recommended to confirm and guide correction."
+    },
+    "model_version": "module2-orchestrator-v1",
+    "module2a_model_version": "module2a-v5"
+  },
+  "scenario_4_rice_waterlogged": {
+    "crop_supported": true,
+    "module2a": {
+      "nitrogen_risk": {
+        "level": "medium",
+        "confidence": 0.46
+      },
+      "phosphorus_risk": {
+        "level": "low",
+        "confidence": 0.52
+      },
+      "potassium_risk": {
+        "level": "high",
+        "confidence": 0.65
+      },
+      "magnesium_risk": {
+        "level": "low",
+        "confidence": 0.48
+      },
+      "zinc_risk": {
+        "level": "medium",
+        "confidence": 0.45
+      },
+      "boron_risk": {
+        "level": "low",
+        "confidence": 0.6
+      },
+      "overall_nutrient_health": "moderate",
+      "input_typicality": {
+        "anomaly_score": 0.053,
+        "flag": "typical"
+      },
+      "model_version": "module2a-v5"
+    },
+    "module2b": {
+      "ph": {
+        "current": 6.2,
+        "ideal_range": [
+          5.5,
+          7.0
+        ],
+        "gap": 0.0,
+        "status": "ok",
+        "nutrient_lockout_note": "pH is in a good range — most nutrients, including phosphorus and micronutrients like zinc and iron, are readily available to your plant."
+      },
+      "soil_moisture": {
+        "current": 55.0,
+        "ideal_range": [
+          80.0,
+          100.0
+        ],
+        "gap": 25.0,
+        "status": "critical"
+      },
+      "light": {
+        "current": 18000.0,
+        "ideal_range": [
+          25000.0,
+          null
+        ],
+        "gap": 7000.0,
+        "status": "moderate"
+      },
+      "crop_supported": true
+    },
+    "overall_soil_health_score": 60.0,
+    "overall_soil_health_label": "moderate",
+    "recommendation_notes": {
+      "headline": "Potassium needs attention first.",
+      "needs_attention": [
+        {
+          "nutrient": "Potassium",
+          "level": "high",
+          "confidence_pct": 65,
+          "confidence_text": "65% confident — likely",
+          "why": "the brown, scorched leaf edges, it's been a long time since fertilizer"
+        },
+        {
+          "nutrient": "Nitrogen",
+          "level": "medium",
+          "confidence_pct": 46,
+          "confidence_text": "46% confident — based on limited signs",
+          "why": "it's been a long time since fertilizer"
+        },
+        {
+          "nutrient": "Zinc",
+          "level": "medium",
+          "confidence_pct": 45,
+          "confidence_text": "45% confident — based on limited signs",
+          "why": "it's been a long time since fertilizer"
+        }
+      ],
+      "looking_fine": [
+        {
+          "nutrient": "Phosphorus",
+          "level": "low",
+          "confidence_pct": 52,
+          "confidence_text": "52% confident — possible"
+        },
+        {
+          "nutrient": "Magnesium",
+          "level": "low",
+          "confidence_pct": 48,
+          "confidence_text": "48% confident — based on limited signs"
+        },
+        {
+          "nutrient": "Boron",
+          "level": "low",
+          "confidence_pct": 60,
+          "confidence_text": "60% confident — possible"
+        }
+      ],
+      "caveat": "This advice is based on your answers and soil-meter readings. A soil lab test can add exact nutrient levels if you need them."
+    },
+    "model_version": "module2-orchestrator-v1",
+    "module2a_model_version": "module2a-v5"
+  },
+  "scenario_5_unsupported_crop": {
+    "crop_supported": false,
+    "message": "Nutrient and soil-condition analysis isn't available yet for this crop.",
+    "module2a": null,
+    "module2b": null,
+    "overall_soil_health_score": null,
+    "overall_soil_health_label": null,
+    "recommendation_notes": null
+  }
+}

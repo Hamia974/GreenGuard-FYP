@@ -1,0 +1,118 @@
+{
+  "model_version": "module2a-v5",
+  "categorical_features": [
+    "crop",
+    "growth_stage",
+    "soil_type",
+    "last_fertilizer_type",
+    "days_since_fertilizer",
+    "irrigation_source",
+    "irrigation_adequacy"
+  ],
+  "numeric_features": [
+    "temperature_c",
+    "humidity_pct",
+    "rainfall_mm_last_7_days"
+  ],
+  "symptom_features": [
+    "symptom_yellowing_older_leaves",
+    "symptom_purple_reddish_tint",
+    "symptom_brown_scorched_leaf_edges",
+    "symptom_stunted_growth",
+    "symptom_poor_flowering_or_fruiting",
+    "symptom_weak_stems",
+    "symptom_interveinal_chlorosis_older_leaves",
+    "symptom_interveinal_chlorosis_young_leaves",
+    "symptom_leaf_curling_brittle",
+    "symptom_short_internodes_small_leaves",
+    "symptom_none_visible"
+  ],
+  "feature_columns_in_order": [
+    "crop",
+    "growth_stage",
+    "soil_type",
+    "last_fertilizer_type",
+    "days_since_fertilizer",
+    "irrigation_source",
+    "irrigation_adequacy",
+    "temperature_c",
+    "humidity_pct",
+    "rainfall_mm_last_7_days",
+    "symptom_yellowing_older_leaves",
+    "symptom_purple_reddish_tint",
+    "symptom_brown_scorched_leaf_edges",
+    "symptom_stunted_growth",
+    "symptom_poor_flowering_or_fruiting",
+    "symptom_weak_stems",
+    "symptom_interveinal_chlorosis_older_leaves",
+    "symptom_interveinal_chlorosis_young_leaves",
+    "symptom_leaf_curling_brittle",
+    "symptom_short_internodes_small_leaves",
+    "symptom_none_visible"
+  ],
+  "level_map": {
+    "low": 0,
+    "medium": 1,
+    "high": 2
+  },
+  "risk_targets": [
+    "nitrogen_risk",
+    "phosphorus_risk",
+    "potassium_risk",
+    "magnesium_risk",
+    "zinc_risk",
+    "boron_risk"
+  ],
+  "trained_crops": [
+    "ash_gourd",
+    "bitter_gourd",
+    "bottle_gourd",
+    "chickpea",
+    "cotton",
+    "cucumber",
+    "eggplant",
+    "maize",
+    "potato",
+    "rice",
+    "ridge_gourd",
+    "snake_gourd",
+    "sugarcane",
+    "tomato",
+    "wheat"
+  ],
+  "overall_nutrient_health_rule": {
+    "0": "good",
+    "1": "good",
+    "2": "moderate",
+    "3": "moderate",
+    "4": "poor",
+    "5": "poor",
+    "6": "poor"
+  },
+  "split_group_columns": [
+    "growth_stage",
+    "soil_type",
+    "last_fertilizer_type",
+    "days_since_fertilizer",
+    "irrigation_source",
+    "irrigation_adequacy",
+    "symptom_yellowing_older_leaves",
+    "symptom_purple_reddish_tint",
+    "symptom_brown_scorched_leaf_edges",
+    "symptom_stunted_growth",
+    "symptom_poor_flowering_or_fruiting",
+    "symptom_weak_stems",
+    "symptom_interveinal_chlorosis_older_leaves",
+    "symptom_interveinal_chlorosis_young_leaves",
+    "symptom_leaf_curling_brittle",
+    "symptom_short_internodes_small_leaves",
+    "symptom_none_visible"
+  ],
+  "anomaly_detector": {
+    "artifact": "module2a_anomaly_detector.joblib",
+    "algorithm": "IsolationForest(n_estimators=300, contamination=0.05)",
+    "trained_on": "union of all classifier-training feature rows + data/module2_farmer_coverage_unlabeled.csv (unlabeled, realistic-coverage)",
+    "output": "anomaly_score (float) + flag ('typical'/'unusual'), independent of the 6 risk predictions",
+    "note": "contamination is set to 0.05 so the decision threshold is derived from the training score distribution rather than a fixed default, giving a calibrated ~5% flag rate."
+  }
+}

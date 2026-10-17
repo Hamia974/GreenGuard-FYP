@@ -1,0 +1,86 @@
+{
+  "fallbackName": "there",
+  "loadError": "Unable to load your dashboard right now. Please refresh the page.",
+  "welcome": {
+    "morning": "Good Morning, {name} 👋",
+    "afternoon": "Good Afternoon, {name} 👋",
+    "evening": "Good Evening, {name} 👋",
+    "subtitle": "Welcome back to GreenGuard. Let's keep your crops healthy today."
+  },
+  "mainTests": {
+    "title": "What would you like to check?",
+    "description": "Pick a test below to get started — it only takes a minute.",
+    "selectFarmToStart": "Select a farm to start",
+    "addFarmToStart": "Add a farm to start",
+    "start": "Start",
+    "tests": {
+      "weather": {
+        "title": "Weather Test",
+        "description": "Check today's weather and see if your crops are at risk."
+      },
+      "soil": {
+        "title": "Soil Test",
+        "description": "Answer a few simple questions to check your soil and crop nutrients."
+      },
+      "disease": {
+        "title": "Disease Test",
+        "description": "Take a photo of a leaf to check for disease, pests, or nutrient problems."
+      }
+    }
+  },
+  "statistics": {
+    "totalPredictions": {
+      "label": "Total Predictions",
+      "description": "Quick Scans run so far"
+    },
+    "healthyPlants": {
+      "label": "Healthy Plants",
+      "description": "Healthy per Disease Detection"
+    },
+    "diseasedPlants": {
+      "label": "Diseased Plants",
+      "description": "Disease found by Disease Detection"
+    },
+    "aiAccuracy": {
+      "label": "AI Accuracy",
+      "description": "Across recent scans"
+    }
+  },
+  "recentAnalyses": {
+    "title": "Recent Analyses",
+    "loadError": "Unable to load recent predictions. Please try again.",
+    "emptyTitle": "No Analyses Yet",
+    "emptyDescription": "Run a Quick Scan and your analysis reports will show up here."
+  },
+  "farmSummary": {
+    "title": "Farm Summary",
+    "emptyTitle": "No farms yet",
+    "emptyDescription": "Add a farm to start tracking weather risk and plant health for it.",
+    "registered": "{count, plural, one {farm registered} other {farms registered}}",
+    "activeFarm": "Active Farm",
+    "selectActiveFarm": "Select an active farm to scope predictions and weather data."
+  },
+  "notificationsPreview": {
+    "title": "Notifications",
+    "unread": "{count, plural, one {# unread notification} other {# unread notifications}}",
+    "empty": "No notifications yet",
+    "description": "Weather alerts, prediction updates, and system announcements appear here.",
+    "viewAll": "View All"
+  },
+  "quickActions": {
+    "addFarm": "Add Farm",
+    "predictionHistory": "Prediction History",
+    "weatherDashboard": "Weather Dashboard",
+    "profile": "Profile",
+    "comingSoon": "Coming soon"
+  },
+  "weatherCard": {
+    "title": "Weather Intelligence",
+    "refresh": "Refresh weather",
+    "noFarmDescription": "Select or create a farm to see live weather and risk insights for it.",
+    "loadError": "Unable to load weather data. Please try again.",
+    "fungalRisk": "Fungal Risk",
+    "heatStress": "Heat Stress",
+    "droughtRisk": "Drought Risk"
+  }
+}

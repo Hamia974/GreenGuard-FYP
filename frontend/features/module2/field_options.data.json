@@ -1,0 +1,271 @@
+{
+  "_meta": {
+    "generated_from": "module2_farmer_questionnaire_synthetic.csv (2A fields) + api/module2b_service.py rule tables (2B fields) + Module2_Orchestrator_Spec.md (score schema)",
+    "row_count": 37500,
+    "purpose": "Single source of truth for Module 2A field options. Frontend dropdowns/checkboxes and backend input validation must both read from this file, not hardcode values independently.",
+    "note_on_no_fertilizer": "Use the literal string 'No_Fertilizer' for the no-fertilizer case. Do NOT use 'None' -- it gets silently read as a missing value (NaN) by pandas on CSV load and will break inference.",
+    "schema_version": "10.0",
+    "changelog": [
+      "v2.0: added 7 gourd-family crops (frontend-enabled, model-pending-retrain); added ph_value, soil_moisture_pct, light_intensity_lux as optional collected-but-unused-by-model fields.",
+      "v3.0: renamed to module2_field_options.json to reflect it now covers 2A input fields, 2B numeric fields, and the Module 2 orchestrator score schema \u2014 Module 2 is the only public endpoint.",
+      "v4.0: dataset regenerated with the 7 gourd-family/eggplant/cucumber crops (17,500 rows added via scripts/expand_crops.py, row_count 20000 -> 37500). Crops remain in added_pending_retrain until the model is actually retrained on the expanded dataset.",
+      "v5.0: model retrained (module2a-v2) on the expanded dataset with a leakage-safe grouped train/test split; all 15 crops moved to trained_and_supported after verifying the 7 new crops' macro-F1 tracks the original 8 rather than collapsing.",
+      "v6.0: model retrained (module2a-v4) -- crop-expansion resampling made dependency-aware (crop now realistically correlated with soil_type/irrigation_source/weather instead of independent of them), the previously-documented-but-unapplied cucurbit zinc/boron sensitivity prior was applied, and a new unsupervised IsolationForest anomaly/typicality detector was added (output field input_typicality, not a 7th risk target). See docs/MODEL_DOCUMENTATION.md (Training data).",
+      "v7.0: ph_value/soil_moisture_pct/light_intensity_lux changed from optional to REQUIRED (a soil meter is supplied with the deployment). Module 2 /predict is now implemented and orchestrates Module 2A + 2B; the temporary /dev/module2b/compare route has been removed per Module2_Orchestrator_Spec.md.",
+      "v8.0: model retrained as module2a-v5. The train/test split and hyperparameter-search CV now group rows by input signature only (all categorical inputs except crop, plus all symptom flags), so an identical input combination never appears on both sides of a split; the grouping columns are recorded as split_group_columns in models/module2a_schema.json. Input fields and the output contract are unchanged.",
+      "v9.0 (module 1.1.0): the Module 2 response adds recommendation_notes (farmer-facing notes, approved by the Project Manager on 2026-09-11). Input fields are unchanged. module2_orchestrator_output_schema now lists every response field.",
+      "v10.0 (module 1.2.0): two agronomy reviews (GG-M2-AR-01, GG-M2-AR-02) applied -- corrected pH/moisture ranges for chickpea/wheat/rice/maize/potato, crop-dependent overall_soil_health_score weighting for the 6 Cucurbitaceae crops and potato (see overall_soil_health_score.weights note below), a lab-soil-test recommendation on critical pH messages, and a plain-language rewrite of reliability_note. No field added, removed, or renamed."
+    ]
+  },
+  "categorical_fields": {
+    "crop": [
+      "ash_gourd",
+      "bitter_gourd",
+      "bottle_gourd",
+      "chickpea",
+      "cotton",
+      "cucumber",
+      "eggplant",
+      "maize",
+      "potato",
+      "rice",
+      "ridge_gourd",
+      "snake_gourd",
+      "sugarcane",
+      "tomato",
+      "wheat"
+    ],
+    "growth_stage": [
+      "flowering",
+      "fruiting_grain_filling",
+      "maturity",
+      "seedling",
+      "vegetative"
+    ],
+    "soil_type": [
+      "clay",
+      "clay_loam",
+      "loamy",
+      "saline_affected",
+      "sandy",
+      "sandy_loam"
+    ],
+    "last_fertilizer_type": [
+      "DAP",
+      "Dont_know",
+      "FYM_compost",
+      "MOP_SOP",
+      "NPK_blend",
+      "No_Fertilizer",
+      "Urea"
+    ],
+    "days_since_fertilizer": [
+      "15_30_days",
+      "30_60_days",
+      "60_90_days",
+      "gt_90_days",
+      "lt_15_days",
+      "not_applicable"
+    ],
+    "irrigation_source": [
+      "canal",
+      "drip",
+      "flood_basin",
+      "rain_fed",
+      "tube_well"
+    ],
+    "irrigation_adequacy": [
+      "adequate",
+      "excessive",
+      "insufficient"
+    ]
+  },
+  "numeric_fields": {
+    "temperature_c": {
+      "unit": "celsius",
+      "source": "weather_api",
+      "observed_range_in_training_data": [
+        5.1,
+        48.0
+      ]
+    },
+    "humidity_pct": {
+      "unit": "percent",
+      "source": "weather_api",
+      "observed_range_in_training_data": [
+        10.0,
+        95.0
+      ]
+    },
+    "rainfall_mm_last_7_days": {
+      "unit": "millimeters",
+      "source": "weather_api",
+      "observed_range_in_training_data": [
+        0.0,
+        130.6
+      ]
+    },
+    "ph_value": {
+      "unit": "pH scale",
+      "typical_range": [
+        4.5,
+        8.5
+      ],
+      "source": "farmer_manual_entry_or_connected_sensor",
+      "required": true,
+      "used_by_current_model": false,
+      "note": "Required as of 2026-09-10: the deployment ships a soil meter with the farmer. Consumed by Module 2B (growing-conditions comparison) and by the Module 2 score. NOT part of Module 2A's trained feature vector."
+    },
+    "soil_moisture_pct": {
+      "unit": "percent",
+      "typical_range": [
+        0,
+        100
+      ],
+      "source": "farmer_manual_entry_or_connected_sensor",
+      "required": true,
+      "used_by_current_model": false,
+      "note": "Required as of 2026-09-10: the deployment ships a soil meter with the farmer. Consumed by Module 2B (growing-conditions comparison) and by the Module 2 score. NOT part of Module 2A's trained feature vector."
+    },
+    "light_intensity_lux": {
+      "unit": "lux",
+      "typical_range": [
+        0,
+        120000
+      ],
+      "source": "farmer_manual_entry_or_connected_sensor",
+      "required": true,
+      "used_by_current_model": false,
+      "note": "Required as of 2026-09-10: the deployment ships a soil meter with the farmer. Consumed by Module 2B (growing-conditions comparison) and by the Module 2 score. NOT part of Module 2A's trained feature vector."
+    }
+  },
+  "symptom_fields": {
+    "keys": [
+      "yellowing_older_leaves",
+      "purple_reddish_tint",
+      "brown_scorched_leaf_edges",
+      "stunted_growth",
+      "poor_flowering_or_fruiting",
+      "weak_stems",
+      "interveinal_chlorosis_older_leaves",
+      "interveinal_chlorosis_young_leaves",
+      "leaf_curling_brittle",
+      "short_internodes_small_leaves",
+      "none_visible"
+    ],
+    "mutually_exclusive_rule": "If 'none_visible' is selected, all other symptom keys must be false. If any other symptom key is true, 'none_visible' must be false."
+  },
+  "conditional_field_rules": [
+    {
+      "field": "days_since_fertilizer",
+      "rule": "must equal 'not_applicable' when last_fertilizer_type == 'No_Fertilizer'; must NOT equal 'not_applicable' otherwise"
+    }
+  ],
+  "output_targets": {
+    "risk_fields": [
+      "nitrogen_risk",
+      "phosphorus_risk",
+      "potassium_risk",
+      "magnesium_risk",
+      "zinc_risk",
+      "boron_risk"
+    ],
+    "risk_levels": [
+      "high",
+      "low",
+      "medium"
+    ],
+    "overall_nutrient_health_field": "overall_nutrient_health",
+    "overall_nutrient_health_levels": [
+      "good",
+      "moderate",
+      "poor"
+    ]
+  },
+  "crop_model_support": {
+    "trained_and_supported": [
+      "ash_gourd",
+      "bitter_gourd",
+      "bottle_gourd",
+      "chickpea",
+      "cotton",
+      "cucumber",
+      "eggplant",
+      "maize",
+      "potato",
+      "ridge_gourd",
+      "rice",
+      "snake_gourd",
+      "sugarcane",
+      "tomato",
+      "wheat"
+    ],
+    "note": "As of module2a-v5 (2026-09-10), all 15 crops are trained and supported by Module 2A and covered by Module 2B. The dataset is built by scripts/build_v4_dataset.py from data/module2_farmer_pre_crop_expansion.csv, and models are evaluated on a split grouped by input signature -- see docs/MODEL_DOCUMENTATION.md (Training data). api/schemas.py SUPPORTED_CROPS includes all 15."
+  },
+  "module2_orchestrator_output_schema": {
+    "note": "Module 2 is the only public endpoint. It internally calls Module 2A and Module 2B and combines their outputs plus a computed score. See Module2_Orchestrator_Spec.md for full details.",
+    "response_fields": {
+      "crop_supported": "boolean",
+      "module2a": "object: six *_risk entries {level: low|medium|high, confidence: 0-1}, overall_nutrient_health, input_typicality {anomaly_score, flag: typical|unusual}, model_version; null for an unsupported crop",
+      "module2b": "object: ph, soil_moisture, light -- each {current, ideal_range [low, high or null], gap, status: ok|moderate|critical}; ph also has nutrient_lockout_note; null for an unsupported crop",
+      "overall_soil_health_score": "number 0-100, or null",
+      "overall_soil_health_label": "good|moderate|poor, or null",
+      "recommendation_notes": "object (see recommendation_notes below), or null for an unsupported crop",
+      "message": "string; present only when the crop is unsupported or Module 2B cannot serve it",
+      "model_version": "string, scoring-layer version; not present for an unsupported crop",
+      "module2a_model_version": "string, Module 2A model version; not present for an unsupported crop"
+    },
+    "recommendation_notes": {
+      "headline": "string",
+      "needs_attention": "list of {nutrient, level, confidence_pct (integer), confidence_text, why}, worst first",
+      "looking_fine": "list of {nutrient, level, confidence_pct, confidence_text}",
+      "caveat": "string, always present",
+      "soil_condition_note": "string, present only when pH is outside the crop's ideal range",
+      "reliability_note": "string, present only when module2a.input_typicality.flag is 'unusual'",
+      "confidence_text_tiers": {
+        ">= 85%": "strong match",
+        "65-84%": "likely",
+        "50-64%": "possible",
+        "< 50%": "based on limited signs"
+      }
+    },
+    "overall_soil_health_score": {
+      "range": [
+        0,
+        100
+      ],
+      "weights": {
+        "nitrogen_risk": 15,
+        "phosphorus_risk": 15,
+        "potassium_risk": 15,
+        "magnesium_risk": 5,
+        "zinc_risk": 5,
+        "boron_risk": 5,
+        "ph_status": 20,
+        "soil_moisture_status": 10,
+        "light_status": 10
+      },
+      "weights_note": "The table above is the default, used for 9 of the 15 crops. Two crop-dependent exceptions (see orchestrator_service.py CUCURBIT_SCORE_WEIGHTS / POTATO_SCORE_WEIGHTS, and Module2_Orchestrator_Spec.md Section 3): cucumber/bitter_gourd/snake_gourd/ridge_gourd/ash_gourd/bottle_gourd use nitrogen_risk=13, phosphorus_risk=13, potassium_risk=13, zinc_risk=8, boron_risk=8 (rest unchanged); potato uses nitrogen_risk=13, phosphorus_risk=13, potassium_risk=19 (rest unchanged). Both still sum to 100.",
+      "severity_fraction": {
+        "low_or_ok": 1.0,
+        "medium_or_moderate": 0.5,
+        "high_or_critical": 0.0
+      },
+      "label_buckets": {
+        "good": [
+          80,
+          100
+        ],
+        "moderate": [
+          50,
+          79.99
+        ],
+        "poor": [
+          0,
+          49.99
+        ]
+      },
+      "formula_type": "heuristic weighted-sum, not trained/validated -- tunable"
+    }
+  }
+}

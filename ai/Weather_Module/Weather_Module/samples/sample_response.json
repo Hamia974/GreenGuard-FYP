@@ -1,0 +1,37 @@
+{
+  "farm_id": "farm_001",
+  "timestamp": "2026-09-01T22:39:35Z",
+  "weather": {
+    "temperature": 28.0,
+    "humidity": 78.0,
+    "rainfall_last_7_days_mm": 1.8,
+    "wind_speed": 2.2
+  },
+  "units": {
+    "temperature": "celsius",
+    "humidity": "percent",
+    "rainfall_last_7_days_mm": "mm",
+    "wind_speed": "m/s"
+  },
+  "risk_assessment": {
+    "fungal_disease_risk": "Moderate",
+    "fungal_disease_reason": "Humidity is 78%, above the 65% threshold that raises fungal risk, though today's temperature/humidity combination isn't in the high-risk range.",
+    "heat_stress_risk": "Low",
+    "heat_stress_reason": "Current temperature (28.0°C) is at or below 35°C and no recent day averaged above that threshold.",
+    "drought_risk": "High",
+    "drought_reason": "Only 1.8mm of rain fell in the last 7 days, below the 10mm high-drought threshold."
+  },
+  "forecast": {
+    "temperature": 31.5,
+    "humidity": 63.5,
+    "rainfall_mm": 2.0
+  },
+  "predicted_risk_assessment": {
+    "fungal_disease_risk": "Low",
+    "fungal_disease_reason": "Humidity (63.5%) is below the 65% risk threshold and no day in the last 3 was fungal-conducive.",
+    "heat_stress_risk": "Low",
+    "heat_stress_reason": "Current temperature (31.5°C) is at or below 35°C and no recent day averaged above that threshold.",
+    "drought_risk": "High",
+    "drought_reason": "Only 3.8mm of rain fell in the last 7 days, below the 10mm high-drought threshold."
+  }
+}

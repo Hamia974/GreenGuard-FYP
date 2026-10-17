@@ -1,0 +1,13 @@
+{
+  "title": "Upload a leaf photo",
+  "description": "Drag and drop a photo here, or choose one from your device.",
+  "browse": "Choose Photo",
+  "hint": "JPG or PNG · up to 10 MB · one leaf, clear and close-up",
+  "changeImage": "Change Photo",
+  "errors": {
+    "unsupportedFormat": "Only JPG and PNG photos are supported.",
+    "tooLarge": "This photo is larger than 10 MB. Please choose a smaller one.",
+    "resolutionTooLow": "This photo is too small. It must be at least {width} × {height} pixels.",
+    "invalidImage": "This file could not be read as a photo. Please choose another one."
+  }
+}

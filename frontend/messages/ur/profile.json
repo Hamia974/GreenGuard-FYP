@@ -1,0 +1,52 @@
+{
+  "title": "پروفائل اور ترتیبات",
+  "description": "اپنی ذاتی معلومات، حفاظت اور اکاؤنٹ کا انتظام کریں۔",
+  "loadError": "آپ کی پروفائل نہیں کھل سکی۔ براہ کرم دوبارہ کوشش کریں۔",
+  "memberSince": "{date} سے رکن",
+  "sections": {
+    "profileInformation": "پروفائل کی معلومات",
+    "changePassword": "پاس ورڈ تبدیل کریں",
+    "manageFarmsDescription": "موسمی تجزیے اور جانچ کے لیے استعمال ہونے والے فارم شامل کریں، تبدیل کریں یا ہٹائیں۔",
+    "dangerZone": "حساس اقدامات"
+  },
+  "accountInfo": {
+    "title": "اکاؤنٹ کی معلومات",
+    "email": "ای میل",
+    "accountType": "اکاؤنٹ کی قسم",
+    "memberSince": "رکنیت کی تاریخ",
+    "accountId": "اکاؤنٹ آئی ڈی",
+    "emailVerification": "ای میل کی تصدیق",
+    "verified": "تصدیق شدہ",
+    "notVerified": "تصدیق نہیں ہوئی",
+    "resendVerification": "لنک دوبارہ بھیجیں",
+    "verificationSent": "تصدیقی ای میل بھیج دی گئی ہے۔ اپنا ان باکس دیکھیں۔"
+  },
+  "editProfile": {
+    "success": "پروفائل کامیابی سے تبدیل ہو گئی۔",
+    "photoPreviewAlt": "پروفائل تصویر کا پیش منظر",
+    "changePhoto": "تصویر تبدیل کریں",
+    "photoHint": "PNG، JPG یا JPEG۔ زیادہ سے زیادہ 5 MB۔",
+    "imageErrors": {
+      "unsupportedFormat": "یہ تصویر کی قسم قابلِ قبول نہیں۔ JPG، JPEG یا PNG استعمال کریں۔",
+      "tooLarge": "تصویر کا سائز 5 MB سے زیادہ نہیں ہونا چاہیے۔"
+    },
+    "fullName": "پورا نام",
+    "email": "ای میل",
+    "emailLocked": "ای میل ایڈریس تبدیل نہیں کیا جا سکتا۔"
+  },
+  "changePassword": {
+    "success": "پاس ورڈ کامیابی سے تبدیل ہو گیا۔",
+    "currentPassword": "موجودہ پاس ورڈ",
+    "newPassword": "نیا پاس ورڈ",
+    "confirmNewPassword": "نئے پاس ورڈ کی تصدیق",
+    "submit": "پاس ورڈ تبدیل کریں",
+    "submitting": "تبدیل کیا جا رہا ہے..."
+  },
+  "deleteAccount": {
+    "title": "اکاؤنٹ حذف کریں",
+    "warning": "اکاؤنٹ حذف کرنے سے آپ کا تمام ڈیٹا، بشمول فارم اور تجزیوں کی تاریخ، ہمیشہ کے لیے ختم ہو جائے گا۔ یہ عمل واپس نہیں ہو سکتا۔",
+    "currentPassword": "موجودہ پاس ورڈ",
+    "typeToConfirm": "تصدیق کے لیے <word>DELETE</word> لکھیں",
+    "submit": "میرا اکاؤنٹ ہمیشہ کے لیے حذف کریں"
+  }
+}

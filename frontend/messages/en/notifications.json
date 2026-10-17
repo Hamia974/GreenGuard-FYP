@@ -1,0 +1,12 @@
+{
+  "title": "Notifications",
+  "description": "Stay up to date with your prediction, weather, and system updates.",
+  "emptyTitle": "You're All Caught Up!",
+  "emptyDescription": "No new notifications at the moment.",
+  "card": {
+    "unread": "Unread",
+    "confirmDelete": "Delete this notification?",
+    "marking": "Marking...",
+    "markAsRead": "Mark as Read"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "page": {
+    "title": "Quick Scan",
+    "description": "One leaf photo gives you a full report: disease, soil and weather side by side.",
+    "noFarmDescription": "Select or create a farm to run a Quick Scan."
+  },
+  "previewAlt": "Preview of the selected leaf photo",
+  "submit": "Analyze Plant",
+  "processing": {
+    "title": "Analyzing your plant...",
+    "description": "This can take up to a minute. Please keep this page open.",
+    "stages": {
+      "module1": "Checking the leaf for disease",
+      "module2": "Adding your farm's latest Soil Test result",
+      "module3": "Checking weather risk for your farm"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "celsius": "{value}°C",
+  "percent": "{value}%",
+  "metersPerSecond": "{value} m/s",
+  "millimeters": "{value} mm",
+  "megabytes": "{value} MB",
+  "lux": "{value} lux",
+  "outOf100": "{value}/100"
+}

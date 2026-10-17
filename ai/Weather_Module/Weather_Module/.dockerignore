@@ -1,0 +1,15 @@
+# Not needed inside the image -- api/ and models/ are copied explicitly,
+# so nothing below would ever end up in the built image regardless, but
+# excluding it here keeps the build context small and upload fast.
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+training/
+tests/
+docs/
+samples/
+README.md
+.git/

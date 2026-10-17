@@ -1,0 +1,19 @@
+# Web/API layer
+fastapi==0.115.0
+uvicorn==0.30.6
+pydantic==2.9.2
+python-dotenv==1.0.1
+httpx==0.28.1
+pytest==9.1.1
+
+# Inference layer (Module 2A).
+# Pinned to the exact versions the model artifacts in models/ were trained and
+# serialised with -- joblib/pickle payloads are version-sensitive, and scikit-learn
+# warns when unpickling an estimator saved by a different release. Bumping these
+# without re-running training/module2a_nutrient_risk.ipynb risks load failures or
+# silently altered predictions.
+joblib==1.6.0
+pandas==3.0.5
+numpy==2.5.2
+scikit-learn==1.9.0
+xgboost==3.4.1

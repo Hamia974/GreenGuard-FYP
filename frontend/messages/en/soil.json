@@ -1,0 +1,172 @@
+{
+  "page": {
+    "title": "Soil & Nutrient Health",
+    "description": "A quick questionnaire plus your soil meter readings. No lab test needed.",
+    "noFarmDescription": "Select or create a farm to start a Soil & Nutrient Health Check.",
+    "submitError": "The Soil & Nutrient Health Check couldn't be completed. Please try again.",
+    "startAnother": "Start Another Check"
+  },
+  "wizard": {
+    "stepOf": "Step {step} of {total}",
+    "submit": "Get My Soil Health Report",
+    "analyzing": "Analyzing...",
+    "questions": {
+      "crop": "What crop are you growing?",
+      "growthStage": "What stage is your crop at?",
+      "soilType": "What does your soil look and feel like?",
+      "lastFertilizerType": "What fertilizer did you last use?",
+      "daysSinceFertilizer": "How long ago?",
+      "irrigationSource": "How do you water your field?",
+      "irrigationAdequacy": "How would you describe your watering?",
+      "symptoms": "Do you see any of these on the leaves?"
+    },
+    "weatherStep": {
+      "title": "We'll get the current weather for {farm} automatically.",
+      "description": "Temperature, humidity and 7-day rainfall come from your farm's location, so there's no need to enter them."
+    },
+    "meterStep": {
+      "intro": "Take these three readings with your soil meter before submitting. They help us check whether your soil is locking up nutrients. All three are required.",
+      "ph": "Soil pH (from your meter)",
+      "phPlaceholder": "4.5 – 8.5",
+      "soilMoisture": "Soil moisture % (from your meter)",
+      "soilMoisturePlaceholder": "0 – 100",
+      "light": "Light intensity in lux (from your meter)",
+      "lightPlaceholder": "0 – 120,000"
+    },
+    "symptomsHint": "The photos are only examples to compare with your plant, not a diagnosis. Tick everything you see.",
+    "symptomPhotoAlt": "Example photo: {symptom}",
+    "noneOfThese": "None of these — the plant looks normal"
+  },
+  "options": {
+    "growthStage": {
+      "seedling": "Seedling",
+      "vegetative": "Vegetative",
+      "flowering": "Flowering",
+      "fruiting_grain_filling": "Fruiting / Grain Filling",
+      "maturity": "Maturity"
+    },
+    "soilType": {
+      "sandy": "Sandy",
+      "sandy_loam": "Sandy Loam",
+      "loamy": "Loamy",
+      "clay_loam": "Clay Loam",
+      "clay": "Clay",
+      "saline_affected": "Saline-Affected"
+    },
+    "soilTypeHint": {
+      "sandy": "Loose, gritty, pale, drains fast",
+      "sandy_loam": "Mostly sandy, holds a loose clump briefly",
+      "loamy": "Dark, crumbly, breaks apart easily",
+      "clay_loam": "Slightly sticky when wet",
+      "clay": "Sticky, dense, cracks when dry",
+      "saline_affected": "Whitish crust or patches on the surface"
+    },
+    "lastFertilizerType": {
+      "Urea": "Urea",
+      "DAP": "DAP",
+      "NPK_blend": "NPK Blend",
+      "MOP_SOP": "MOP / SOP (Potash)",
+      "FYM_compost": "Farmyard Manure / Compost",
+      "No_Fertilizer": "None",
+      "Dont_know": "Don't Know"
+    },
+    "daysSinceFertilizer": {
+      "lt_15_days": "Less than 2 weeks ago",
+      "15_30_days": "2–4 weeks ago",
+      "30_60_days": "1–2 months ago",
+      "60_90_days": "2–3 months ago",
+      "gt_90_days": "More than 3 months ago",
+      "not_applicable": "Not applicable"
+    },
+    "irrigationSource": {
+      "canal": "Canal",
+      "tube_well": "Tube Well",
+      "rain_fed": "Rain-fed",
+      "drip": "Drip Irrigation",
+      "flood_basin": "Flood / Basin"
+    },
+    "irrigationAdequacy": {
+      "insufficient": "Not enough — soil often dries out",
+      "adequate": "Just right",
+      "excessive": "Too much — soil often waterlogged"
+    },
+    "symptoms": {
+      "yellowing_older_leaves": "Older leaves turning evenly pale yellow",
+      "purple_reddish_tint": "Purple or reddish tint on leaves or stems",
+      "brown_scorched_leaf_edges": "Brown, dry, \"burnt-looking\" leaf edges",
+      "stunted_growth": "Plant clearly smaller or shorter than expected",
+      "poor_flowering_or_fruiting": "Few or no flowers or fruit forming",
+      "weak_stems": "Thin, floppy or easily bent stems",
+      "interveinal_chlorosis_older_leaves": "Older leaves yellow between green veins",
+      "interveinal_chlorosis_young_leaves": "Newest leaves yellow between green veins",
+      "leaf_curling_brittle": "Leaves curling, cracking or brittle at the tips",
+      "short_internodes_small_leaves": "Small leaves bunched closely on the stem"
+    }
+  },
+  "results": {
+    "notSupportedTitle": "Not available yet for this crop",
+    "notSupportedDescription": "Nutrient and soil condition analysis isn't available yet for this crop.",
+    "soilHealth": "Soil Health",
+    "soilConditionTitle": "Soil condition may be limiting nutrient uptake",
+    "needsAttention": "Needs Attention",
+    "lookingFine": "Looking Fine",
+    "overallNutrientHealth": "Overall nutrient health: {label}",
+    "soilConditions": "Soil Conditions",
+    "notProvided": "Not provided",
+    "reliable": "✓ This result looks reliable.",
+    "metrics": {
+      "ph": "pH",
+      "soilMoisture": "Soil Moisture",
+      "light": "Light Intensity"
+    },
+    "healthLabels": {
+      "good": "Good",
+      "moderate": "Moderate",
+      "poor": "Poor"
+    },
+    "metricStatuses": {
+      "ok": "Good",
+      "moderate": "Needs attention",
+      "critical": "Serious problem"
+    },
+    "nutrients": {
+      "Nitrogen": "Nitrogen",
+      "Phosphorus": "Phosphorus",
+      "Potassium": "Potassium",
+      "Magnesium": "Magnesium",
+      "Zinc": "Zinc",
+      "Boron": "Boron"
+    },
+    "riskLevels": {
+      "high": "High risk",
+      "medium": "Medium risk",
+      "low": "Low risk"
+    },
+    "nutrientOverview": {
+      "title": "Nutrient Overview",
+      "description": "Each bar shows how confident the soil analysis is about that nutrient's risk level. It is not the amount of the nutrient in your soil.",
+      "confidenceValue": "Confidence: <num>{value}</num>",
+      "tableCaption": "Confidence of the soil analysis for each nutrient's risk level",
+      "nutrientColumn": "Nutrient",
+      "confidenceColumn": "Confidence",
+      "riskColumn": "Risk level",
+      "notReported": "Not reported",
+      "missing": "Not reported in this result: {nutrients}",
+      "empty": "No nutrient results are available to chart for this analysis."
+    },
+    "conditions": {
+      "description": "Your meter readings compared with the ideal range GreenGuard's soil module uses for this crop.",
+      "idealBetween": "Ideal for this crop: <num>{low}</num> – <num>{high}</num>",
+      "idealAtLeast": "Ideal for this crop: <num>{low}</num> or more",
+      "rangeUnavailable": "Reference range unavailable",
+      "withinRange": "Within the ideal range",
+      "belowRange": "Below the ideal range",
+      "aboveRange": "Above the ideal range",
+      "belowRangeBy": "Below the ideal range by <num>{gap}</num>",
+      "aboveRangeBy": "Above the ideal range by <num>{gap}</num>",
+      "invalidReading": "This reading is outside the possible scale, so it isn't plotted.",
+      "legendIdeal": "Ideal range for this crop",
+      "legendReading": "Your reading"
+    }
+  }
+}

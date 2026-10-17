@@ -1,0 +1,31 @@
+{
+  "appName": "GreenGuard",
+  "all": "All",
+  "back": "Back",
+  "next": "Next",
+  "previous": "Previous",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "delete": "Delete",
+  "deleting": "Deleting...",
+  "edit": "Edit",
+  "loading": "Loading",
+  "refresh": "Refresh",
+  "retry": "Retry",
+  "tryAgain": "Try Again",
+  "saveChanges": "Save Changes",
+  "saving": "Saving...",
+  "search": "Search",
+  "sort": "Sort",
+  "newest": "Newest first",
+  "oldest": "Oldest first",
+  "page": "Page {page}",
+  "roles": {
+    "Farmer": "Farmer",
+    "Admin": "Admin"
+  },
+  "userStatuses": {
+    "Active": "Active",
+    "Inactive": "Inactive"
+  }
+}

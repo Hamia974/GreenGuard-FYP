@@ -1,0 +1,31 @@
+{
+  "appName": "GreenGuard",
+  "all": "سب",
+  "back": "واپس",
+  "next": "آگے",
+  "previous": "پیچھے",
+  "cancel": "منسوخ کریں",
+  "confirm": "تصدیق کریں",
+  "delete": "حذف کریں",
+  "deleting": "حذف ہو رہا ہے...",
+  "edit": "تبدیل کریں",
+  "loading": "لوڈ ہو رہا ہے",
+  "refresh": "تازہ کریں",
+  "retry": "دوبارہ کوشش کریں",
+  "tryAgain": "دوبارہ کوشش کریں",
+  "saveChanges": "تبدیلیاں محفوظ کریں",
+  "saving": "محفوظ ہو رہا ہے...",
+  "search": "تلاش کریں",
+  "sort": "ترتیب",
+  "newest": "نئے پہلے",
+  "oldest": "پرانے پہلے",
+  "page": "صفحہ {page}",
+  "roles": {
+    "Farmer": "کسان",
+    "Admin": "ایڈمن"
+  },
+  "userStatuses": {
+    "Active": "فعال",
+    "Inactive": "غیر فعال"
+  }
+}

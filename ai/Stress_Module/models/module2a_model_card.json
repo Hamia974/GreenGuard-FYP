@@ -1,0 +1,182 @@
+{
+  "model_version": "module2a-v5",
+  "task": "multi-output classification: 6 independent per-nutrient risk models (low/medium/high), plus an unsupervised anomaly/typicality detector",
+  "algorithm": "Per-nutrient XGBoost classifiers (6 models), tuned with RandomizedSearchCV on macro-F1 across 8 hyperparameters (max_depth, n_estimators, learning_rate, subsample, colsample_bytree, min_child_weight, reg_alpha, reg_lambda) using a leakage-safe StratifiedGroupKFold search. Calibration is verified per nutrient (Brier score + Expected Calibration Error), with isotonic recalibration applied automatically to any nutrient exceeding an ECE of 0.08. An unsupervised IsolationForest (n_estimators=300, contamination=0.05) provides an independent input-typicality signal; it is trained on inputs only and uses no risk labels.",
+  "baseline_compared_against": "RandomForestClassifier(n_estimators=300, max_depth=10)",
+  "data_disclaimer": "Trained on data/module2_farmer.csv, a synthetic, rule-derived dataset. Reported metrics measure how well the models recover the encoded agronomic rules; they are not a claim about field accuracy on real farms. Dataset construction is documented in full in docs/MODEL_DOCUMENTATION.md (Training data): the 7 horticultural crops were added by resampling existing feature+label rows, weighted so that each crop co-occurs with agronomically appropriate soil types, irrigation sources and climate ranges; a zinc/boron risk adjustment is applied for the cucurbit family where documented micronutrient-leaching risk factors are present (sandy/sandy_loam soil or insufficient irrigation); and a zinc adjustment is applied on saline-affected soil across all crops, consistent with the alkaline nutrient-lockout behaviour already specified in Module 2B. These adjustments encode published agronomic relationships rather than measured local field data, and are recorded here so the dataset lineage is fully traceable.",
+  "validation_summary": {
+    "split": "StratifiedGroupKFold grouped by input signature (split_group_columns in the schema): no identical input combination appears in both train and test",
+    "reliability": "per-nutrient cross-validated macro-F1 mean/std reported alongside held-out test scores",
+    "calibration": "Brier score + ECE per nutrient; all six within threshold, no recalibration required",
+    "behavioural_testing": "12-check property-based suite verifying directional agronomic invariants; 12/12 pass",
+    "baseline_comparison": "RandomForestClassifier(300 trees, max_depth=10) per the project's reference baseline"
+  },
+  "trained_crop_coverage": [
+    "ash_gourd",
+    "bitter_gourd",
+    "bottle_gourd",
+    "chickpea",
+    "cotton",
+    "cucumber",
+    "eggplant",
+    "maize",
+    "potato",
+    "rice",
+    "ridge_gourd",
+    "snake_gourd",
+    "sugarcane",
+    "tomato",
+    "wheat"
+  ],
+  "untrained_crops_do_not_route_to_this_model": [],
+  "features_collected_but_not_used": [
+    "ph_value",
+    "soil_moisture_pct",
+    "light_intensity_lux"
+  ],
+  "test_metrics": {
+    "nitrogen_risk": {
+      "accuracy": 0.6246666666666667,
+      "macro_f1": 0.6184289544467854,
+      "train_accuracy": 0.6611,
+      "train_macro_f1": 0.6564155342085994,
+      "cv_macro_f1_mean": 0.6300677590538358,
+      "cv_macro_f1_std": 0.0034199563583406684
+    },
+    "phosphorus_risk": {
+      "accuracy": 0.6336,
+      "macro_f1": 0.6237890750772298,
+      "train_accuracy": 0.6608666666666667,
+      "train_macro_f1": 0.654777311402155,
+      "cv_macro_f1_mean": 0.6295215292966082,
+      "cv_macro_f1_std": 0.0017137737643724664
+    },
+    "potassium_risk": {
+      "accuracy": 0.6584,
+      "macro_f1": 0.6558921448504523,
+      "train_accuracy": 0.6896,
+      "train_macro_f1": 0.6872671243010018,
+      "cv_macro_f1_mean": 0.6645019970405704,
+      "cv_macro_f1_std": 0.002738553310923783
+    },
+    "magnesium_risk": {
+      "accuracy": 0.5404612718304226,
+      "macro_f1": 0.5242179251626952,
+      "train_accuracy": 0.5811193706456882,
+      "train_macro_f1": 0.566131913065257,
+      "cv_macro_f1_mean": 0.5230597452802067,
+      "cv_macro_f1_std": 0.00023462173180437867
+    },
+    "zinc_risk": {
+      "accuracy": 0.6464,
+      "macro_f1": 0.6456030982816713,
+      "train_accuracy": 0.7396,
+      "train_macro_f1": 0.7397334260246096,
+      "cv_macro_f1_mean": 0.6484703040434461,
+      "cv_macro_f1_std": 0.002546959430622159
+    },
+    "boron_risk": {
+      "accuracy": 0.5609333333333333,
+      "macro_f1": 0.5558731710996212,
+      "train_accuracy": 0.5861,
+      "train_macro_f1": 0.5824629376912211,
+      "cv_macro_f1_mean": 0.5507779956609448,
+      "cv_macro_f1_std": 0.003415223902154071
+    }
+  },
+  "best_hyperparameters": {
+    "nitrogen_risk": {
+      "subsample": 0.9,
+      "reg_lambda": 3.0,
+      "reg_alpha": 0,
+      "n_estimators": 300,
+      "min_child_weight": 5,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "colsample_bytree": 0.6
+    },
+    "phosphorus_risk": {
+      "subsample": 0.9,
+      "reg_lambda": 3.0,
+      "reg_alpha": 0,
+      "n_estimators": 300,
+      "min_child_weight": 5,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "colsample_bytree": 0.6
+    },
+    "potassium_risk": {
+      "subsample": 0.9,
+      "reg_lambda": 3.0,
+      "reg_alpha": 0,
+      "n_estimators": 300,
+      "min_child_weight": 5,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "colsample_bytree": 0.6
+    },
+    "magnesium_risk": {
+      "subsample": 0.9,
+      "reg_lambda": 3.0,
+      "reg_alpha": 0,
+      "n_estimators": 300,
+      "min_child_weight": 5,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "colsample_bytree": 0.6
+    },
+    "zinc_risk": {
+      "subsample": 0.7,
+      "reg_lambda": 2.0,
+      "reg_alpha": 0,
+      "n_estimators": 300,
+      "min_child_weight": 1,
+      "max_depth": 5,
+      "learning_rate": 0.05,
+      "colsample_bytree": 1.0
+    },
+    "boron_risk": {
+      "subsample": 0.9,
+      "reg_lambda": 3.0,
+      "reg_alpha": 0,
+      "n_estimators": 300,
+      "min_child_weight": 5,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "colsample_bytree": 0.6
+    }
+  },
+  "calibration_metrics": {
+    "nitrogen_risk": {
+      "brier_score": 0.4791570664105094,
+      "ece": 0.018830204240481072,
+      "recalibrated": false
+    },
+    "phosphorus_risk": {
+      "brier_score": 0.4692762067159611,
+      "ece": 0.022845976233482366,
+      "recalibrated": false
+    },
+    "potassium_risk": {
+      "brier_score": 0.4491371778606649,
+      "ece": 0.012429559922218305,
+      "recalibrated": false
+    },
+    "magnesium_risk": {
+      "brier_score": 0.5568552081839303,
+      "ece": 0.012838407590093344,
+      "recalibrated": false
+    },
+    "zinc_risk": {
+      "brier_score": 0.45023483093538524,
+      "ece": 0.013150888709227255,
+      "recalibrated": false
+    },
+    "boron_risk": {
+      "brier_score": 0.539774817506576,
+      "ece": 0.019824727102120722,
+      "recalibrated": false
+    }
+  },
+  "property_check_pass_rate": 1.0
+}

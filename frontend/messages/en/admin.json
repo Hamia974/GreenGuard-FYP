@@ -1,0 +1,97 @@
+{
+  "title": "Admin Dashboard",
+  "description": "Monitor users, predictions, AI services, and platform health.",
+  "tabs": {
+    "overview": "Overview",
+    "users": "Users",
+    "predictions": "Predictions"
+  },
+  "accessDenied": {
+    "title": "Access Denied",
+    "description": "The Admin Dashboard is only available to administrator accounts."
+  },
+  "statuses": {
+    "Healthy": "Healthy",
+    "Unhealthy": "Unhealthy",
+    "Degraded": "Degraded",
+    "Mock Mode": "Mock Mode",
+    "Online": "Online",
+    "Unreachable": "Unreachable",
+    "Connected": "Connected",
+    "Active": "Active",
+    "Inactive": "Inactive",
+    "Not used — integration layer": "Not used — integration layer"
+  },
+  "aiModules": {
+    "imageModule": "Disease Detection (Module 1)",
+    "soilModule": "Soil & Nutrient Health (Module 2)",
+    "weatherModule": "Weather Risk (Module 3)",
+    "fusionModule": "Integrated Report (Module 4)"
+  },
+  "systemHealthItems": {
+    "backend": "Backend Server",
+    "database": "PostgreSQL Database",
+    "aiServices": "AI Services",
+    "weatherApi": "Weather Module (Module 3)"
+  },
+  "overview": {
+    "totalUsers": "Total Users",
+    "activeUsers": "{count} active",
+    "totalPredictions": "Total Predictions",
+    "totalPredictionsDescription": "AI analyses run so far",
+    "systemStatus": "System Status",
+    "systemStatusDescription": "Overall platform health",
+    "aiMonitoring": "AI Monitoring",
+    "systemHealth": "System Health",
+    "platformStatistics": "Platform Statistics",
+    "mostDetectedDisease": "Most Detected Disease",
+    "notEnoughData": "Not enough data yet",
+    "mostRecommendedCrop": "Most Recommended Crop",
+    "notAvailableYet": "Not available yet"
+  },
+  "usersPage": {
+    "searchPlaceholder": "Search by name or email...",
+    "status": "Status",
+    "sortByName": "Name",
+    "emptyTitle": "No users found",
+    "emptyDescription": "Try adjusting your search or filters.",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "table": {
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "actions": "Actions"
+    }
+  },
+  "userDetail": {
+    "backToUsers": "Back to Users",
+    "predictionCount": "Prediction Count",
+    "registrationDate": "Registration Date",
+    "activateAccount": "Activate Account",
+    "deactivateAccount": "Deactivate Account",
+    "deleteAccount": "Delete Account",
+    "confirmDelete": "Confirm Delete"
+  },
+  "predictionsPage": {
+    "searchPlaceholder": "Search by disease or user...",
+    "status": "Status",
+    "statuses": {
+      "completed": "Completed",
+      "pending": "Pending",
+      "processing": "Processing",
+      "failed": "Failed"
+    },
+    "emptyTitle": "No predictions found",
+    "emptyDescription": "Try adjusting your search or filters.",
+    "uncertain": "Uncertain",
+    "table": {
+      "user": "User",
+      "disease": "Disease (Module 1)",
+      "confidence": "Confidence",
+      "created": "Created",
+      "actions": "Actions"
+    }
+  }
+}
