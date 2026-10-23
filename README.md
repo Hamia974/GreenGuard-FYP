@@ -4,7 +4,7 @@ AI-assisted plant health monitoring and agricultural decision support for farmer
 
 ## Problem
 
-Smallholder farmers often lack quick access to an agronomist. A leaf disease, a nutrient deficiency, or a weather pattern that favours fungal infection is usually noticed late, after yield is already lost. GreenGuard gives a farmer three independent checks from a phone or browser: what disease a leaf photo most likely shows, how healthy their soil and nutrients look, and what risks the current weather poses to their farm. The three results are shown side by side as a single report.
+Smallholder farmers often lack quick access to an agronomist. A leaf disease, a nutrient deficiency, or a weather pattern that favours fungal infection is usually noticed late, after yield is already lost. GreenGuard gives a farmer three independent checks from a phone or browser: what disease a leaf photo most likely shows, how healthy their soil and nutrients look and what risks the current weather poses to their farm. The three results are shown side by side as a single report.
 
 The interface is available in English and Urdu (right-to-left).
 
