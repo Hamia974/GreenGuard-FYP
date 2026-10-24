@@ -76,7 +76,19 @@ Authoritative specifications, in priority order: `docs/GREEN_GUARD_SYSTEM_SPECIF
 
 ### 1. Database
 
-Create an empty PostgreSQL database (default name `greenguard_db`) and a user that can create databases (the test runner creates `test_greenguard_db`).
+The backend reads all database settings from `backend/.env` (`DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASSWORD`, `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_SSLMODE`). `backend/.env.example` contains one block for each option below. Exactly one block may be active at a time; the local block is active by default.
+
+#### Option A (default): Local PostgreSQL
+
+Create an empty PostgreSQL database (default name `greenguard_db`) and a user that can create databases (the test runner creates `test_greenguard_db`). The active block in `backend/.env.example` already targets it (`DATABASE_HOST=localhost`, `DATABASE_SSLMODE=prefer`). Use this option for development and always for running tests.
+
+#### Option B: Shared Supabase PostgreSQL
+
+The team shares one Supabase PostgreSQL project. To use it, comment out the local block in your `backend/.env` and uncomment the Supabase block. Use the **Session Pooler** connection from Supabase (Project → Connect → Session pooler): port `5432`, user `postgres.<project-ref>`, database `postgres`. SSL is required (`DATABASE_SSLMODE=require`). Django connects to PostgreSQL directly; it does not use the Supabase REST API or client keys.
+
+- Get the password privately from the database owner (e.g. a direct message or a password manager). Never commit it or post it in issues, chat channels or screenshots. `backend/.env` is gitignored.
+- Only one designated team member applies migrations to the shared database, one at a time, and tells the team first. Everyone else pulls the new migration files and does not run `migrate` against it.
+- Never run `manage.py flush`, `manage.py test`, `loaddata`, destructive scripts or bulk deletes against the shared database. It holds everyone's data.
 
 ### 2. Backend
 
@@ -156,7 +168,7 @@ Names only. See the `.env.example` files for documented defaults. Never commit r
 | File | Variables |
 |---|---|
 | `.env` (root, Compose only) | `DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASSWORD`, `NEXT_PUBLIC_API_BASE_URL`, `NEXT_PUBLIC_APP_NAME` |
-| `backend/.env` | Core: `SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS` · Database: `DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASSWORD`, `DATABASE_HOST`, `DATABASE_PORT` · JWT/cookies: `JWT_SECRET`, `JWT_ACCESS_TOKEN_LIFETIME_MINUTES`, `JWT_REFRESH_TOKEN_LIFETIME_DAYS`, `JWT_COOKIE_SECURE`, `JWT_COOKIE_SAMESITE`, `JWT_COOKIE_DOMAIN` · CORS/CSRF: `CORS_ALLOWED_ORIGINS`, `CSRF_TRUSTED_ORIGINS` · Email: `EMAIL_BACKEND`, `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`, `EMAIL_USE_TLS`, `DEFAULT_FROM_EMAIL`, `EMAIL_VERIFICATION_MAX_AGE_HOURS`, `FRONTEND_BASE_URL` · AI: `ENABLE_MOCK_AI`, `DISEASE_MODULE_URL`, `GREENGUARD_API_KEY`, `STRESS_MODULE_URL`, `WEATHER_MODULE_URL`, and `*_REQUEST_TIMEOUT_SECONDS` / `*_HEALTH_TIMEOUT_SECONDS` for each module · Geocoding: `GEOCODING_PROVIDER`, `GEOCODING_COUNTRY_CODE`, `GEOCODING_REQUEST_TIMEOUT_SECONDS`, `GOOGLE_MAPS_GEOCODING_API_KEY` · Throttling: `THROTTLE_RATE_ANON`, `THROTTLE_RATE_USER`, `THROTTLE_RATE_AUTH`, `THROTTLE_RATE_AUTH_REFRESH`, `THROTTLE_RATE_GEOCODE` · Production: `SECURE_SSL_REDIRECT`, `SECURE_HSTS_SECONDS` |
+| `backend/.env` | Core: `SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS` · Database: `DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASSWORD`, `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_SSLMODE` · JWT/cookies: `JWT_SECRET`, `JWT_ACCESS_TOKEN_LIFETIME_MINUTES`, `JWT_REFRESH_TOKEN_LIFETIME_DAYS`, `JWT_COOKIE_SECURE`, `JWT_COOKIE_SAMESITE`, `JWT_COOKIE_DOMAIN` · CORS/CSRF: `CORS_ALLOWED_ORIGINS`, `CSRF_TRUSTED_ORIGINS` · Email: `EMAIL_BACKEND`, `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`, `EMAIL_USE_TLS`, `DEFAULT_FROM_EMAIL`, `EMAIL_VERIFICATION_MAX_AGE_HOURS`, `FRONTEND_BASE_URL` · AI: `ENABLE_MOCK_AI`, `DISEASE_MODULE_URL`, `GREENGUARD_API_KEY`, `STRESS_MODULE_URL`, `WEATHER_MODULE_URL`, and `*_REQUEST_TIMEOUT_SECONDS` / `*_HEALTH_TIMEOUT_SECONDS` for each module · Geocoding: `GEOCODING_PROVIDER`, `GEOCODING_COUNTRY_CODE`, `GEOCODING_REQUEST_TIMEOUT_SECONDS`, `GOOGLE_MAPS_GEOCODING_API_KEY` · Throttling: `THROTTLE_RATE_ANON`, `THROTTLE_RATE_USER`, `THROTTLE_RATE_AUTH`, `THROTTLE_RATE_AUTH_REFRESH`, `THROTTLE_RATE_GEOCODE` · Production: `SECURE_SSL_REDIRECT`, `SECURE_HSTS_SECONDS` |
 | `frontend/.env.local` | `NEXT_PUBLIC_API_BASE_URL`, `NEXT_PUBLIC_APP_NAME`, `NEXT_PUBLIC_ENVIRONMENT` |
 
 With `DEBUG=False`, the backend refuses to start if `SECRET_KEY` or `DATABASE_PASSWORD` is unset or still a placeholder.
@@ -166,7 +178,7 @@ With `DEBUG=False`, the backend refuses to start if `SECRET_KEY` or `DATABASE_PA
 ## Tests and validation
 
 ```bash
-# Backend (uses a separate test_<DATABASE_NAME> database)
+# Backend: local PostgreSQL only (uses a separate test_<DATABASE_NAME> database)
 cd backend
 python manage.py check
 python manage.py makemigrations --check --dry-run
@@ -179,6 +191,8 @@ npm run typecheck
 npm run lint
 npm run build          # see note below
 ```
+
+Run the backend tests only against local PostgreSQL (Option A), never with `backend/.env` pointing at the shared Supabase database. The test runner creates and then drops a `test_<DATABASE_NAME>` database on whatever server is configured. CI uses its own throwaway PostgreSQL container and must never be given the shared database credentials.
 
 `npm run build` writes to `frontend/.next`, which is the same directory `npm run dev` uses. Stop the dev server first, or build a copy of the folder elsewhere.
 

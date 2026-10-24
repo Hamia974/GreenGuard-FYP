@@ -3387,6 +3387,20 @@ A fresh installation of GreenGuard should follow this sequence:
 
 After these steps, the database is ready for application use.
 
+### Shared hosting on Supabase
+
+During team development the database may be hosted on a shared Supabase PostgreSQL project.
+
+• Django connects to it directly as an ordinary PostgreSQL server through the Django ORM. GreenGuard does not use the Supabase REST API, client libraries or API keys.
+
+• Use the Supabase Session Pooler (port 5432, user `postgres.<project-ref>`). The direct database host may only work over IPv6, and the Transaction Pooler (port 6543) is not recommended for Django.
+
+• SSL is required: set `DATABASE_SSLMODE=require` (local PostgreSQL keeps the default `prefer`).
+
+• Credentials come only from environment variables (`backend/.env`) and are shared privately, never committed.
+
+• One designated team member applies migrations to the shared database. Tests and CI always use a separate, disposable PostgreSQL database.
+
 ---
 
 # 9.11 Seed Data

@@ -49,7 +49,7 @@ _KNOWN_PLACEHOLDER_SECRET_KEYS = {
     _INSECURE_DEFAULT_SECRET_KEY,
     "change-me-to-a-long-random-string",
 }
-_KNOWN_PLACEHOLDER_DATABASE_PASSWORDS = {"", "change-me"}
+_KNOWN_PLACEHOLDER_DATABASE_PASSWORDS = {"", "change-me", "replace-with-your-private-password"}
 
 SECRET_KEY = os.getenv("SECRET_KEY", _INSECURE_DEFAULT_SECRET_KEY)
 
@@ -175,6 +175,11 @@ DATABASES = {
         "PASSWORD": os.getenv("DATABASE_PASSWORD", ""),
         "HOST": os.getenv("DATABASE_HOST", "localhost"),
         "PORT": os.getenv("DATABASE_PORT", "5432"),
+        # "prefer" keeps local PostgreSQL working without SSL; hosted
+        # databases such as the shared Supabase project need "require".
+        "OPTIONS": {
+            "sslmode": os.getenv("DATABASE_SSLMODE", "prefer"),
+        },
     }
 }
 
@@ -318,7 +323,9 @@ if JWT_COOKIE_SAMESITE == "None" and not JWT_COOKIE_SECURE:
 # ---------------------------------------------------------------------------
 
 # Explicit origins only -- credentials (cookies) are allowed, so a wildcard
-# origin must never be used here.
+# origin must never be used here. A deployed frontend's origin (e.g.
+# https://app.example.com) is added through this environment variable, never
+# hardcoded here.
 CORS_ALLOWED_ORIGINS = env_list("CORS_ALLOWED_ORIGINS", "http://localhost:3000")
 CORS_ALLOW_CREDENTIALS = True
 

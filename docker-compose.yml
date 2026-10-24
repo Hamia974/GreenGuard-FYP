@@ -14,6 +14,10 @@
 #   docker compose up --build -d
 #   docker compose exec backend python manage.py migrate
 #   docker compose down        # stops containers, keeps the data volumes
+#
+# This stack always uses its own `db` container, even if backend/.env points
+# at the shared Supabase database (the DATABASE_* overrides below win). To
+# use the shared database, run the backend outside Docker (see README.md).
 
 services:
   db:
@@ -44,6 +48,9 @@ services:
       DATABASE_NAME: ${DATABASE_NAME:-greenguard_db}
       DATABASE_USER: ${DATABASE_USER:-postgres}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD:-postgres}
+      # The local `db` container has no SSL, so a DATABASE_SSLMODE=require
+      # copied from the Supabase example in backend/.env must not apply here.
+      DATABASE_SSLMODE: prefer
       # Overrides backend/.env's WEATHER_MODULE_URL=http://localhost:8001 so
       # the backend reaches Module 3 (Weather Risk) over the compose network
       # instead. Ignored while ENABLE_MOCK_AI=True (see backend/.env).
