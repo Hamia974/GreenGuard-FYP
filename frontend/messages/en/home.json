@@ -1,6 +1,7 @@
 {
-  "badge": "Authentication — Phase 2",
-  "description": "AI-powered plant health monitoring and agricultural decision support system. Sign in or create an account to continue.",
-  "signIn": "Sign In",
-  "createAccount": "Create Account"
+  "kicker": "AI plant health checks",
+  "tagline": "Protecting crops with the power of AI",
+  "description": "Take a photo of a leaf, check your soil and see the weather risk for your farm, all in one simple report.",
+  "signUp": "Sign up",
+  "logIn": "Log in"
 }

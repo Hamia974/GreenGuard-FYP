@@ -1,0 +1,19 @@
+# Backend, Security and Database Updations
+
+Issues found during frontend work. These are for the backend/database owner to review and fix. The frontend work does not change any of them.
+
+Last updated: 2026-10-30
+
+| # | Priority | Area | Issue | Suggested action | Status |
+|---|---|---|---|---|---|
+| 1 | Done | Supabase security | The Supabase Data API was enabled while `users` holds password hashes. The user reports having disabled it on 2026-10-30. Any access while it was enabled has not been investigated. | Confirm the setting stays off, and review project logs if earlier exposure matters. | Reported fixed |
+| 2 | Done | Data migration | Row counts on Supabase were compared with the original database and are the same: 13 users, 13 farms, 28 predictions, 23 disease checks, 18 soil analyses and 27 notifications. | None. | Confirmed |
+| 3 | Deferred | Media | Uploaded images are stored in `backend/media/` on the machine that handled the upload, not in Supabase. Records in the shared database can therefore point to images missing from other machines. | Share the folder or move uploads to shared storage, such as Supabase Storage, when this is picked up again. | Deferred |
+| 4 | Medium | Real AI on shared data | Mock AI is now off in the frontend developer's `backend/.env`, so scans call the real services and save real results to the shared database. Mock results could still be saved by anyone running with `ENABLE_MOCK_AI=True`. | Keep `ENABLE_MOCK_AI=False` when pointing at Supabase, and add this to the README's shared database rules. | Open |
+| 5 | Medium | Email | `EMAIL_BACKEND` uses the console backend, so verification and password reset emails are printed to the backend log and not sent. | Configure SMTP or an email service for shared and deployed environments. | Open |
+| 6 | Medium | Account enumeration | `POST /auth/register/` returns "Email already exists.", which reveals whether an email is registered. `forgot-password` deliberately avoids revealing this. | Decide whether to accept this for registration, and whether to add a neutral response. | To review |
+| 7 | Medium | Backups | Whether `greenguard.dump` was saved safely has not been confirmed. | Keep the dump in a private location, and take a fresh one before risky migrations and the FYP demo. | To confirm |
+| 8 | Low | Logging | The forgot-password flow logs the user's email address at INFO level. In console email mode, the log also contains the reset link. | Remove or mask email addresses in logs. Treat development logs as sensitive. | To review |
+| 9 | Low | Python dependencies | Newer versions exist for Django (6.0.7 → 6.1.2), djangorestframework (3.17.1 → 3.18.3), gunicorn (26.0.0 → 26.2.0), Pillow (12.3.0 → 13.0.0), psycopg2-binary (2.9.12 → 2.9.13), django-filter (26.1 → 26.2) and python-dotenv (1.2.2 → 1.2.4). No Python vulnerability scan has been run. | Run `pip-audit`, then update and test. | Open |
+| 10 | Low | Documentation | The README lists PostgreSQL 16, but Supabase runs 17.11. | Update the README, and state which version is used for local development and CI. | Open |
+| 11 | Medium | Live analysis states | `POST /predictions/analyze/` runs as one request and saves the prediction when it finishes. No task ID, progress endpoint or event stream was found, so the frontend cannot show real per-module states. | If a live pipeline is approved, add per-module task states with a status endpoint for polling, or an event stream. | Open |

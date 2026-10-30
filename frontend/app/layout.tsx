@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Noto_Nastaliq_Urdu, Plus_Jakarta_Sans } from "next/font/google";
+import {
+  Hanken_Grotesk,
+  Inter,
+  JetBrains_Mono,
+  Newsreader,
+  Noto_Nastaliq_Urdu,
+  Plus_Jakarta_Sans,
+} from "next/font/google";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 
 import { getDirection } from "@/lib/i18n/config";
@@ -20,6 +27,20 @@ const inter = Inter({
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+});
+
+// The redesign's type (landing page so far). Not preloaded, so other pages
+// don't download fonts they don't use yet.
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  preload: false,
+});
+
+const hankenGrotesk = Hanken_Grotesk({
+  variable: "--font-hanken-grotesk",
+  subsets: ["latin"],
+  preload: false,
 });
 
 // Only downloaded by browsers that actually render Urdu text (no preload).
@@ -55,7 +76,7 @@ export default async function RootLayout({
       lang={locale}
       dir={getDirection(locale)}
       suppressHydrationWarning
-      className={`${plusJakartaSans.variable} ${inter.variable} ${jetbrainsMono.variable} ${notoNastaliqUrdu.variable}`}
+      className={`${plusJakartaSans.variable} ${inter.variable} ${jetbrainsMono.variable} ${notoNastaliqUrdu.variable} ${newsreader.variable} ${hankenGrotesk.variable}`}
     >
       <body className="antialiased">
         <I18nProvider locale={locale} messages={messages}>
