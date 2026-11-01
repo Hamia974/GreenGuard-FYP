@@ -59,13 +59,13 @@ export function AppNavbar() {
 
   return (
     <header className="sticky top-0 z-10 border-b border-border bg-card/80 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center 2xl:max-w-none justify-between gap-2 px-3 sm:gap-3 sm:px-6">
         <Link href="/dashboard" className="flex items-center gap-2 font-heading text-lg font-bold text-primary">
           <Sprout className="size-5" />
-          {tCommon("appName")}
+          <span className="max-[380px]:sr-only">{tCommon("appName")}</span>
         </Link>
 
-        <nav aria-label={t("mainNavigation")} className="hidden items-center gap-1 lg:flex">
+        <nav aria-label={t("mainNavigation")} className="hidden items-center gap-1 xl:flex">
           {NAV_LINKS.map((link) => (
             <LinkButton
               href={link.href}
@@ -73,25 +73,26 @@ export function AppNavbar() {
               variant="ghost"
               size="sm"
             >
-              {"icon" in link && <link.icon className="size-4" />}
+              {"icon" in link && <link.icon className="hidden size-4 2xl:block" />}
               {t(link.labelKey)}
             </LinkButton>
           ))}
           {user?.role === "Admin" && (
             <LinkButton href="/admin" variant="ghost" size="sm">
-              <ShieldCheck className="size-4" />
+              <ShieldCheck className="hidden size-4 2xl:block" />
               {t("admin")}
             </LinkButton>
           )}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           <LanguageSwitcher />
           <NotificationBell />
           {user && (
             <Link
               href="/profile"
-              className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline"
+              title={user.fullName}
+              className="hidden max-w-40 truncate text-sm text-muted-foreground transition-colors hover:text-foreground sm:block xl:max-w-20 2xl:max-w-48"
             >
               {user.fullName}
             </Link>
@@ -102,10 +103,10 @@ export function AppNavbar() {
             size="sm"
             disabled={isLoggingOut}
             onClick={handleLogout}
-            className="hidden lg:inline-flex"
+            className="hidden xl:inline-flex"
           >
             <LogOut className="rtl:-scale-x-100" />
-            {t("logout")}
+            <span className="sr-only 2xl:not-sr-only">{t("logout")}</span>
           </Button>
 
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -115,7 +116,7 @@ export function AppNavbar() {
                   type="button"
                   variant="outline"
                   size="icon"
-                  className="lg:hidden"
+                  className="xl:hidden"
                   aria-label={t("openMenu")}
                 />
               }

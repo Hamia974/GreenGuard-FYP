@@ -10,32 +10,33 @@ export interface NetworkSceneOptions {
   networkSide: 1 | -1;
 }
 
-const NODE_COUNT = 44;
+const NODE_COUNT = 48;
 const PHONE_NODE_COUNT = 22;
 const PHONE_MAX_ASPECT = 1;
 /** Node diameter and link reach, in CSS pixels. */
-const NODE_SIZE_PX = 11;
+const NODE_SIZE_PX = 17;
 const MAX_LINK_PX = 125;
 const MAX_LINK_OPACITY = 0.55;
-/** Share of the screen height a node rises per second. */
-const RISE_PER_SECOND = 0.012;
-/** Nodes stay out of the text block: this far across, and below this height. */
-const TEXT_BLOCK_WIDTH = 0.64;
+/** Nodes sit on the field: this far down the screen, just below the horizon. */
+const GRASS_TOP = 0.3;
+/** How far a node sways on the spot, in CSS pixels. */
+const SWAY_PX = 3;
+/** Candidate spots tried per node; more gives a more even spread. */
+const SPOT_CANDIDATES = 14;
+/** Nodes form one band across the screen, ending above the text. */
 const TEXT_BLOCK_TOP = 0.46;
-const PHONE_TEXT_TOP = 0.5;
+const PHONE_TEXT_TOP = 0.55;
 const ROW_SPACING = 5.2;
 const FIELD_OF_VIEW = 50;
 const CAMERA_Z = 20;
 const STILL_FRAME_MS = 4000;
 
-interface DriftingNode {
+interface FieldNode {
   /** Distance across the screen from the text's side, 0 to 1. */
   across: number;
-  /** Lowest point of its drift, as a share of the screen height from the top. */
-  floor: number;
-  phase: number;
+  /** Distance down the screen, 0 to 1. */
+  down: number;
   swayPhase: number;
-  riseSpeed: number;
 }
 
 /** Small seeded generator, so the nodes start the same way on every visit. */
@@ -68,24 +69,35 @@ function createNodeTexture() {
   return texture;
 }
 
-/** Spreads nodes evenly across the screen, leaving the text block clear. */
-function buildNodes(count: number, isPhone: boolean): DriftingNode[] {
+/** Spreads nodes in one band across the field, between the horizon and the text. */
+function buildNodes(count: number, isPhone: boolean): FieldNode[] {
   const random = createRandom(4242);
-  return Array.from({ length: count }, (_, index) => {
-    const across = (index + 0.2 + random() * 0.6) / count;
-    const besideText = isPhone || across < TEXT_BLOCK_WIDTH;
-    return {
-      across,
-      floor: besideText ? (isPhone ? PHONE_TEXT_TOP : TEXT_BLOCK_TOP) : 1,
-      phase: random(),
-      swayPhase: random() * Math.PI * 2,
-      riseSpeed: RISE_PER_SECOND * (0.6 + random() * 0.8),
-    };
-  });
+  const nodes: FieldNode[] = [];
+
+  const pickOpenSpot = () => {
+    const across = random();
+    const lowest = isPhone ? PHONE_TEXT_TOP : TEXT_BLOCK_TOP;
+    return { across, down: GRASS_TOP + random() * (lowest - GRASS_TOP) };
+  };
+  const gapToNearest = (spot: { across: number; down: number }) =>
+    nodes.reduce(
+      (nearest, node) => Math.min(nearest, Math.hypot(node.across - spot.across, node.down - spot.down)),
+      Infinity
+    );
+
+  for (let index = 0; index < count; index++) {
+    let best = pickOpenSpot();
+    for (let attempt = 1; attempt < SPOT_CANDIDATES; attempt++) {
+      const candidate = pickOpenSpot();
+      if (gapToNearest(candidate) > gapToNearest(best)) best = candidate;
+    }
+    nodes.push({ ...best, swayPhase: random() * Math.PI * 2 });
+  }
+  return nodes;
 }
 
 /**
- * Decorative 3D layer for the landing hero: small drifting nodes, a crop-row
+ * Decorative 3D layer for the landing hero: small nodes resting on the field, a crop-row
  * grid and a scan line drawn over the video. It does not represent sensors or
  * real analysis. Returns a cleanup function that releases every WebGL resource.
  */
@@ -155,13 +167,13 @@ export function startNetworkScene({
   const updateNodes = (seconds: number, parallaxX: number, parallaxY: number) => {
     nodes.forEach((node, index) => {
       const offset = index * 3;
-      const progress = (node.phase + (seconds * node.riseSpeed) / node.floor) % 1;
       const fromLeft = networkSide === 1 ? node.across : 1 - node.across;
       nodePositions[offset] =
-        (fromLeft + Math.sin(seconds * 0.3 + node.swayPhase) * 0.012) * screenWidth + parallaxX * -14;
-      nodePositions[offset + 1] = (1 - progress) * node.floor * screenHeight + parallaxY * -10;
-      // Fades in and out at the ends of its drift, so nodes never pop.
-      nodeAlphas[index] = Math.min(1, Math.min(progress, 1 - progress) * 8);
+        fromLeft * screenWidth + Math.sin(seconds * 0.5 + node.swayPhase) * SWAY_PX + parallaxX * -14;
+      nodePositions[offset + 1] =
+        node.down * screenHeight + Math.cos(seconds * 0.4 + node.swayPhase) * SWAY_PX + parallaxY * -10;
+      // Each node breathes gently where it sits.
+      nodeAlphas[index] = 0.72 + 0.28 * Math.sin(seconds * 0.8 + node.swayPhase);
       nodeColors[index * 4 + 3] = nodeAlphas[index];
     });
     nodeGeometry.attributes.position.needsUpdate = true;

@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertCircle, Check, User, X } from "lucide-react";
+import { AlertCircle, Check, X } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -20,6 +20,14 @@ import { type RegisterFormValues, registerSchema } from "@/features/auth/schemas
 import { useParseApiError } from "@/lib/i18n/use-api-error";
 import { useAuth } from "@/providers/auth-provider";
 
+/** Register API fields, and the form fields that show their errors. */
+const API_FIELDS = [
+  ["full_name", "fullName"],
+  ["email", "email"],
+  ["password", "password"],
+  ["confirm_password", "confirmPassword"],
+] as const;
+
 export function RegisterForm() {
   const t = useTranslations("auth");
   const parseApiError = useParseApiError();
@@ -32,6 +40,7 @@ export function RegisterForm() {
     handleSubmit,
     control,
     watch,
+    setError,
     formState: { errors, isSubmitting: isSubmittingForm },
   } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -64,7 +73,15 @@ export function RegisterForm() {
       // (auth)/layout.tsx redirects once the session is established.
       setIsRedirecting(true);
     } catch (error) {
-      setFormError(parseApiError(error).message);
+      const { message, fieldErrors } = parseApiError(error);
+      let shownBesideField = false;
+      for (const [apiField, field] of API_FIELDS) {
+        if (fieldErrors[apiField]) {
+          setError(field, { message: fieldErrors[apiField] });
+          shownBesideField = true;
+        }
+      }
+      if (!shownBesideField) setFormError(message);
     }
   };
 
@@ -77,24 +94,21 @@ export function RegisterForm() {
         </Alert>
       )}
 
-      <div className="flex flex-col gap-1.5">
+      <div className="auth-field">
         <Label htmlFor="fullName">{t("fields.fullName")}</Label>
-        <div className="relative">
-          <User className="pointer-events-none absolute top-1/2 start-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            id="fullName"
-            autoComplete="name"
-            placeholder={t("fields.fullNamePlaceholder")}
-            aria-invalid={!!errors.fullName}
-            className="h-11 rounded-[var(--radius-input)] ps-8.5"
-            disabled={isSubmitting}
-            {...register("fullName")}
-          />
-        </div>
+        <Input
+          id="fullName"
+          autoComplete="name"
+          placeholder={t("fields.fullNamePlaceholder")}
+          aria-invalid={!!errors.fullName}
+          className="h-11 rounded-[var(--radius-input)]"
+          disabled={isSubmitting}
+          {...register("fullName")}
+        />
         <FieldError message={errors.fullName?.message} />
       </div>
 
-      <div className="flex flex-col gap-1.5">
+      <div className="auth-field">
         <Label htmlFor="email">{t("fields.email")}</Label>
         <Input
           id="email"
@@ -109,9 +123,10 @@ export function RegisterForm() {
         <FieldError message={errors.email?.message} />
       </div>
 
-      <div className="flex flex-col gap-1.5">
+      <div className="auth-field">
         <Label htmlFor="password">{t("fields.password")}</Label>
         <PasswordInput
+          showIcon={false}
           id="password"
           autoComplete="new-password"
           placeholder={t("fields.passwordPlaceholder")}
@@ -123,9 +138,10 @@ export function RegisterForm() {
         <FieldError message={errors.password?.message} />
       </div>
 
-      <div className="flex flex-col gap-1.5">
+      <div className="auth-field">
         <Label htmlFor="confirmPassword">{t("fields.confirmPassword")}</Label>
         <PasswordInput
+          showIcon={false}
           id="confirmPassword"
           autoComplete="new-password"
           placeholder={t("fields.confirmPasswordPlaceholder")}
@@ -182,7 +198,7 @@ export function RegisterForm() {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="h-[52px] rounded-2xl text-base font-semibold shadow-[var(--shadow-color-sm)] transition-transform hover:-translate-y-0.5 hover:shadow-[var(--shadow-color-hover)]"
+        className="auth-submit"
       >
         {isSubmitting ? (
           <>

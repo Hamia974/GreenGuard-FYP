@@ -517,6 +517,323 @@
   }
 }
 
+/*
+ * Sign-in pages: real crop photos beside a form on Bone. The form's tokens are
+ * set here so the shared components take these colors without any changes.
+ */
+.auth-page {
+  --auth-bone: #e5d7c4;
+  --auth-kombu: #354024;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100svh;
+  background: var(--auth-bone);
+  font-family: var(--font-hanken-grotesk), var(--font-inter), sans-serif;
+}
+
+.auth-panel {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: #0b0d09;
+  color: #ffffff;
+}
+
+.auth-photos,
+.auth-light,
+.auth-shade {
+  position: absolute;
+  inset: 0;
+}
+
+.auth-photos img {
+  object-fit: cover;
+  opacity: 0;
+  animation: auth-photo-fade 19.5s infinite, auth-photo-drift 19.5s infinite ease-in-out;
+}
+
+.auth-photos img:nth-child(2) {
+  animation-delay: 6.5s;
+}
+
+.auth-photos img:nth-child(3) {
+  animation-delay: 13s;
+}
+
+@keyframes auth-photo-fade {
+  0%, 100% { opacity: 0; }
+  7%, 33% { opacity: 1; }
+  40% { opacity: 0; }
+}
+
+@keyframes auth-photo-drift {
+  from { transform: scale(1.06); }
+  45% { transform: scale(1.16) translateY(-2%); }
+  to { transform: scale(1.16) translateY(-2%); }
+}
+
+.auth-light {
+  width: 100%;
+  height: 100%;
+}
+
+.auth-shade {
+  background: linear-gradient(180deg, rgb(0 0 0 / 0.72) 0, rgb(0 0 0 / 0.5) 260px, rgb(0 0 0 / 0) 360px);
+}
+
+.auth-tear {
+  position: absolute;
+  z-index: 1;
+}
+
+.auth-tear path {
+  fill: var(--auth-bone);
+  stroke: #f4eee3;
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.auth-tear--side {
+  top: 0;
+  inset-inline-end: -1px;
+  width: 30px;
+  height: 100%;
+}
+
+:root:lang(ur) .auth-tear--side {
+  transform: scaleX(-1);
+}
+
+.auth-tear--bottom {
+  display: none;
+  inset-inline: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 26px;
+}
+
+.auth-brand {
+  position: absolute;
+  top: 24px;
+  inset-inline-start: 24px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 1.25rem;
+}
+
+.auth-brand img {
+  width: 34px;
+  height: auto;
+}
+
+.auth-headline {
+  position: absolute;
+  top: 96px;
+  inset-inline: 24px 72px;
+  z-index: 2;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.auth-main {
+  --background: var(--auth-bone);
+  --foreground: var(--auth-kombu);
+  --card: var(--auth-bone);
+  --card-foreground: var(--auth-kombu);
+  --muted-foreground: rgb(53 64 36 / 0.82);
+  --primary: var(--auth-kombu);
+  --primary-foreground: var(--auth-bone);
+  --border: rgb(53 64 36 / 0.7);
+  --input: rgb(53 64 36 / 0.7);
+  --ring: #4c3d19;
+  --success-text: #2f6b3a;
+  --error-text: #8f1716;
+  --destructive: #8f1716;
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-width: 0;
+  padding: 72px 24px 48px;
+  background: var(--auth-bone);
+  color: var(--auth-kombu);
+}
+
+.auth-language {
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 16px;
+}
+
+.auth-inner {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-heading {
+  display: grid;
+  gap: 4px;
+  text-align: center;
+}
+
+.auth-heading h1 {
+  color: #4c3d19;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.auth-heading p {
+  color: var(--muted-foreground);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+/* Field labels sit in a notch in the input's border. */
+.auth-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-field > label {
+  position: absolute;
+  top: -9px;
+  inset-inline-start: 10px;
+  z-index: 1;
+  padding-inline: 6px;
+  background: var(--auth-bone);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.auth-field input {
+  height: 48px;
+  border-color: var(--input);
+  border-radius: 4px;
+  background: transparent;
+  font-size: 1rem;
+}
+
+.auth-main a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.auth-submit {
+  height: 52px;
+  margin-bottom: 4px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 0 #889063;
+  transition: background-color 120ms, box-shadow 120ms, transform 120ms;
+}
+
+.auth-submit:not(:disabled):hover {
+  background: #4c3d19;
+  box-shadow: 0 5px 0 #889063;
+  transform: translateY(-1px);
+}
+
+.auth-submit:not(:disabled):active {
+  box-shadow: 0 0 0 transparent;
+  transform: translateY(4px);
+}
+
+:root:lang(ur) .auth-headline,
+:root:lang(ur) .auth-heading h1,
+:root:lang(ur) .auth-main {
+  font-family: var(--font-urdu), var(--font-hanken-grotesk), sans-serif;
+}
+
+:root:lang(ur) .auth-headline {
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
+  line-height: 1.9;
+}
+
+:root:lang(ur) .auth-heading h1 {
+  font-size: 1.75rem;
+  line-height: 1.9;
+}
+
+:root:lang(ur) .auth-field > label {
+  top: -14px;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .auth-page {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+  }
+
+  .auth-panel {
+    position: relative;
+    height: 240px;
+  }
+
+  .auth-tear--side {
+    display: none;
+  }
+
+  .auth-tear--bottom {
+    display: block;
+  }
+
+  .auth-brand {
+    top: 16px;
+    inset-inline-start: 16px;
+  }
+
+  .auth-headline {
+    top: 64px;
+    inset-inline: 16px;
+    max-width: 12ch;
+    font-size: 1.875rem;
+  }
+
+  :root:lang(ur) .auth-headline {
+    max-width: 16ch;
+    font-size: 1.375rem;
+  }
+
+  .auth-main {
+    align-content: start;
+    padding: 56px 16px 40px;
+  }
+
+  .auth-language {
+    top: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-photos img {
+    animation: none;
+  }
+
+  .auth-photos img:first-child {
+    opacity: 1;
+  }
+
+  .auth-submit {
+    transition: none;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -526,6 +843,8 @@
   }
   html {
     @apply font-sans;
+    /* 17px at the browser default; a percentage keeps the visitor's own setting. */
+    font-size: 106.25%;
   }
   h1,
   h2,

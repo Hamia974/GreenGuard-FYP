@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertCircle, Mail, MailCheck } from "lucide-react";
+import { AlertCircle, MailCheck } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -73,28 +73,25 @@ export function ForgotPasswordForm() {
         </Alert>
       )}
 
-      <div className="flex flex-col gap-1.5">
+      <div className="auth-field">
         <Label htmlFor="email">{t("fields.email")}</Label>
-        <div className="relative">
-          <Mail className="pointer-events-none absolute top-1/2 start-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            id="email"
-            type="email"
-            autoComplete="email"
-            placeholder={t("fields.emailPlaceholder")}
-            aria-invalid={!!errors.email}
-            className="h-11 rounded-[var(--radius-input)] ps-8.5"
-            disabled={isSubmitting}
-            {...register("email")}
-          />
-        </div>
+        <Input
+          id="email"
+          type="email"
+          autoComplete="email"
+          placeholder={t("fields.emailPlaceholder")}
+          aria-invalid={!!errors.email}
+          className="h-11 rounded-[var(--radius-input)]"
+          disabled={isSubmitting}
+          {...register("email")}
+        />
         <FieldError message={errors.email?.message} />
       </div>
 
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="h-[52px] rounded-2xl text-base font-semibold shadow-[var(--shadow-color-sm)] transition-transform hover:-translate-y-0.5 hover:shadow-[var(--shadow-color-hover)]"
+        className="auth-submit"
       >
         {isSubmitting ? (
           <>

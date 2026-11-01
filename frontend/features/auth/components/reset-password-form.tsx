@@ -96,9 +96,10 @@ export function ResetPasswordForm() {
         </Alert>
       )}
 
-      <div className="flex flex-col gap-1.5">
+      <div className="auth-field">
         <Label htmlFor="newPassword">{t("fields.newPassword")}</Label>
         <PasswordInput
+          showIcon={false}
           id="newPassword"
           autoComplete="new-password"
           placeholder={t("fields.newPasswordPlaceholder")}
@@ -110,9 +111,10 @@ export function ResetPasswordForm() {
         <FieldError message={errors.newPassword?.message} />
       </div>
 
-      <div className="flex flex-col gap-1.5">
+      <div className="auth-field">
         <Label htmlFor="confirmPassword">{t("fields.confirmPassword")}</Label>
         <PasswordInput
+          showIcon={false}
           id="confirmPassword"
           autoComplete="new-password"
           placeholder={t("fields.confirmNewPasswordPlaceholder")}
@@ -126,7 +128,7 @@ export function ResetPasswordForm() {
       <Button
         type="submit"
         disabled={isSubmitting || !token}
-        className="h-[52px] rounded-2xl text-base font-semibold shadow-[var(--shadow-color-sm)] transition-transform hover:-translate-y-0.5 hover:shadow-[var(--shadow-color-hover)]"
+        className="auth-submit"
       >
         {isSubmitting ? (
           <>

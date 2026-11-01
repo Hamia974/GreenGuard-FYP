@@ -7,20 +7,22 @@ import { forwardRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-type PasswordInputProps = React.ComponentProps<"input">;
+type PasswordInputProps = React.ComponentProps<"input"> & { showIcon?: boolean };
 
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
-  function PasswordInput({ className, ...props }, ref) {
+  function PasswordInput({ className, showIcon = true, ...props }, ref) {
     const t = useTranslations("auth.fields");
     const [visible, setVisible] = useState(false);
 
     return (
       <div className="relative">
-        <Lock className="pointer-events-none absolute top-1/2 start-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
+        {showIcon && (
+          <Lock className="pointer-events-none absolute top-1/2 start-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
+        )}
         <Input
           ref={ref}
           type={visible ? "text" : "password"}
-          className={cn("h-11 rounded-[var(--radius-input)] pe-10 ps-8.5", className)}
+          className={cn("h-11 rounded-[var(--radius-input)] pe-10", showIcon && "ps-8.5", className)}
           {...props}
         />
         <button
