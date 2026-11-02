@@ -9,8 +9,8 @@ Document Version:
 2.0
 
 Prepared By:
-Minahil Kamran
-Laiba Farooq
+Minahil Kamran,
+Laiba Farooq,
 Hamia Khalil
 
 Project Type:
