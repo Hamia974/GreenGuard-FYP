@@ -645,7 +645,7 @@
 /* Bright on the dark map, matching the pins. */
 .dotHealthy { background: #7cc36b; }
 .dotWatch { background: #f0bc45; }
-.dotRisk { background: #f08a45; }
+.dotRisk { background: #b3201f; }
 .dotCritical { background: #f0695a; }
 .dotNone { border: 1px solid var(--gg-bone); }
 

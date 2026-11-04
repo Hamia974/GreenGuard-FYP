@@ -1,0 +1,1297 @@
+/* Leaf test: the photo step and checking state (guided steps) and the result (diagnosis sheet).
+   Every colour is a Green Guard token from the home shell's data-gg-theme="field". */
+
+.page {
+  display: grid;
+  gap: var(--gg-space-5);
+  padding: var(--gg-space-7) clamp(16px, 2.4vw, 32px) var(--gg-space-7);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--gg-space-3) var(--gg-space-5);
+}
+
+.headText {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.page .crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gg-ink-muted);
+  text-decoration: none;
+}
+
+.crumb:hover {
+  color: var(--gg-ink);
+}
+
+.crumb svg {
+  width: 17px;
+  height: 17px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--gg-font-serif);
+  font-size: clamp(38px, 3.8vw, 54px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--gg-ink-strong);
+}
+
+.label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gg-ink-muted);
+}
+
+/* ---------- Guided column ---------- */
+
+.wrap {
+  display: grid;
+  gap: var(--gg-space-5);
+  width: 100%;
+  max-width: 900px;
+  justify-self: center;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: var(--gg-space-2);
+  padding-top: var(--gg-space-2);
+  border-top: 3px solid var(--gg-hairline);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gg-ink-muted);
+}
+
+.steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--gg-control-border);
+  border-radius: var(--gg-radius-full);
+  font-family: var(--gg-font-mono);
+  font-size: 13px;
+}
+
+.stepDone,
+.stepNow {
+  border-top-color: var(--gg-kombu-green) !important;
+  color: var(--gg-ink) !important;
+}
+
+.stepDone::before {
+  background: var(--gg-mark);
+  border-color: var(--gg-mark-outline) !important;
+}
+
+.stepNow::before {
+  background: var(--gg-accent);
+  border-color: var(--gg-accent) !important;
+  color: var(--gg-on-accent);
+}
+
+.card {
+  display: grid;
+  gap: var(--gg-space-4);
+  min-width: 0;
+  margin-bottom: 4px;
+  padding: var(--gg-space-5);
+  border: 1px solid var(--gg-control-border);
+  border-radius: var(--gg-radius-panel);
+  box-shadow: var(--gg-card-edge);
+}
+
+/* Crop photo dial: round photos with names below, straight on the page (no box). */
+.crops {
+  display: grid;
+  gap: var(--gg-space-3);
+}
+
+.dial {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gg-space-4) var(--gg-space-3);
+}
+
+.dialOption {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  width: 86px;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--gg-ink);
+  cursor: pointer;
+  font: inherit;
+  text-align: center;
+}
+
+.dialPhoto {
+  position: relative;
+  display: block;
+  width: 68px;
+  height: 68px;
+  border-radius: var(--gg-radius-full);
+  box-shadow: 0 0 0 1px var(--gg-hairline);
+  transition: box-shadow var(--gg-duration-state) var(--gg-ease-enter), transform var(--gg-duration-quick);
+}
+
+.dialPhoto img,
+.dialUnsure {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: var(--gg-radius-full);
+  object-fit: cover;
+}
+
+.dialUnsure {
+  border: 1.5px dashed var(--gg-ink);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.dialTick {
+  position: absolute;
+  inset-block-end: -2px;
+  inset-inline-end: -2px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--gg-mark-outline);
+  border-radius: var(--gg-radius-full);
+  background: var(--gg-mark);
+  color: var(--gg-ink);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity var(--gg-duration-state), transform var(--gg-duration-state) var(--gg-ease-enter);
+}
+
+.dialTick svg {
+  width: 14px;
+  height: 14px;
+}
+
+.dialName {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+/* Keyboard focus rings the round photo, not the whole option. */
+.page .dialOption:focus-visible {
+  outline: none;
+}
+
+.dialOption:focus-visible .dialPhoto {
+  outline: 2px solid var(--gg-focus-ring);
+  outline-offset: 7px;
+}
+
+.dialOption:hover .dialPhoto {
+  transform: translateY(-2px);
+}
+
+.dialOption[aria-checked="true"] .dialPhoto {
+  box-shadow: 0 0 0 3px var(--gg-surface), 0 0 0 5px var(--gg-accent);
+}
+
+.dialOption[aria-checked="true"] .dialTick {
+  opacity: 1;
+  transform: none;
+}
+
+.dialOption[aria-checked="true"] .dialName {
+  font-weight: 700;
+  color: var(--gg-ink-strong);
+}
+
+@media (max-width: 559px) {
+  .dialOption {
+    width: 74px;
+  }
+
+  .dialPhoto,
+  .dialPhoto img,
+  .dialUnsure {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+/* ---------- Photo stage ---------- */
+
+/* The photo area: a lab instrument over a blurred field, set in Kombu with Bone hairlines. */
+.stage {
+  position: relative;
+  min-height: 400px;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--gg-radius-panel);
+  background: var(--gg-kombu-green);
+  color: var(--gg-bone);
+  transition: box-shadow var(--gg-duration-state);
+}
+
+.stageDrop {
+  box-shadow: inset 0 0 0 3px var(--gg-bone);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+}
+
+/* The field: a softly blurred wheat photo under a Kombu shade. */
+.sceneField {
+  position: absolute;
+  inset: -30px;
+  z-index: -1;
+  background: url("/images/crops/wheat.jpg") center / cover;
+  filter: blur(18px) saturate(0.8);
+  opacity: 0.55;
+}
+
+.sceneField::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(53, 64, 36, 0.55);
+}
+
+.ruler {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.ruler i {
+  display: block;
+  background: rgba(229, 215, 196, 0.55);
+}
+
+.rulerTop {
+  top: 0;
+  inset-inline: 56px;
+  height: 14px;
+}
+
+.rulerTop i {
+  width: 1px;
+  height: 6px;
+}
+
+.rulerTop i:nth-child(5n + 1) {
+  height: 12px;
+  background: var(--gg-bone);
+}
+
+.rulerStart,
+.rulerEnd {
+  top: 56px;
+  bottom: 56px;
+  width: 14px;
+  flex-direction: column;
+}
+
+.rulerStart {
+  inset-inline-start: 0;
+}
+
+.rulerEnd {
+  inset-inline-end: 0;
+  align-items: flex-end;
+}
+
+.rulerStart i,
+.rulerEnd i {
+  width: 6px;
+  height: 1px;
+}
+
+.rulerStart i:nth-child(5n + 1),
+.rulerEnd i:nth-child(5n + 1) {
+  width: 12px;
+  background: var(--gg-bone);
+}
+
+.reticle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.reticleCross {
+  stroke: rgba(229, 215, 196, 0.3);
+  stroke-width: 1;
+}
+
+.reticleOuter {
+  fill: none;
+  stroke: rgba(229, 215, 196, 0.45);
+  stroke-width: 1;
+  stroke-dasharray: 2 6;
+}
+
+.reticleRing {
+  fill: none;
+  stroke: var(--gg-bone);
+  stroke-width: 1;
+}
+
+.reticleArc {
+  fill: none;
+  stroke: var(--gg-moss-green);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  transform-box: view-box;
+  transform-origin: 400px 200px;
+  animation: reticle-turn 9s linear infinite;
+}
+
+.reticleBrackets {
+  fill: none;
+  stroke: var(--gg-bone);
+  stroke-width: 1.5;
+}
+
+.reticleDot {
+  fill: var(--gg-bone);
+}
+
+@keyframes reticle-turn {
+  to { transform: rotate(360deg); }
+}
+
+/* One hairline sweeping across the reticle. */
+.sceneScan {
+  position: absolute;
+  top: calc(50% - 118px);
+  left: 50%;
+  width: 236px;
+  height: 1px;
+  margin-left: -118px;
+  background: var(--gg-bone);
+  animation: scene-scan 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes scene-scan {
+  to { top: calc(50% + 118px); }
+}
+
+@keyframes scene-scan-sm {
+  to { top: calc(50% + 90px); }
+}
+
+.sceneLabel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--gg-space-2);
+  margin: 0;
+  font-family: var(--gg-font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(229, 215, 196, 0.88);
+}
+
+.sceneLabelTop {
+  top: 26px;
+  inset-inline-start: 28px;
+}
+
+.sceneLabelBottom {
+  bottom: 24px;
+  inset-inline-end: 28px;
+}
+
+.sceneLed {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--gg-radius-full);
+  background: #7cc36b;
+  animation: scene-blink 1.8s ease-in-out infinite;
+}
+
+@keyframes scene-blink {
+  50% { opacity: 0.35; }
+}
+
+/* What to do, under the box. */
+.instructions {
+  display: grid;
+  justify-items: center;
+  gap: var(--gg-space-1);
+  text-align: center;
+}
+
+.stagePhoto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.corners i {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--gg-bone);
+  pointer-events: none;
+}
+
+.corners i:nth-child(1) { top: 18px; inset-inline-start: 18px; border-inline-end: 0; border-bottom: 0; }
+.corners i:nth-child(2) { top: 18px; inset-inline-end: 18px; border-inline-start: 0; border-bottom: 0; }
+.corners i:nth-child(3) { bottom: 18px; inset-inline-start: 18px; border-inline-end: 0; border-top: 0; }
+.corners i:nth-child(4) { bottom: 18px; inset-inline-end: 18px; border-inline-start: 0; border-top: 0; }
+
+.guide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: var(--gg-space-3);
+  padding: var(--gg-space-6);
+  text-align: center;
+}
+
+.guide svg {
+  width: 150px;
+  height: 170px;
+}
+
+.guideLine {
+  fill: none;
+  stroke: var(--gg-bone);
+  stroke-width: 2;
+  stroke-dasharray: 7 7;
+}
+
+.guideVein {
+  fill: none;
+  stroke: var(--gg-tan);
+  stroke-width: 1.75;
+  stroke-dasharray: 4 6;
+}
+
+.guideTitle {
+  margin: 0;
+  font-family: var(--gg-font-serif);
+  font-size: 28px;
+  line-height: 32px;
+  color: var(--gg-ink-strong);
+}
+
+.guideText {
+  max-width: 52ch;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--gg-ink-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gg-space-3);
+}
+
+.actionsStart {
+  justify-content: flex-start;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gg-space-2);
+  height: 48px;
+  margin-bottom: 3px;
+  padding: 0 var(--gg-space-5);
+  border: 1px solid transparent;
+  border-radius: var(--gg-radius-full);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--gg-duration-quick), box-shadow var(--gg-duration-quick), background-color var(--gg-duration-quick);
+}
+
+.btn svg {
+  width: 19px;
+  height: 19px;
+}
+
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page .btnPrimary {
+  background: var(--gg-accent);
+  color: var(--gg-on-accent);
+  box-shadow: 0 3px 0 var(--gg-mark);
+}
+
+.btnPrimary:hover {
+  background: var(--gg-ink-strong);
+}
+
+.page .btnSecondary {
+  border-color: var(--gg-control-border);
+  background: transparent;
+  color: var(--gg-ink);
+  box-shadow: 0 3px 0 var(--gg-control-border);
+}
+
+.btnSecondary:hover {
+  background: var(--gg-hairline);
+}
+
+.hint {
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--gg-ink-muted);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gg-space-2);
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #8f1716;
+}
+
+.error svg {
+  width: 18px;
+  height: 18px;
+}
+
+.tips {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gg-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tips li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: var(--gg-space-2);
+  align-items: start;
+  font-size: 15px;
+  line-height: 21px;
+}
+
+.tips svg {
+  width: 21px;
+  height: 21px;
+  margin-top: 1px;
+}
+
+.tips b {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tips span {
+  color: var(--gg-ink-muted);
+}
+
+/* ---------- Checking: the approved shield scan ---------- */
+
+/* Checking: no box, only the shield with its scan, and the words below. */
+.checkingView {
+  display: grid;
+  justify-items: center;
+  gap: var(--gg-space-5);
+  padding: var(--gg-space-7) 0 var(--gg-space-6);
+  text-align: center;
+}
+
+.shieldBig {
+  position: relative;
+  display: block;
+  width: 168px;
+}
+
+.shieldBig img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.shieldBig .shieldScan {
+  inset-inline: -18px;
+  height: 4px;
+}
+
+.checkingCopy {
+  display: grid;
+  gap: var(--gg-space-1);
+  justify-items: center;
+}
+
+.checkingTitle {
+  margin: 0;
+  font-family: var(--gg-font-serif);
+  font-size: 30px;
+  line-height: 34px;
+  color: var(--gg-ink-strong);
+}
+
+.checkingText {
+  max-width: 52ch;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--gg-ink-muted);
+}
+
+.shield {
+  position: relative;
+  display: block;
+  width: 64px;
+}
+
+.shield img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.shieldScan {
+  position: absolute;
+  inset-inline: -8px;
+  top: 0;
+  height: 3px;
+  border-radius: var(--gg-radius-full);
+  background: var(--gg-bone);
+  box-shadow: 0 0 0 1px var(--gg-kombu-green);
+  animation: shield-sweep 2000ms ease-in-out infinite alternate;
+}
+
+@keyframes shield-sweep {
+  from { top: 0; }
+  to { top: calc(100% - 3px); }
+}
+
+/* ---------- Result: Kombu spotlight hero, then the verdict-banner layout ---------- */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: var(--gg-space-6);
+  align-items: center;
+  padding: var(--gg-space-6);
+  border-radius: var(--gg-radius-panel);
+  background: var(--gg-kombu-green);
+  color: var(--gg-bone);
+  animation: hero-in var(--gg-duration-enter) var(--gg-ease-enter) both;
+}
+
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(10px); }
+}
+
+/* A blurred, darkened copy of the leaf photo behind everything. */
+.heroBlur {
+  position: absolute;
+  inset: -40px;
+  z-index: -2;
+  background-position: center;
+  background-size: cover;
+  filter: blur(28px) saturate(0.8);
+  opacity: 0.5;
+}
+
+.heroShade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(53, 64, 36, 0.6);
+}
+
+/* The photo in a round lens with a tick ring. */
+.lens {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  justify-self: center;
+}
+
+.lensTicks {
+  position: absolute;
+  inset: -18px;
+  width: calc(100% + 36px);
+  height: calc(100% + 36px);
+  pointer-events: none;
+}
+
+.lensTicks line {
+  stroke: rgba(229, 215, 196, 0.55);
+  stroke-width: 1;
+}
+
+.lensTicks line.lensTickBig {
+  stroke: var(--gg-bone);
+  stroke-width: 1.5;
+}
+
+.lensPhoto {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  border-radius: var(--gg-radius-full);
+  background: rgba(53, 64, 36, 0.6);
+  box-shadow: 0 0 0 1px rgba(229, 215, 196, 0.45), 0 0 0 14px rgba(229, 215, 196, 0.06);
+}
+
+.lensPhoto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.noPhoto {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: var(--gg-space-2);
+  color: var(--gg-tan);
+  font-size: 15px;
+}
+
+.noPhoto svg {
+  width: 110px;
+  height: 124px;
+}
+
+.heroCopy {
+  display: grid;
+  align-content: center;
+  gap: var(--gg-space-4);
+  min-width: 0;
+}
+
+.heroEyebrow {
+  margin: 0;
+  font-family: var(--gg-font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gg-tan);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gg-space-3);
+}
+
+.hero .heroPill {
+  border-color: var(--gg-bone);
+}
+
+.verdict {
+  margin: 0;
+  font-family: var(--gg-font-serif);
+  font-size: clamp(44px, 4.8vw, 70px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--gg-bone);
+}
+
+/* How sure: a ring and one plain sentence, in frosted glass. */
+.sure {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gg-space-4);
+  padding: var(--gg-space-3) var(--gg-space-4);
+  border: 1px solid rgba(229, 215, 196, 0.38);
+  border-radius: var(--gg-radius-panel);
+  background: rgba(229, 215, 196, 0.1);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.sure p {
+  flex: 1 1 220px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--gg-tan);
+}
+
+.ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 104px;
+  height: 104px;
+}
+
+.ring svg {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.ring circle {
+  fill: none;
+  stroke-width: 6;
+}
+
+.ringTrack {
+  stroke: rgba(229, 215, 196, 0.25);
+}
+
+.ringFill {
+  stroke-linecap: round;
+  transition: stroke-dashoffset 900ms var(--gg-ease-enter);
+}
+
+.ring_risk { stroke: #b3201f; }
+.ring_healthy { stroke: #7cc36b; }
+.ring_watch { stroke: #f0bc45; }
+
+.ringValue {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.ringValue b {
+  font-family: var(--gg-font-serif);
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--gg-bone);
+}
+
+.ringValue small {
+  margin-top: 4px;
+  font-family: var(--gg-font-mono);
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gg-tan);
+}
+
+.page .heroPrimary {
+  background: var(--gg-bone);
+  color: var(--gg-kombu-green);
+  box-shadow: 0 3px 0 var(--gg-moss-green);
+}
+
+.page .heroPrimary:hover {
+  background: var(--gg-tan);
+}
+
+.page .heroSecondary {
+  border-color: var(--gg-tan);
+  background: transparent;
+  color: var(--gg-bone);
+  box-shadow: 0 3px 0 var(--gg-tan);
+}
+
+.page .heroSecondary:hover {
+  background: rgba(229, 215, 196, 0.12);
+}
+
+/* Below the hero: three equal columns. */
+.cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gg-space-5);
+}
+
+.col {
+  display: grid;
+  align-content: start;
+  gap: var(--gg-space-3);
+  min-width: 0;
+  padding-top: var(--gg-space-3);
+  border-top: 1px solid var(--gg-ink);
+}
+
+.colEmpty {
+  margin: 0;
+  font-size: 15px;
+  color: var(--gg-ink-muted);
+}
+
+.bar {
+  height: 10px;
+  overflow: hidden;
+  border: 1px solid var(--gg-control-border);
+  border-radius: var(--gg-radius-full);
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  border-radius: var(--gg-radius-full);
+  transform-origin: left;
+  animation: bar-fill 600ms var(--gg-ease-enter) both;
+}
+
+@keyframes bar-fill {
+  from { transform: scaleX(0); }
+}
+
+.fill_risk { background: var(--gg-status-risk); }
+.fill_healthy { background: var(--gg-status-healthy); }
+.fill_watch { background: var(--gg-status-watch); }
+.fill_mark { background: var(--gg-mark); }
+
+.ranks {
+  display: grid;
+  gap: var(--gg-space-2);
+}
+
+.ranks ul {
+  display: grid;
+  gap: var(--gg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ranks li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px 48px;
+  gap: var(--gg-space-3);
+  align-items: center;
+  font-size: 16px;
+}
+
+.ranks .bar {
+  height: 8px;
+}
+
+.ranks em {
+  font-family: var(--gg-font-mono);
+  font-size: 14px;
+  font-style: normal;
+  text-align: end;
+}
+
+.note {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: var(--gg-space-2);
+  margin: 0;
+  padding: var(--gg-space-3) var(--gg-space-4);
+  border: 1px solid var(--gg-control-border);
+  border-radius: var(--gg-radius-panel);
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.note svg {
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+}
+
+.note b {
+  font-weight: 600;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gg-space-3);
+  margin: 0;
+}
+
+.facts div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding-top: var(--gg-space-2);
+  border-top: 1px solid var(--gg-hairline);
+}
+
+.facts dt {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gg-ink-muted);
+}
+
+.facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* This farm's Soil test and Weather test: the same cards as on the dashboard. */
+.moreCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gg-space-4);
+  width: 100%;
+  max-width: 780px;
+  justify-self: start;
+}
+
+.page .historyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gg-space-2);
+  width: fit-content;
+  margin-top: var(--gg-space-1);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gg-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--gg-hairline);
+  text-underline-offset: 4px;
+}
+
+.page .historyLink:hover {
+  text-decoration-color: currentColor;
+}
+
+.historyLink svg {
+  width: 17px;
+  height: 17px;
+}
+
+.details {
+  border-top: 1px solid var(--gg-hairline);
+  padding-top: var(--gg-space-3);
+}
+
+.details summary {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.detailsBody {
+  display: grid;
+  gap: var(--gg-space-4);
+  margin-top: var(--gg-space-4);
+}
+
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: var(--gg-space-3);
+}
+
+.empty h2 {
+  margin: 0;
+  font-family: var(--gg-font-serif);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--gg-ink-strong);
+}
+
+.skeleton {
+  border-radius: var(--gg-radius-panel);
+  background: var(--gg-hairline);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1023px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--gg-space-5);
+  }
+
+  .lens {
+    max-width: 300px;
+  }
+
+  .cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 699px) {
+  .tips,
+  .facts,
+  .moreCards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stage {
+    min-height: 340px;
+  }
+
+  .sceneScan {
+    width: 180px;
+    margin-left: -90px;
+    top: calc(50% - 90px);
+    animation-name: scene-scan-sm;
+  }
+
+  .sceneLabelBottom {
+    inset-inline: 28px;
+    justify-content: center;
+    letter-spacing: 0.08em;
+  }
+
+  .hero {
+    padding: var(--gg-space-4);
+    gap: var(--gg-space-5);
+  }
+
+  .lens {
+    max-width: 240px;
+  }
+
+  .shieldBig {
+    width: 128px;
+  }
+
+  .checkingView {
+    padding-top: var(--gg-space-6);
+  }
+
+  .ranks li {
+    grid-template-columns: minmax(0, 1fr) 80px 44px;
+  }
+
+  .steps li {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 559px) {
+  .page {
+    padding-bottom: 96px;
+  }
+}
+
+/* ---------- Urdu ---------- */
+
+:global(:root:lang(ur)) .label,
+:global(:root:lang(ur)) .heroEyebrow,
+:global(:root:lang(ur)) .ringValue small,
+:global(:root:lang(ur)) .facts dt {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+:global(:root:lang(ur)) .title,
+:global(:root:lang(ur)) .verdict,
+:global(:root:lang(ur)) .guideTitle,
+:global(:root:lang(ur)) .checkingTitle {
+  font-family: var(--gg-font-urdu);
+  line-height: 1.9;
+}
+
+:global(:root:lang(ur)) .crumb svg,
+:global(:root:lang(ur)) .historyLink svg:last-child {
+  transform: scaleX(-1);
+}
+
+:global(:root:lang(ur)) .bar i {
+  transform-origin: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shieldScan,
+  .hero,
+  .bar i,
+  .reticleArc,
+  .sceneScan,
+  .sceneLed {
+    animation: none;
+  }
+
+  .dialPhoto,
+  .dialTick,
+  .btn,
+  .stage {
+    transition: none;
+  }
+}
+
+:global(:root:lang(ur)) .sceneLabel {
+  font-family: var(--gg-font-urdu);
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 13px;
+}

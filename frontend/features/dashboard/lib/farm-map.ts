@@ -39,7 +39,7 @@ interface FarmMapOptions {
 const STATUS_COLORS: Record<FarmMapStatus, string> = {
   healthy: "#7cc36b",
   watch: "#f0bc45",
-  risk: "#f08a45",
+  risk: "#b3201f",
   critical: "#f0695a",
   unknown: "#e5d7c4",
 };

@@ -1,0 +1,98 @@
+{
+  "title": "Leaf test",
+  "back": "Home",
+  "noFarm": {
+    "title": "Add a farm first",
+    "description": "Each leaf test is saved to one of your farms.",
+    "action": "Add a farm"
+  },
+  "steps": {
+    "label": "Steps",
+    "crop": "Crop",
+    "photo": "Photo",
+    "result": "Result"
+  },
+  "crop": {
+    "question": "Which crop is this leaf from?",
+    "notSure": "Not sure"
+  },
+  "photo": {
+    "guideTitle": "Take a close photo of one leaf",
+    "guideText": "Green Guard checks it for disease and saves the result to this farm.",
+    "dropText": "You can also drop a photo here.",
+    "take": "Take a photo",
+    "choose": "Choose from gallery",
+    "previewAlt": "Your leaf photo",
+    "submit": "Check this leaf",
+    "change": "Change photo",
+    "hint": "JPG or PNG, up to 10 MB."
+  },
+  "tips": {
+    "daylightTitle": "Daylight",
+    "daylight": "Not in direct sun or deep shade.",
+    "oneLeafTitle": "One leaf",
+    "oneLeaf": "Fill the frame with it.",
+    "sharpTitle": "Close and sharp",
+    "sharp": "Tap to focus on the spots."
+  },
+  "checking": {
+    "title": "Checking your leaf",
+    "withCrop": "Looking for {crop} diseases.",
+    "detectCrop": "Working out the crop from the photo.",
+    "wait": "This can take up to a minute. Keep this page open."
+  },
+  "result": {
+    "eyebrow": "Leaf test · {farm} · {date}",
+    "eyebrowNoFarm": "Leaf test · {date}",
+    "diseased": "Disease found",
+    "healthy": "No disease found",
+    "uncertain": "Not sure from this photo",
+    "sure": "sure, from one photo",
+    "alsoBe": "It could also be",
+    "mayBe": "It may be one of these",
+    "uncertainHelp": "Retake the photo in good light, close to one leaf, to confirm.",
+    "photoQuality": "Photo quality.",
+    "note": "Note.",
+    "crop": "Crop",
+    "cropByYou": "{crop}, chosen by you",
+    "cropDetected": "{crop}, from the photo",
+    "farm": "Farm",
+    "saved": "Saved",
+    "checkAnother": "Check another leaf",
+    "retake": "Retake the photo",
+    "allTests": "All leaf tests",
+    "noPhoto": "No photo saved",
+    "photoAlt": "The leaf photo for this test",
+    "unavailable": "The disease check was not available for this test.",
+    "legacy": "This test was saved by an older version of Green Guard, so some parts may be missing.",
+    "notFound": "This leaf test could not be found, or you don't have access to it.",
+    "strip": {
+      "label": "More for this farm",
+      "soilLabel": "This farm",
+      "soilTitle": "Soil test {score}/100",
+      "soilNone": "Soil test",
+      "soilGo": "See soil test",
+      "soilStart": "Take questionnaire",
+      "weatherLabel": "At the time",
+      "weatherTitle": "{risk} risk {level}",
+      "weatherAllLow": "Weather risks low",
+      "weatherNone": "Weather test",
+      "weatherGo": "See weather",
+      "historyLabel": "History",
+      "historyTitle": "All leaf tests",
+      "historyGo": "See all"
+    },
+    "details": "Soil and weather saved with this test",
+    "sureLine": "Green Guard is {value}% sure, from one photo of one leaf.",
+    "uncertainLine": "The check could not decide from this photo. It may be one of the diseases below.",
+    "sureShort": "sure",
+    "ringUnsure": "unsure",
+    "photoNotes": "Photo quality",
+    "photoOk": "No problems found with this photo.",
+    "detailsTitle": "Details"
+  },
+  "scene": {
+    "ready": "Ready",
+    "tips": "Daylight · One leaf · Close, sharp"
+  }
+}

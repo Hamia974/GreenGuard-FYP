@@ -14,6 +14,7 @@ import farms from "./farms.json";
 import history from "./history.json";
 import home from "./home.json";
 import language from "./language.json";
+import leafTest from "./leafTest.json";
 import legal from "./legal.json";
 import metadata from "./metadata.json";
 import navigation from "./navigation.json";
@@ -40,6 +41,7 @@ const messages: typeof en = {
   history,
   home,
   language,
+  leafTest,
   legal,
   metadata,
   navigation,

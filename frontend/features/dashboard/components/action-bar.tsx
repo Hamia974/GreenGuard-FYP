@@ -22,7 +22,11 @@ interface ActionBarProps {
   weather: WeatherReport | null | undefined;
 }
 
-const GAUGE_HEIGHT: Record<RiskLevel, string> = { Low: "34%", Moderate: "67%", High: "100%" };
+const GAUGE_HEIGHT: Record<RiskLevel, string> = {
+  Low: "34%",
+  Moderate: "67%",
+  High: "100%",
+};
 const GAUGE_ORDER: RiskKey[] = ["drought", "fungal", "heat"];
 
 /** A line-drawn leaf: its veins trace and a scan line sweeps it on hover. */
@@ -59,11 +63,38 @@ function SoilArt() {
   return (
     <svg className={styles.soilArt} viewBox="0 0 92 112" aria-hidden="true">
       <path className={styles.soilStem} d="M46 62 C 46 52 46 44 46 32" />
-      <path className={cn(styles.soilLeaf, styles.soilLeafStart)} d="M46 46 C 34 46 26 38 24 26 C 36 26 44 34 46 46 Z" />
-      <path className={cn(styles.soilLeaf, styles.soilLeafEnd)} d="M46 38 C 48 26 56 18 70 16 C 70 30 60 38 46 38 Z" />
-      <rect className={styles.soilTop} x="2" y="62" width="88" height="14" rx="2" />
-      <rect className={styles.soilMid} x="2" y="78" width="88" height="14" rx="2" />
-      <rect className={styles.soilDeep} x="2" y="94" width="88" height="16" rx="2" />
+      <path
+        className={cn(styles.soilLeaf, styles.soilLeafStart)}
+        d="M46 46 C 34 46 26 38 24 26 C 36 26 44 34 46 46 Z"
+      />
+      <path
+        className={cn(styles.soilLeaf, styles.soilLeafEnd)}
+        d="M46 38 C 48 26 56 18 70 16 C 70 30 60 38 46 38 Z"
+      />
+      <rect
+        className={styles.soilTop}
+        x="2"
+        y="62"
+        width="88"
+        height="14"
+        rx="2"
+      />
+      <rect
+        className={styles.soilMid}
+        x="2"
+        y="78"
+        width="88"
+        height="14"
+        rx="2"
+      />
+      <rect
+        className={styles.soilDeep}
+        x="2"
+        y="94"
+        width="88"
+        height="16"
+        rx="2"
+      />
       <g className={styles.soilGrains}>
         <circle cx="16" cy="100" r="1.5" />
         <circle cx="40" cy="104" r="1.5" />
@@ -74,77 +105,21 @@ function SoilArt() {
   );
 }
 
-/**
- * The three checks as distinct instruments: the leaf check is the page's one
- * filled primary action, soil shows its last score beside a cross-section, and
- * weather shows today's three risk levels as gauges.
- */
-export function ActionBar({ hasFarm, soilScore, leafCheck, weather }: ActionBarProps) {
+interface SoilTestCardProps {
+  hasFarm: boolean;
+  /** The farm's latest soil score; null when none was saved. */
+  soilScore: number | null;
+}
+
+/** The Soil test card: last score beside a soil cross-section, with the questionnaire button. */
+export function SoilTestCard({ hasFarm, soilScore }: SoilTestCardProps) {
   const t = useTranslations("dashboard.actions");
-  const tLevels = useTranslations("dashboard.levels");
-  const tRisks = useTranslations("dashboard.farmStatus.riskNames");
-  const format = useFormatter();
-
-  // Leaf: what the last check on this farm found.
-  let leafSub: React.ReactNode = t("leafSub");
-  if (!hasFarm) {
-    leafSub = t("needFarm");
-  } else if (leafCheck?.status) {
-    const date = format.dateTime(new Date(leafCheck.row.createdAt), { day: "numeric", month: "short" });
-    const confidence = leafCheck.row.confidence !== null ? Math.round(leafCheck.row.confidence * 100) : null;
-    if (leafCheck.status === "diseased") {
-      const match = leafCheck.detail?.disease?.prediction;
-      leafSub = t.rich(confidence !== null ? "leafLastDisease" : "leafLastDiseaseNoScore", {
-        date,
-        value: confidence ?? 0,
-        name: () => (
-          <DiseaseName displayName={match?.displayName ?? leafCheck.row.diagnosis ?? ""} disease={match?.disease} />
-        ),
-      });
-    } else if (leafCheck.status === "healthy") {
-      leafSub = t("leafLastHealthy", { date });
-    } else {
-      leafSub = t("leafLastUnclear");
-    }
-  }
-
-  // Weather: the worst of today's three risks in words; the gauges show all three.
-  const risks = weatherRisks(weather);
-  const worst = risks[0];
-  let weatherSub = t("weatherSub");
-  if (worst) {
-    weatherSub =
-      worst.level === "Low"
-        ? t("weatherAllLow")
-        : t("weatherWorst", { risk: tRisks(worst.key), level: tLevels(worst.level) });
-  }
-  const gauges = GAUGE_ORDER.map((key) => risks.find((risk) => risk.key === key)).filter(
-    (risk): risk is NonNullable<typeof risk> => !!risk
-  );
-  const gaugeLabel = gauges.map((risk) => `${tRisks(risk.key)}: ${tLevels(risk.level)}`).join(", ");
-
   return (
-    <nav className={styles.actions} aria-label={t("label")}>
-      <Link href={hasFarm ? "/quick-scan" : "/farms/new"} className={cn(styles.action, styles.actionLeaf)}>
-        <span className={styles.actionBody}>
-        <span className={styles.actionText}>
-          <span className={styles.actionTag}>
-            <ScanLine strokeWidth={1.75} aria-hidden="true" />
-            {t("leafTag")}
-          </span>
-          <b className={styles.actionTitle}>{t("leaf")}</b>
-          <small className={styles.actionSub}>{leafSub}</small>
-          <span className={cn(styles.actionGo, styles.actionButton)}>
-            {hasFarm ? t("leafGo") : t("addFarm")}
-            <ArrowRight strokeWidth={1.75} aria-hidden="true" />
-          </span>
-        </span>
-        <LeafArt />
-        </span>
-      </Link>
-
-      <Link href={hasFarm ? "/module2" : "/farms/new"} className={cn(styles.action, styles.actionSoil)}>
-        <span className={styles.actionBody}>
+    <Link
+      href={hasFarm ? "/module2" : "/farms/new"}
+      className={cn(styles.action, styles.actionSoil)}
+    >
+      <span className={styles.actionBody}>
         <span className={styles.actionText}>
           <span className={styles.actionTag}>{t("soilTag")}</span>
           <b className={styles.actionTitle}>{t("soil")}</b>
@@ -154,22 +129,59 @@ export function ActionBar({ hasFarm, soilScore, leafCheck, weather }: ActionBarP
               <small>/100</small>
             </span>
           )}
-          <small className={styles.actionSub}>{hasFarm ? t("soilNone") : t("needFarm")}</small>
+          <small className={styles.actionSub}>
+            {hasFarm ? t("soilNone") : t("needFarm")}
+          </small>
           <span className={cn(styles.actionGo, styles.actionButton)}>
             {hasFarm ? t("soilGo") : t("addFarm")}
             <ArrowRight strokeWidth={1.75} aria-hidden="true" />
           </span>
         </span>
         <SoilArt />
-        </span>
-      </Link>
+      </span>
+    </Link>
+  );
+}
 
-      <Link href="/weather" className={cn(styles.action, styles.actionWeather)}>
-        <span className={styles.actionBody}>
+interface WeatherTestCardProps {
+  /** The weather report to summarise; undefined while it loads or when it failed. */
+  weather: WeatherReport | null | undefined;
+  /** Replaces the "Today" tag, for example "At the time" on a saved test. */
+  tag?: string;
+}
+
+/** The Weather test card: the worst risk in words and all three as gauges. */
+export function WeatherTestCard({ weather, tag }: WeatherTestCardProps) {
+  const t = useTranslations("dashboard.actions");
+  const tLevels = useTranslations("dashboard.levels");
+  const tRisks = useTranslations("dashboard.farmStatus.riskNames");
+
+  const risks = weatherRisks(weather);
+  const worst = risks[0];
+  let weatherSub = t("weatherSub");
+  if (worst) {
+    weatherSub =
+      worst.level === "Low"
+        ? t("weatherAllLow")
+        : t("weatherWorst", {
+            risk: tRisks(worst.key),
+            level: tLevels(worst.level),
+          });
+  }
+  const gauges = GAUGE_ORDER.map((key) =>
+    risks.find((risk) => risk.key === key),
+  ).filter((risk): risk is NonNullable<typeof risk> => !!risk);
+  const gaugeLabel = gauges
+    .map((risk) => `${tRisks(risk.key)}: ${tLevels(risk.level)}`)
+    .join(", ");
+
+  return (
+    <Link href="/weather" className={cn(styles.action, styles.actionWeather)}>
+      <span className={styles.actionBody}>
         <span className={styles.actionText}>
           <span className={styles.actionTag}>
             <CloudSun strokeWidth={1.75} aria-hidden="true" />
-            {t("weatherTag")}
+            {tag ?? t("weatherTag")}
           </span>
           <b className={styles.actionTitle}>{t("weather")}</b>
           <small className={styles.actionSub}>{weatherSub}</small>
@@ -185,7 +197,11 @@ export function ActionBar({ hasFarm, soilScore, leafCheck, weather }: ActionBarP
                 <span className={styles.gaugeTrack}>
                   <i
                     className={styles[`gauge_${risk.status}`]}
-                    style={{ "--level": GAUGE_HEIGHT[risk.level] } as React.CSSProperties}
+                    style={
+                      {
+                        "--level": GAUGE_HEIGHT[risk.level],
+                      } as React.CSSProperties
+                    }
                   />
                 </span>
                 <em>{t(`gauge.${risk.key}`)}</em>
@@ -193,8 +209,85 @@ export function ActionBar({ hasFarm, soilScore, leafCheck, weather }: ActionBarP
             ))}
           </span>
         )}
+      </span>
+    </Link>
+  );
+}
+
+/**
+ * The three checks as distinct instruments: the leaf check shows its last
+ * result, soil its last score beside a cross-section, and weather today's
+ * three risk levels as gauges.
+ */
+export function ActionBar({
+  hasFarm,
+  soilScore,
+  leafCheck,
+  weather,
+}: ActionBarProps) {
+  const t = useTranslations("dashboard.actions");
+  const format = useFormatter();
+
+  // Leaf: what the last check on this farm found.
+  let leafSub: React.ReactNode = t("leafSub");
+  if (!hasFarm) {
+    leafSub = t("needFarm");
+  } else if (leafCheck?.status) {
+    const date = format.dateTime(new Date(leafCheck.row.createdAt), {
+      day: "numeric",
+      month: "short",
+    });
+    const confidence =
+      leafCheck.row.confidence !== null
+        ? Math.round(leafCheck.row.confidence * 100)
+        : null;
+    if (leafCheck.status === "diseased") {
+      const match = leafCheck.detail?.disease?.prediction;
+      leafSub = t.rich(
+        confidence !== null ? "leafLastDisease" : "leafLastDiseaseNoScore",
+        {
+          date,
+          value: confidence ?? 0,
+          name: () => (
+            <DiseaseName
+              displayName={match?.displayName ?? leafCheck.row.diagnosis ?? ""}
+              disease={match?.disease}
+            />
+          ),
+        },
+      );
+    } else if (leafCheck.status === "healthy") {
+      leafSub = t("leafLastHealthy", { date });
+    } else {
+      leafSub = t("leafLastUnclear");
+    }
+  }
+
+  return (
+    <nav className={styles.actions} aria-label={t("label")}>
+      <Link
+        href={hasFarm ? "/quick-scan" : "/farms/new"}
+        className={cn(styles.action, styles.actionLeaf)}
+      >
+        <span className={styles.actionBody}>
+          <span className={styles.actionText}>
+            <span className={styles.actionTag}>
+              <ScanLine strokeWidth={1.75} aria-hidden="true" />
+              {t("leafTag")}
+            </span>
+            <b className={styles.actionTitle}>{t("leaf")}</b>
+            <small className={styles.actionSub}>{leafSub}</small>
+            <span className={cn(styles.actionGo, styles.actionButton)}>
+              {hasFarm ? t("leafGo") : t("addFarm")}
+              <ArrowRight strokeWidth={1.75} aria-hidden="true" />
+            </span>
+          </span>
+          <LeafArt />
         </span>
       </Link>
+
+      <SoilTestCard hasFarm={hasFarm} soilScore={soilScore} />
+      <WeatherTestCard weather={weather} />
     </nav>
   );
 }

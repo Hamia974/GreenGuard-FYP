@@ -871,8 +871,8 @@
   --gg-on-status-healthy: #ffffff;
   --gg-status-watch: #e5a823;
   --gg-on-status-watch: #2a1e05;
-  --gg-status-risk: #e8742a;
-  --gg-on-status-risk: #2a1e05;
+  --gg-status-risk: #8f1716;                    /* maroon, by the user's choice (was #e8742a) */
+  --gg-on-status-risk: #ffffff;
   --gg-status-critical: #b3201f;
   --gg-on-status-critical: #ffffff;
 
@@ -931,8 +931,8 @@
   --gg-on-status-healthy: #17210f;
   --gg-status-watch: #f0bc45;
   --gg-on-status-watch: #2a1e05;
-  --gg-status-risk: #f08a45;
-  --gg-on-status-risk: #2a1e05;
+  --gg-status-risk: #b3201f;                    /* maroon family, brighter for dark grounds */
+  --gg-on-status-risk: #ffffff;
   --gg-status-critical: #f0695a;
   --gg-on-status-critical: #2a0b07;
 
@@ -982,8 +982,8 @@
   --gg-on-status-healthy: #ffffff;
   --gg-status-watch: #e5a823;
   --gg-on-status-watch: #2a1e05;
-  --gg-status-risk: #e8742a;
-  --gg-on-status-risk: #2a1e05;
+  --gg-status-risk: #8f1716;                    /* maroon, by the user's choice (was #e8742a) */
+  --gg-on-status-risk: #ffffff;
   --gg-status-critical: #b3201f;
   --gg-on-status-critical: #ffffff;
   /* Depth: raised edges on cards; only overlays cast a shadow */

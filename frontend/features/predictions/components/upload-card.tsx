@@ -14,8 +14,8 @@ import { cn } from "@/lib/utils";
 // source of truth and re-validates independently.
 const ALLOWED_EXTENSIONS = ["jpg", "jpeg", "png"];
 const MAX_SIZE_BYTES = 10 * 1024 * 1024;
-const MIN_WIDTH = 224;
-const MIN_HEIGHT = 224;
+export const MIN_WIDTH = 224;
+export const MIN_HEIGHT = 224;
 
 function extensionOf(filename: string): string {
   return filename.includes(".") ? filename.split(".").pop()!.toLowerCase() : "";
@@ -38,9 +38,9 @@ function readImageDimensions(file: File): Promise<{ width: number; height: numbe
 }
 
 /** Keys under upload.errors in messages/<locale>/upload.json. */
-type UploadError = "unsupportedFormat" | "tooLarge" | "resolutionTooLow" | "invalidImage";
+export type UploadError = "unsupportedFormat" | "tooLarge" | "resolutionTooLow" | "invalidImage";
 
-async function validateImage(file: File): Promise<UploadError | null> {
+export async function validateImage(file: File): Promise<UploadError | null> {
   if (!ALLOWED_EXTENSIONS.includes(extensionOf(file.name))) {
     return "unsupportedFormat";
   }
