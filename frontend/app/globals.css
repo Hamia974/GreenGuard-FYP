@@ -834,6 +834,166 @@
   }
 }
 
+/* ---------- Green Guard design system tokens (tokens.json) ---------- */
+
+:root {
+  /* Brand palette, exact values */
+  --gg-cafe-noir: #4c3d19;
+  --gg-kombu-green: #354024;
+  --gg-moss-green: #889063;
+  --gg-tan: #cfbb99;
+  --gg-bone: #e5d7c4;
+
+  /* Golden Hour accents (approved direction B, 2026-11-05) */
+  --gg-sunset-amber: #f2a65a;
+  --gg-dusk-mauve: #8e6e8c;
+  --gg-night-soil: #1e1a12;
+  --gg-fresh-leaf: #a8d672;
+
+  /* Roles */
+  --gg-surface: var(--gg-bone);
+  --gg-surface-sunken: var(--gg-tan);
+  --gg-ink: var(--gg-kombu-green);
+  --gg-ink-strong: var(--gg-cafe-noir);
+  --gg-ink-muted: rgba(53, 64, 36, 0.82);
+  --gg-accent: var(--gg-kombu-green);
+  --gg-on-accent: var(--gg-bone);
+  --gg-mark: var(--gg-moss-green);
+  --gg-mark-outline: var(--gg-kombu-green);
+  --gg-hairline: rgba(53, 64, 36, 0.28);
+  --gg-control-border: rgba(53, 64, 36, 0.7);
+  --gg-focus-ring: var(--gg-cafe-noir);
+  /* Raised panels on the page ground. */
+  --gg-panel: var(--gg-surface-sunken);
+
+  /* Status: report status only */
+  --gg-status-healthy: #2f6b3a;
+  --gg-on-status-healthy: #ffffff;
+  --gg-status-watch: #e5a823;
+  --gg-on-status-watch: #2a1e05;
+  --gg-status-risk: #e8742a;
+  --gg-on-status-risk: #2a1e05;
+  --gg-status-critical: #b3201f;
+  --gg-on-status-critical: #ffffff;
+
+  /* Spacing */
+  --gg-space-1: 4px;
+  --gg-space-2: 8px;
+  --gg-space-3: 12px;
+  --gg-space-4: 16px;
+  --gg-space-5: 24px;
+  --gg-space-6: 32px;
+  --gg-space-7: 48px;
+  --gg-space-8: 64px;
+
+  /* Radii */
+  --gg-radius-md: 4px;
+  --gg-radius-lg: 8px;
+  --gg-radius-card: 20px;
+  --gg-radius-button: 999px;
+  --gg-radius-full: 999px;
+
+  /* Shadows: overlays only; raised edges for buttons and clickable cards */
+  --gg-shadow-overlay: 0 8px 24px rgba(53, 64, 36, 0.22);
+  --gg-raised-edge: 0 3px 0 var(--gg-cafe-noir);
+  --gg-card-edge: 0 4px 0 var(--gg-hairline);
+
+  /* Type */
+  --gg-font-serif: var(--font-newsreader), Georgia, serif;
+  --gg-font-sans: var(--font-hanken-grotesk), "Segoe UI", sans-serif;
+  --gg-font-mono: var(--font-ibm-plex-mono), Consolas, monospace;
+  --gg-font-urdu: var(--font-urdu), var(--font-hanken-grotesk), serif;
+
+  /* Motion */
+  --gg-ease-enter: cubic-bezier(0.2, 0, 0, 1);
+  --gg-duration-quick: 120ms;
+  --gg-duration-state: 200ms;
+  --gg-duration-enter: 320ms;
+}
+
+/* Dark theme: the design system's dark role values (tokens.json). */
+[data-gg-theme="dark"] {
+  --gg-surface: var(--gg-kombu-green);
+  --gg-surface-sunken: var(--gg-cafe-noir);
+  --gg-ink: var(--gg-bone);
+  --gg-ink-strong: var(--gg-bone);
+  --gg-ink-muted: var(--gg-tan);
+  --gg-accent: var(--gg-bone);
+  --gg-on-accent: var(--gg-kombu-green);
+  --gg-mark-outline: var(--gg-bone);
+  --gg-hairline: rgba(207, 187, 153, 0.34);
+  --gg-control-border: var(--gg-tan);
+  --gg-focus-ring: var(--gg-bone);
+  /* A deep layer over Kombu: Cafe Noir panels on Kombu read muddy at large sizes. */
+  --gg-panel: rgba(13, 17, 8, 0.32);
+
+  --gg-status-healthy: #7cc36b;
+  --gg-on-status-healthy: #17210f;
+  --gg-status-watch: #f0bc45;
+  --gg-on-status-watch: #2a1e05;
+  --gg-status-risk: #f08a45;
+  --gg-on-status-risk: #2a1e05;
+  --gg-status-critical: #f0695a;
+  --gg-on-status-critical: #2a0b07;
+
+  /* Café Noir and Kombu read as one color, so raised edges use Moss. */
+  --gg-raised-edge: 0 3px 0 var(--gg-moss-green);
+  --gg-card-edge: 0 4px 0 rgba(13, 17, 8, 0.45);
+  --gg-shadow-overlay: 0 8px 24px rgba(13, 17, 8, 0.5);
+}
+
+/*
+ * Field Desk theme (approved 2026-11-05): Organic Minimal + Modern Editorial.
+ * Every colour has one role; status colours report status only.
+ */
+[data-gg-theme="field"] {
+  /* Every value is a Green Guard Design System token (Bone theme); no other colours. */
+  /* Brand */
+  --gg-brand: var(--gg-kombu-green);
+  --gg-brand-2: var(--gg-cafe-noir);
+  /* Grounds: content sits on Bone; containers have no fill of their own */
+  --gg-surface: var(--gg-bone);                 /* surface */
+  --gg-surface-sunken: var(--gg-tan);           /* surface-sunken */
+  --gg-raised: var(--gg-bone);                  /* menus and bars that need an opaque ground */
+  --gg-map-ground: var(--gg-cafe-noir);         /* the map: a warm sunset brown */
+  /* Soft card fills: alphas of brand colours over Bone (an exception the user asked for) */
+  --gg-tint-leaf: rgba(136, 144, 99, 0.45);      /* Moss */
+  --gg-tint-soil: var(--gg-tan);                /* surface-sunken */
+  --gg-tint-weather: rgba(53, 64, 36, 0.07);     /* Kombu */
+  /* Text */
+  --gg-ink: var(--gg-kombu-green);              /* ink, 7.77:1 on Bone */
+  --gg-ink-strong: var(--gg-cafe-noir);         /* ink-strong */
+  --gg-ink-muted: rgba(53, 64, 36, 0.82);       /* ink-muted, on surface only */
+  /* Lines */
+  --gg-hairline: rgba(53, 64, 36, 0.28);
+  --gg-control-border: rgba(53, 64, 36, 0.7);
+  --gg-focus-ring: var(--gg-cafe-noir);
+  /* Action and marks */
+  --gg-accent: var(--gg-kombu-green);
+  --gg-accent-edge: var(--gg-moss-green);       /* the primary action's raised edge */
+  --gg-on-accent: var(--gg-bone);
+  --gg-mark: var(--gg-moss-green);
+  --gg-mark-outline: var(--gg-kombu-green);
+  --gg-highlight: var(--gg-moss-green);         /* marks only, never text */
+  --gg-botanic: var(--gg-moss-green);
+  --gg-info: var(--gg-kombu-green);
+  /* Status, functional only */
+  --gg-status-healthy: #2f6b3a;
+  --gg-on-status-healthy: #ffffff;
+  --gg-status-watch: #e5a823;
+  --gg-on-status-watch: #2a1e05;
+  --gg-status-risk: #e8742a;
+  --gg-on-status-risk: #2a1e05;
+  --gg-status-critical: #b3201f;
+  --gg-on-status-critical: #ffffff;
+  /* Depth: raised edges on cards; only overlays cast a shadow */
+  --gg-card-edge: 0 4px 0 var(--gg-control-border);
+  --gg-shadow-raised: var(--gg-card-edge);
+  --gg-shadow-overlay: 0 8px 24px rgba(53, 64, 36, 0.22);
+  --gg-radius-panel: 20px;                      /* radius-card */
+  --gg-radius-tile: 8px;                        /* radius-lg */
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

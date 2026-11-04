@@ -1,86 +1,121 @@
 {
   "fallbackName": "there",
   "loadError": "Unable to load your dashboard right now. Please refresh the page.",
-  "welcome": {
-    "morning": "Good Morning, {name} 👋",
-    "afternoon": "Good Afternoon, {name} 👋",
-    "evening": "Good Evening, {name} 👋",
-    "subtitle": "Welcome back to GreenGuard. Let's keep your crops healthy today."
+  "greeting": {
+    "morning": "Good morning, {name}",
+    "afternoon": "Good afternoon, {name}",
+    "evening": "Good evening, {name}"
   },
-  "mainTests": {
-    "title": "What would you like to check?",
-    "description": "Pick a test below to get started — it only takes a minute.",
-    "selectFarmToStart": "Select a farm to start",
-    "addFarmToStart": "Add a farm to start",
-    "start": "Start",
-    "tests": {
-      "weather": {
-        "title": "Weather Test",
-        "description": "Check today's weather and see if your crops are at risk."
-      },
-      "soil": {
-        "title": "Soil Test",
-        "description": "Answer a few simple questions to check your soil and crop nutrients."
-      },
-      "disease": {
-        "title": "Disease Test",
-        "description": "Take a photo of a leaf to check for disease, pests, or nutrient problems."
-      }
-    }
+  "nav": {
+    "home": "Home",
+    "leafCheck": "Leaf check",
+    "soilHealth": "Soil",
+    "weather": "Weather",
+    "farms": "Farms",
+    "history": "History",
+    "expand": "Expand menu",
+    "collapse": "Collapse menu"
   },
-  "statistics": {
-    "totalPredictions": {
-      "label": "Total Predictions",
-      "description": "Quick Scans run so far"
-    },
-    "healthyPlants": {
-      "label": "Healthy Plants",
-      "description": "Healthy per Disease Detection"
-    },
-    "diseasedPlants": {
-      "label": "Diseased Plants",
-      "description": "Disease found by Disease Detection"
-    },
-    "aiAccuracy": {
-      "label": "AI Accuracy",
-      "description": "Across recent scans"
-    }
-  },
-  "recentAnalyses": {
-    "title": "Recent Analyses",
-    "loadError": "Unable to load recent predictions. Please try again.",
-    "emptyTitle": "No Analyses Yet",
-    "emptyDescription": "Run a Quick Scan and your analysis reports will show up here."
-  },
-  "farmSummary": {
-    "title": "Farm Summary",
-    "emptyTitle": "No farms yet",
-    "emptyDescription": "Add a farm to start tracking weather risk and plant health for it.",
-    "registered": "{count, plural, one {farm registered} other {farms registered}}",
-    "activeFarm": "Active Farm",
-    "selectActiveFarm": "Select an active farm to scope predictions and weather data."
-  },
-  "notificationsPreview": {
-    "title": "Notifications",
-    "unread": "{count, plural, one {# unread notification} other {# unread notifications}}",
-    "empty": "No notifications yet",
-    "description": "Weather alerts, prediction updates, and system announcements appear here.",
-    "viewAll": "View All"
-  },
-  "quickActions": {
-    "addFarm": "Add Farm",
-    "predictionHistory": "Prediction History",
-    "weatherDashboard": "Weather Dashboard",
+  "account": {
+    "menu": "Account",
     "profile": "Profile",
-    "comingSoon": "Coming soon"
+    "farmCount": "{count, plural, one {# farm} other {# farms}}"
   },
-  "weatherCard": {
-    "title": "Weather Intelligence",
-    "refresh": "Refresh weather",
-    "noFarmDescription": "Select or create a farm to see live weather and risk insights for it.",
-    "loadError": "Unable to load weather data. Please try again.",
-    "fungalRisk": "Fungal Risk",
-    "heatStress": "Heat Stress",
-    "droughtRisk": "Drought Risk"
+  "switcher": {
+    "label": "Choose a farm"
+  },
+  "status": {
+    "healthy": "Healthy",
+    "watch": "Watch",
+    "risk": "At risk",
+    "critical": "Critical",
+    "unknown": "No checks yet"
+  },
+  "farmStatus": {
+    "today": "{farm} · today",
+    "disease": "<name></name> found",
+    "unclear": "the last leaf photo was unclear",
+    "risk": "{risk} risk is {level}",
+    "clear": "No problems found today",
+    "empty": "No checks on this farm yet",
+    "and": " and ",
+    "openReport": "Open report",
+    "retake": "Retake photo",
+    "seeWeather": "See weather",
+    "checkLeaf": "Check a leaf",
+    "riskNames": {
+      "drought": "drought",
+      "fungal": "fungal disease",
+      "heat": "heat stress"
+    }
+  },
+  "levels": {
+    "Low": "low",
+    "Moderate": "moderate",
+    "High": "high"
+  },
+  "legend": {
+    "label": "Farm status"
+  },
+  "weather": {
+    "label": "Weather and environment",
+    "tomorrow": "Tomorrow {value}°C",
+    "humidityValue": "{value}% humidity",
+    "humidity": "Humidity",
+    "rain": "Rain · 7 days",
+    "wind": "Wind",
+    "noFarm": "Pick a farm to see its weather.",
+    "unavailable": "Weather is not available right now.",
+    "retry": "Try again",
+    "risks": {
+      "drought": "Drought",
+      "fungal": "Fungal disease",
+      "heat": "Heat stress"
+    }
+  },
+  "recent": {
+    "title": "Recent checks",
+    "seeAll": "See all",
+    "diseasedTitle": "<name></name> found",
+    "uncertainTitle": "Photo was unclear",
+    "healthyTitle": "Leaf looks healthy",
+    "pendingTitle": "Leaf check",
+    "confident": "{value}% confident",
+    "thisFarm": "this farm",
+    "empty": "Your leaf checks will appear here.",
+    "loadError": "Recent checks could not load."
+  },
+  "actions": {
+    "label": "Start a check",
+    "leaf": "Leaf test",
+    "leafSub": "Take a photo of one leaf",
+    "soil": "Soil test",
+    "soilNone": "A few simple questions.",
+    "weather": "Weather test",
+    "weatherSub": "Risks and tomorrow",
+    "needFarm": "Add a farm first",
+    "leafTag": "Photo diagnosis",
+    "leafLastDisease": "Last found: <name></name>, {value}% confident, {date}.",
+    "leafLastDiseaseNoScore": "Last found: <name></name>, {date}.",
+    "leafLastHealthy": "Last check: the leaf looked healthy, {date}.",
+    "leafLastUnclear": "The last photo was unclear. Try again in good light.",
+    "leafGo": "Take a photo",
+    "addFarm": "Add a farm",
+    "soilTag": "Guided check",
+    "weatherTag": "Today",
+    "weatherWorst": "{risk} risk is {level}.",
+    "weatherAllLow": "Drought, fungal disease and heat stress are all low.",
+    "weatherGo": "See weather",
+    "gauge": {
+      "drought": "Dry",
+      "fungal": "Fungus",
+      "heat": "Heat"
+    },
+    "soilGo": "Take questionnaire"
+  },
+  "map": {
+    "label": "Map of your farms",
+    "note": "Illustrative map",
+    "empty": "Add a farm to see it on the map."
   }
 }

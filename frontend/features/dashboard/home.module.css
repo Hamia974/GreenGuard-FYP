@@ -1,0 +1,1573 @@
+/*
+ * Home dashboard, Field Desk (approved 2026-11-05).
+ * Organic Minimal + Modern Editorial; every value comes from the --gg-* tokens in globals.css.
+ * Hierarchy: the map with the farm's status is primary, the instrument panel is secondary,
+ * and the action bar has its own treatment.
+ */
+
+/* ---------- Shell ---------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  min-height: 100dvh;
+  background: var(--gg-surface);
+  color: var(--gg-ink);
+  font-family: var(--gg-font-sans);
+}
+
+.shell :focus-visible {
+  outline: 2px solid var(--gg-focus-ring);
+  outline-offset: 2px;
+}
+
+.shell a {
+  color: inherit;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- Rail ---------- */
+
+.rail {
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gg-space-5);
+  width: 88px;
+  height: 100dvh;
+  padding: var(--gg-space-6) 10px var(--gg-space-4);
+  box-sizing: border-box;
+  /* The rail is set in the design system's Kombu theme. */
+  --gg-surface: var(--gg-kombu-green);
+  --gg-surface-sunken: var(--gg-cafe-noir);
+  --gg-ink: var(--gg-bone);
+  --gg-ink-strong: var(--gg-bone);
+  --gg-ink-muted: var(--gg-tan);
+  --gg-hairline: rgba(207, 187, 153, 0.34);
+  --gg-control-border: var(--gg-tan);
+  --gg-accent: var(--gg-bone);
+  --gg-on-accent: var(--gg-kombu-green);
+  --gg-mark-outline: var(--gg-bone);
+  --gg-focus-ring: var(--gg-bone);
+  border-inline-end: 1px solid var(--gg-hairline);
+  background: var(--gg-kombu-green);
+  color: var(--gg-ink);
+  transition: width var(--gg-duration-state) var(--gg-ease-enter);
+}
+
+.railExpanded {
+  width: 216px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gg-space-3);
+  min-height: 48px;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 42px;
+  height: auto;
+  flex: none;
+  transition: transform var(--gg-duration-quick);
+}
+
+.brand:hover img {
+  transform: scale(1.05);
+}
+
+.brandText {
+  display: none;
+  font-family: var(--gg-font-serif);
+  font-size: 21px;
+  line-height: 1;
+  color: var(--gg-ink-strong);
+  white-space: nowrap;
+}
+
+.railExpanded .brand {
+  justify-content: flex-start;
+  padding-inline: var(--gg-space-3);
+}
+
+.railExpanded .brandText {
+  display: inline;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gg-space-1);
+}
+
+.navItem {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 8px 2px;
+  border-radius: var(--gg-radius-tile);
+  color: var(--gg-ink-muted);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+  text-align: center;
+  text-decoration: none;
+  transition: background var(--gg-duration-quick), color var(--gg-duration-quick);
+}
+
+.navIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 32px;
+  border-radius: var(--gg-radius-full);
+  transition: background var(--gg-duration-quick), color var(--gg-duration-quick);
+}
+
+.navIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.navItem:hover {
+  color: var(--gg-ink);
+}
+
+.navItem:hover .navIcon {
+  background: var(--gg-hairline);
+}
+
+.shell .navItem[aria-current="page"] {
+  color: var(--gg-ink-strong);
+}
+
+.navItem[aria-current="page"] .navIcon {
+  background: var(--gg-accent);
+  color: var(--gg-on-accent);
+  box-shadow: 0 3px 0 var(--gg-mark);
+}
+
+/* A short Moss mark on the rail's edge for the current page. */
+.navItem[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  inset-inline-start: -10px;
+  width: 3px;
+  height: 20px;
+  border-radius: 0 3px 3px 0;
+  background: var(--gg-highlight);
+}
+
+.railExpanded .navItem {
+  grid-template-columns: 44px minmax(0, 1fr);
+  justify-items: start;
+  align-items: center;
+  gap: var(--gg-space-2);
+  padding: 6px;
+  font-size: 14px;
+  text-align: start;
+}
+
+.railExpanded .navItem[aria-current="page"]::before {
+  top: 12px;
+}
+
+.railToggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin: auto auto 0;
+  border: 1px solid var(--gg-hairline);
+  border-radius: var(--gg-radius-full);
+  background: transparent;
+  color: var(--gg-ink-muted);
+  cursor: pointer;
+}
+
+.railToggle:hover {
+  color: var(--gg-ink);
+  background: var(--gg-hairline);
+}
+
+.railToggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---------- Header controls ---------- */
+
+.headerControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gg-space-3);
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: var(--gg-space-2);
+}
+
+.switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: min(100%, 320px);
+  height: 42px;
+  border: 1px solid var(--gg-control-border);
+  border-radius: var(--gg-radius-full);
+  background: var(--gg-surface);
+}
+
+.switcher select {
+  width: 100%;
+  height: 100%;
+  padding-inline: 40px;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--gg-radius-full);
+  background: transparent;
+  color: var(--gg-ink);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  appearance: none;
+  cursor: pointer;
+}
+
+.switcher option {
+  background: var(--gg-raised);
+  color: var(--gg-ink);
+}
+
+.switcherIcon,
+.switcherChevron {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  color: var(--gg-ink-muted);
+  pointer-events: none;
+}
+
+.switcherIcon {
+  inset-inline-start: 16px;
+}
+
+.switcherChevron {
+  inset-inline-end: 14px;
+}
+
+.account {
+  position: relative;
+}
+
+.avatarButton {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: var(--gg-radius-full);
+  background: var(--gg-brand-2);
+  color: var(--gg-raised);
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-end: 0;
+  z-index: 40;
+  display: grid;
+  min-width: 220px;
+  padding: 6px;
+  border: 1px solid var(--gg-hairline);
+  border-radius: var(--gg-radius-tile);
+  background: var(--gg-raised);
+  box-shadow: var(--gg-shadow-overlay);
+}
+
+.menuHead {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--gg-hairline);
+}
+
+.menuHead b {
+  font-size: 17px;
+}
+
+.menuHead span {
+  font-size: 15px;
+  color: var(--gg-ink-muted);
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 42px;
+  padding-inline: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--gg-ink);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background: var(--gg-surface);
+}
+
+.menuItem svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* ---------- Page ---------- */
+
+.page {
+  display: grid;
+  gap: var(--gg-space-5);
+  padding: var(--gg-space-7) clamp(16px, 2.4vw, 32px) var(--gg-space-6);
+}
+
+.pageHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--gg-space-3) var(--gg-space-5);
+}
+
+.greetingBlock {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.greeting {
+  margin: 0;
+  font-family: var(--gg-font-serif);
+  font-size: clamp(38px, 3.8vw, 54px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--gg-brand-2);
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--gg-font-mono);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gg-ink-muted);
+}
+
+.label {
+  margin: 0;
+  font-family: var(--gg-font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gg-ink-muted);
+}
+
+.note {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gg-ink-muted);
+}
+
+.link {
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.textButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gg-ink);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.skeleton {
+  border-radius: 8px;
+  background: var(--gg-surface-sunken);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gg-space-3);
+}
+
+/* ---------- The desk: map, instrument panel and action bar ---------- */
+
+/* Map and actions on the left; weather and the recent checks stacked on the right. */
+.desk {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(360px, calc(48vw - 190px), 520px);
+  grid-template-rows: auto 1fr;
+  gap: var(--gg-space-4) var(--gg-space-5);
+}
+
+.desk > * {
+  min-width: 0;
+  min-height: 0;
+  animation: gg-enter var(--gg-duration-enter) var(--gg-ease-enter) both;
+}
+
+.desk > :nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.desk > :nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.mapArea {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+}
+
+/* ---------- Map ---------- */
+
+.map {
+  position: relative;
+  overflow: hidden;
+  height: clamp(540px, 72vh, 700px);
+  border-radius: 20px;
+  background: var(--gg-map-ground);
+  /* Glass tokens for everything floating over the map. */
+  --glass-light: rgba(229, 215, 196, 0.84);
+  --glass-dark: rgba(53, 64, 36, 0.42);
+  --glass-edge: rgba(229, 215, 196, 0.38);
+  --glass-blur: blur(14px) saturate(1.2);
+}
+
+/* A thin frosted rim around the map. */
+.map::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(229, 215, 196, 0.16);
+  pointer-events: none;
+}
+
+.mapCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mapEmpty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: var(--gg-bone);
+  font-size: 17px;
+}
+
+.mapTag {
+  position: absolute;
+  bottom: 18px;
+  inset-inline-end: 16px;
+  padding: 4px 10px;
+  border-radius: var(--gg-radius-full);
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-dark);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--gg-bone);
+  font-family: var(--gg-font-mono);
+  font-size: 12px;
+  line-height: 14px;
+  pointer-events: none;
+}
+
+.statusSlot {
+  position: absolute;
+  top: 16px;
+  inset-inline: 16px;
+}
+
+.statusBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gg-space-3) var(--gg-space-4);
+  padding: 14px 16px 14px 20px;
+  border: 1px solid var(--glass-edge);
+  border-radius: 16px;
+  background: var(--glass-light);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.statusText {
+  display: grid;
+  flex: 1 1 280px;
+  gap: 4px;
+  min-width: 0;
+}
+
+.statusSentence {
+  margin: 0;
+  font-family: var(--gg-font-serif);
+  font-size: clamp(22px, 1.9vw, 28px);
+  line-height: 1.2;
+  color: var(--gg-ink-strong);
+}
+
+.statusSentence span:first-child::first-letter {
+  text-transform: uppercase;
+}
+
+.statusAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding-inline: 16px;
+  border-radius: var(--gg-radius-full);
+  background: var(--gg-accent);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 3px 0 var(--gg-accent-edge);
+  transition: transform var(--gg-duration-quick), box-shadow var(--gg-duration-quick);
+}
+
+.shell .statusAction {
+  color: var(--gg-on-accent);
+}
+
+.statusAction:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.statusAction svg {
+  width: 16px;
+  height: 16px;
+}
+
+.legend {
+  position: absolute;
+  bottom: 16px;
+  inset-inline-start: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  max-width: calc(100% - 160px);
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: var(--gg-radius-full);
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-dark);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--gg-bone);
+  font-size: 14px;
+  font-weight: 600;
+  list-style: none;
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend b {
+  font-family: var(--gg-font-mono);
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.dot {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  box-sizing: border-box;
+  border-radius: var(--gg-radius-full);
+}
+
+/* Bright on the dark map, matching the pins. */
+.dotHealthy { background: #7cc36b; }
+.dotWatch { background: #f0bc45; }
+.dotRisk { background: #f08a45; }
+.dotCritical { background: #f0695a; }
+.dotNone { border: 1px solid var(--gg-bone); }
+
+/* ---------- Instrument panel ---------- */
+
+.side {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gg-space-4);
+  min-width: 0;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gg-space-4);
+  padding: var(--gg-space-5);
+  margin-bottom: 4px;
+  border: 1px solid var(--gg-control-border);
+  border-radius: var(--gg-radius-panel);
+  background: transparent;
+  box-shadow: var(--gg-card-edge);
+  scrollbar-width: thin;
+}
+
+.instruments {
+  display: grid;
+  gap: var(--gg-space-3);
+}
+
+.tempRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px var(--gg-space-3);
+}
+
+.temperature {
+  font-family: var(--gg-font-serif);
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--gg-ink-strong);
+  direction: ltr;
+}
+
+.readings {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gg-space-2);
+}
+
+.reading {
+  display: grid;
+  align-content: space-between;
+  gap: 6px;
+  min-height: 92px;
+  padding: 10px;
+  border-radius: var(--gg-radius-tile);
+  background: var(--gg-surface);
+}
+
+.reading .label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.readingValue {
+  font-family: var(--gg-font-serif);
+  font-size: 30px;
+  line-height: 1;
+  color: var(--gg-ink-strong);
+  direction: ltr;
+}
+
+.readingValue small {
+  font-family: var(--gg-font-sans);
+  font-size: 14px;
+  color: var(--gg-ink-muted);
+}
+
+.ring {
+  position: relative;
+  width: 52px;
+  height: 52px;
+}
+
+.ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring circle {
+  fill: none;
+  stroke-width: 4;
+}
+
+.ringTrack {
+  stroke: var(--gg-surface-sunken);
+}
+
+.ringFill {
+  stroke: var(--gg-ink);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s var(--gg-ease-enter);
+}
+
+.ring b {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  direction: ltr;
+}
+
+.meters {
+  display: grid;
+  gap: var(--gg-space-3);
+  margin: 0;
+  padding: var(--gg-space-3) 0 0;
+  border-top: 1px solid var(--gg-hairline);
+  list-style: none;
+}
+
+.meter {
+  display: grid;
+  gap: 6px;
+}
+
+.meterHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gg-space-2);
+  font-size: 16px;
+}
+
+.meterBar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.meterBar i {
+  height: 6px;
+  border-radius: var(--gg-radius-full);
+  background: var(--gg-surface-sunken);
+  transition: background var(--gg-duration-state);
+}
+
+.meterBar i.barHealthy { background: var(--gg-status-healthy); }
+.meterBar i.barWatch { background: var(--gg-status-watch); }
+.meterBar i.barRisk { background: var(--gg-status-risk); }
+.meterBar i.barCritical { background: var(--gg-status-critical); }
+
+.reason {
+  margin: 2px 0 0;
+  padding-inline-start: 10px;
+  border-inline-start: 2px solid var(--gg-accent);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--gg-ink-muted);
+}
+
+/* ---------- Status pill ---------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 10px 2px 8px;
+  border-radius: var(--gg-radius-full);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.pill svg {
+  flex: none;
+  width: 13px;
+  height: 13px;
+}
+
+.pillHealthy { background: var(--gg-status-healthy); color: var(--gg-on-status-healthy); }
+.pillWatch { background: var(--gg-status-watch); color: var(--gg-on-status-watch); }
+.pillRisk { background: var(--gg-status-risk); color: var(--gg-on-status-risk); }
+.pillCritical {
+  background: var(--gg-status-critical);
+  color: var(--gg-on-status-critical);
+  box-shadow: 0 0 0 2px var(--gg-surface), 0 0 0 4px var(--gg-status-critical);
+}
+
+/* ---------- Recent checks ---------- */
+
+.recent {
+  flex: 1;
+  display: grid;
+  align-content: start;
+  gap: var(--gg-space-3);
+  margin-bottom: 4px;
+  padding: var(--gg-space-4) var(--gg-space-5);
+  border: 1px solid var(--gg-control-border);
+  border-radius: var(--gg-radius-panel);
+  background: transparent;
+  box-shadow: var(--gg-card-edge);
+}
+
+.checks {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gg-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.check {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  gap: var(--gg-space-3);
+  align-items: center;
+  padding: 8px;
+  border-radius: var(--gg-radius-tile);
+  text-decoration: none;
+  transition: background var(--gg-duration-quick);
+}
+
+.check:hover {
+  background: var(--gg-hairline);
+}
+
+/* Disease results stand apart from routine checks. */
+.checkDisease {
+  box-shadow: inset 0 0 0 1.5px var(--gg-status-risk);
+}
+
+.thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.checkText {
+  display: grid;
+  min-width: 0;
+}
+
+.checkText b,
+.checkText span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.checkText b {
+  font-size: 16px;
+}
+
+.checkText span {
+  font-size: 14px;
+  color: var(--gg-ink-muted);
+}
+
+/* ---------- The three checks: field instruments ---------- */
+
+.actions {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--gg-space-3);
+}
+
+.action {
+  container-type: inline-size;
+  position: relative;
+  display: block;
+  min-height: 156px;
+  margin-bottom: 4px;
+  padding: var(--gg-space-4) var(--gg-space-5);
+  border: 1px solid var(--gg-control-border);
+  border-radius: var(--gg-radius-panel);
+  background: transparent;
+  text-decoration: none;
+  box-shadow: var(--gg-card-edge);
+  transition: transform var(--gg-duration-quick), box-shadow var(--gg-duration-quick), background-color var(--gg-duration-quick);
+}
+
+.action:hover {
+  background: var(--gg-hairline);
+}
+
+.actionBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--gg-space-3);
+  align-items: stretch;
+  height: 100%;
+}
+
+.action:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+.actionText {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 0;
+}
+
+.actionTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--gg-font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gg-ink-muted);
+}
+
+.actionTag svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.shell .actionTitle {
+  font-family: var(--gg-font-serif);
+  font-size: clamp(24px, 1.9vw, 28px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--gg-ink-strong);
+}
+
+.actionSub {
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--gg-ink-muted);
+}
+
+/* The weather sentence starts with a risk name kept in lower case for mid-sentence use. */
+.actionWeather .actionSub::first-letter {
+  text-transform: uppercase;
+}
+
+.actionMetric {
+  font-family: var(--gg-font-serif);
+  font-size: 36px;
+  line-height: 38px;
+  color: var(--gg-ink-strong);
+}
+
+.actionMetric small {
+  font-family: var(--gg-font-mono);
+  font-size: 15px;
+  color: var(--gg-ink-muted);
+}
+
+.actionGo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gg-ink);
+}
+
+.actionGo svg {
+  width: 17px;
+  height: 17px;
+  transition: transform var(--gg-duration-state) var(--gg-ease-enter);
+}
+
+.action:hover .actionGo svg,
+.action:focus-visible .actionGo svg {
+  transform: translateX(3px);
+}
+
+/* Soft fills, one per check. Text on a fill uses ink, never ink-muted. */
+.actionLeaf,
+.actionSoil,
+.actionWeather {
+  border-color: var(--gg-hairline);
+}
+
+.actionLeaf { background: var(--gg-tint-leaf); }
+.actionSoil { background: var(--gg-tint-soil); }
+.actionWeather { background: var(--gg-tint-weather); }
+
+.actionLeaf .actionTag,
+.actionLeaf .actionSub,
+.actionSoil .actionTag,
+.actionSoil .actionSub,
+.actionSoil .actionMetric small,
+.actionWeather .actionTag,
+.actionWeather .actionSub,
+.actionWeather .gauge em {
+  color: var(--gg-ink);
+}
+
+.actionLeaf:hover,
+.actionSoil:hover,
+.actionWeather:hover {
+  box-shadow: 0 4px 0 var(--gg-control-border), inset 0 0 0 999px var(--gg-hairline);
+}
+
+/* The leaf and soil actions read as buttons: a Kombu pill with a Moss edge. */
+.shell .actionButton {
+  justify-self: start;
+  height: 36px;
+  margin-top: var(--gg-space-1);
+  margin-bottom: 3px;
+  padding: 0 var(--gg-space-4);
+  border-radius: var(--gg-radius-full);
+  background: var(--gg-accent);
+  color: var(--gg-on-accent);
+  box-shadow: 0 3px 0 var(--gg-mark);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.leafArt {
+  position: relative;
+  align-self: center;
+  width: 104px;
+  height: 112px;
+}
+
+.leafArt svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.leafLine {
+  fill: none;
+  stroke: var(--gg-kombu-green);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+}
+
+.leafVeins path {
+  fill: none;
+  stroke: var(--gg-cafe-noir);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 0;
+}
+
+.leafSpots circle {
+  fill: var(--gg-status-risk);
+  stroke: var(--gg-bone);
+  stroke-width: 1;
+}
+
+/* The scan line of the approved shield scan, sweeping the leaf. */
+.leafScan {
+  position: absolute;
+  inset-inline: -4px;
+  top: 6px;
+  height: 3px;
+  border-radius: var(--gg-radius-full);
+  background: var(--gg-bone);
+  box-shadow: 0 0 0 1px var(--gg-kombu-green);
+  opacity: 0;
+}
+
+.actionLeaf:hover .leafVeins path,
+.actionLeaf:focus-visible .leafVeins path {
+  animation: gg-trace 1200ms var(--gg-ease-enter) both;
+}
+
+.actionLeaf:hover .leafScan,
+.actionLeaf:focus-visible .leafScan {
+  opacity: 1;
+  animation: gg-sweep 1400ms ease-in-out infinite alternate;
+}
+
+@keyframes gg-trace {
+  from { stroke-dashoffset: 60; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes gg-sweep {
+  from { top: 6px; }
+  to { top: calc(100% - 9px); }
+}
+
+/* Soil health: a cross-section in brand colours with a sprout. */
+.soilArt {
+  align-self: end;
+  width: 92px;
+  height: 112px;
+}
+
+.soilStem {
+  fill: none;
+  stroke: var(--gg-kombu-green);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.soilLeaf {
+  fill: var(--gg-mark);
+  stroke: var(--gg-mark-outline);
+  stroke-width: 1.25;
+  transform-box: fill-box;
+}
+
+.soilLeafStart { transform-origin: 100% 100%; }
+.soilLeafEnd { transform-origin: 0% 100%; }
+
+.soilTop,
+.soilMid,
+.soilDeep {
+  stroke: var(--gg-kombu-green);
+  stroke-width: 1;
+}
+
+.soilTop { fill: var(--gg-tan); }
+.soilMid { fill: var(--gg-moss-green); }
+.soilDeep { fill: var(--gg-cafe-noir); }
+
+.soilGrains circle {
+  fill: var(--gg-bone);
+}
+
+.actionSoil:hover .soilLeafStart,
+.actionSoil:focus-visible .soilLeafStart {
+  animation: gg-grow 600ms var(--gg-ease-enter) both;
+}
+
+.actionSoil:hover .soilLeafEnd,
+.actionSoil:focus-visible .soilLeafEnd {
+  animation: gg-grow 600ms 120ms var(--gg-ease-enter) both;
+}
+
+@keyframes gg-grow {
+  from { transform: scale(0.2); }
+  to { transform: scale(1); }
+}
+
+/* Weather risk: today's three risks as gauges. */
+.gauges {
+  align-self: end;
+  display: grid;
+  grid-template-columns: repeat(3, 40px);
+  gap: 4px;
+  height: 120px;
+}
+
+.gauge {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  justify-items: center;
+  gap: 6px;
+}
+
+.gaugeTrack {
+  position: relative;
+  width: 14px;
+  overflow: hidden;
+  border: 1px solid var(--gg-control-border);
+  border-radius: var(--gg-radius-full);
+}
+
+.gaugeTrack i {
+  position: absolute;
+  inset: auto 0 0;
+  height: var(--level);
+  border-radius: var(--gg-radius-full);
+  animation: gg-fill var(--gg-duration-enter) var(--gg-ease-enter) both;
+  transform-origin: bottom;
+}
+
+.gauge_healthy { background: var(--gg-status-healthy); }
+.gauge_watch { background: var(--gg-status-watch); }
+.gauge_risk { background: var(--gg-status-risk); }
+.gauge_critical { background: var(--gg-status-critical); }
+
+.gauge em {
+  font-family: var(--gg-font-mono);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 14px;
+  color: var(--gg-ink-muted);
+  white-space: nowrap;
+}
+
+@keyframes gg-fill {
+  from { transform: scaleY(0); }
+}
+
+/* Narrower cards: a smaller drawing beside the words. */
+@container (max-width: 280px) {
+  .leafArt { width: 76px; height: 84px; }
+}
+
+/* Narrow cards: the drawing moves to the top corner and the gauges become labelled bars. */
+@container (max-width: 220px) {
+  .actionBody {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .leafArt,
+  .soilArt {
+    position: absolute;
+    top: var(--gg-space-4);
+    inset-inline-end: var(--gg-space-4);
+    width: 52px;
+    height: 58px;
+  }
+
+  .actionLeaf .actionTag,
+  .actionLeaf .actionTitle,
+  .actionSoil .actionTag,
+  .actionSoil .actionTitle {
+    padding-inline-end: 58px;
+  }
+
+  .gauges {
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+    gap: 6px;
+  }
+
+  .gauge {
+    grid-template-columns: 56px minmax(0, 1fr);
+    grid-template-rows: auto;
+    align-items: center;
+    justify-items: stretch;
+    gap: var(--gg-space-2);
+  }
+
+  .gauge em {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .gaugeTrack {
+    display: block;
+    grid-row: 1;
+    grid-column: 2;
+    width: auto;
+    height: 10px;
+  }
+
+  .gaugeTrack i {
+    inset: 0 auto;
+    inset-inline-start: 0;
+    width: var(--level);
+    height: auto;
+    animation-name: gg-fill-x;
+    transform-origin: left;
+  }
+}
+
+@container (max-width: 200px) {
+  .shell .actionButton {
+    max-width: 100%;
+    height: auto;
+    min-height: 36px;
+    padding: 6px var(--gg-space-3);
+    line-height: 18px;
+    white-space: normal;
+  }
+
+  .actionButton svg {
+    display: none;
+  }
+}
+
+@container (max-width: 130px) {
+  .leafArt,
+  .soilArt {
+    display: none;
+  }
+
+  .actionLeaf .actionTag,
+  .actionLeaf .actionTitle,
+  .actionSoil .actionTag,
+  .actionSoil .actionTitle {
+    padding-inline-end: 0;
+  }
+}
+
+@keyframes gg-fill-x {
+  from { transform: scaleX(0); }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .map {
+    --glass-light: rgba(229, 215, 196, 0.94);
+    --glass-dark: rgba(53, 64, 36, 0.86);
+  }
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes gg-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desk > * {
+    animation: none;
+  }
+
+  .rail,
+  .navItem,
+  .navIcon,
+  .action,
+  .actionGo svg,
+  .statusAction,
+  .ringFill,
+  .meterBar i {
+    transition: none;
+  }
+
+  .leafVeins path,
+  .leafScan,
+  .soilLeaf,
+  .gaugeTrack i {
+    animation: none !important;
+  }
+
+  .action:hover .leafScan {
+    opacity: 0;
+  }
+}
+
+/* ---------- Urdu ---------- */
+
+:global(:root:lang(ur)) .shell {
+  font-family: var(--gg-font-urdu);
+}
+
+:global(:root:lang(ur)) .greeting,
+:global(:root:lang(ur)) .statusSentence {
+  font-family: var(--gg-font-urdu);
+  line-height: 1.9;
+}
+
+:global(:root:lang(ur)) .eyebrow,
+:global(:root:lang(ur)) .label {
+  font-family: var(--gg-font-urdu);
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 14px;
+}
+
+:global(:root:lang(ur)) .note,
+:global(:root:lang(ur)) .reason,
+:global(:root:lang(ur)) .checkText span,
+:global(:root:lang(ur)) .actionSub {
+  line-height: 2;
+}
+
+:global(:root:lang(ur)) .gaugeTrack i {
+  transform-origin: right;
+}
+
+:global(:root:lang(ur)) .actionGo svg {
+  transform: scaleX(-1);
+}
+
+:global(:root:lang(ur)) .actionTag,
+:global(:root:lang(ur)) .gauge em {
+  font-family: var(--gg-font-urdu);
+  letter-spacing: 0;
+}
+
+:global(:root:lang(ur)) .navItem[aria-current="page"]::before {
+  border-radius: 3px 0 0 3px;
+}
+
+/* ---------- Responsive ---------- */
+
+/* Below 1024px the desk stacks: map, actions, then the panel. */
+@media (max-width: 1023px) {
+  .desk {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    height: auto;
+  }
+
+  .mapArea,
+  .actions,
+  .side {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .map {
+    height: 500px;
+  }
+
+  .actions {
+    order: 1;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .side {
+    order: 2;
+  }
+}
+
+/* The rail stays slim below 900px, whatever was chosen. */
+@media (max-width: 899px) {
+  .railExpanded {
+    width: 88px;
+  }
+
+  .railExpanded .brandText {
+    display: none;
+  }
+
+  .railExpanded .brand {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .railExpanded .navItem {
+    grid-template-columns: none;
+    justify-items: center;
+    gap: 4px;
+    padding: 8px 2px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .railToggle {
+    display: none;
+  }
+}
+
+@media (max-width: 559px) {
+  .shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rail,
+  .railExpanded {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    inset-inline: 0;
+    width: auto;
+    height: auto;
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px));
+    border-inline-end: 0;
+    border-top: 1px solid var(--gg-hairline);
+    box-shadow: var(--gg-shadow-overlay);
+  }
+
+  .brand {
+    display: none;
+  }
+
+  .nav {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .navItem,
+  .railExpanded .navItem {
+    padding: 4px 0;
+    font-size: 11px;
+  }
+
+  .navIcon {
+    width: 40px;
+  }
+
+  .navItem[aria-current="page"]::before {
+    display: none;
+  }
+
+  .content {
+    padding-bottom: 84px;
+  }
+
+  .headerControls {
+    order: -1;
+    width: 100%;
+  }
+
+  .switcher {
+    order: 2;
+    width: 100%;
+  }
+
+  .map {
+    height: 460px;
+  }
+
+  .legend {
+    max-width: calc(100% - 32px);
+    bottom: 44px;
+  }
+
+  .actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

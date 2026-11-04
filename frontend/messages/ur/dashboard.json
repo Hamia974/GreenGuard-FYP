@@ -1,86 +1,121 @@
 {
   "fallbackName": "کسان بھائی",
   "loadError": "اس وقت آپ کا ڈیش بورڈ نہیں کھل سکا۔ براہ کرم صفحہ دوبارہ لوڈ کریں۔",
-  "welcome": {
-    "morning": "صبح بخیر، {name} 👋",
-    "afternoon": "سلام، {name} 👋",
-    "evening": "شام بخیر، {name} 👋",
-    "subtitle": "GreenGuard میں دوبارہ خوش آمدید۔ آئیں آج بھی اپنی فصلوں کو صحت مند رکھیں۔"
+  "greeting": {
+    "morning": "صبح بخیر، {name}",
+    "afternoon": "سلام، {name}",
+    "evening": "شام بخیر، {name}"
   },
-  "mainTests": {
-    "title": "آپ کیا جانچنا چاہتے ہیں؟",
-    "description": "شروع کرنے کے لیے نیچے سے کوئی جانچ منتخب کریں — اس میں صرف ایک منٹ لگتا ہے۔",
-    "selectFarmToStart": "شروع کرنے کے لیے فارم منتخب کریں",
-    "addFarmToStart": "شروع کرنے کے لیے فارم شامل کریں",
-    "start": "شروع کریں",
-    "tests": {
-      "weather": {
-        "title": "موسم کی جانچ",
-        "description": "آج کا موسم دیکھیں اور جانیں کہ کیا آپ کی فصلوں کو کوئی خطرہ ہے۔"
-      },
-      "soil": {
-        "title": "مٹی کی جانچ",
-        "description": "چند آسان سوالات کے جواب دے کر اپنی مٹی اور فصل کے غذائی اجزاء جانچیں۔"
-      },
-      "disease": {
-        "title": "بیماری کی جانچ",
-        "description": "پتے کی تصویر لے کر بیماری، کیڑوں یا غذائی کمی کا پتہ لگائیں۔"
-      }
-    }
+  "nav": {
+    "home": "ہوم",
+    "leafCheck": "پتے کی جانچ",
+    "soilHealth": "مٹی",
+    "weather": "موسم",
+    "farms": "فارم",
+    "history": "تاریخ",
+    "expand": "مینو کھولیں",
+    "collapse": "مینو بند کریں"
   },
-  "statistics": {
-    "totalPredictions": {
-      "label": "کل تجزیے",
-      "description": "اب تک کی گئی فوری جانچیں"
-    },
-    "healthyPlants": {
-      "label": "صحت مند پودے",
-      "description": "بیماری کی تشخیص کے مطابق صحت مند"
-    },
-    "diseasedPlants": {
-      "label": "بیمار پودے",
-      "description": "بیماری کی تشخیص میں بیماری پائی گئی"
-    },
-    "aiAccuracy": {
-      "label": "AI کی درستگی",
-      "description": "حالیہ جانچوں کی بنیاد پر"
-    }
-  },
-  "recentAnalyses": {
-    "title": "حالیہ تجزیے",
-    "loadError": "حالیہ تجزیے نہیں کھل سکے۔ براہ کرم دوبارہ کوشش کریں۔",
-    "emptyTitle": "ابھی تک کوئی تجزیہ نہیں",
-    "emptyDescription": "فوری جانچ کریں، آپ کی تجزیاتی رپورٹیں یہاں نظر آئیں گی۔"
-  },
-  "farmSummary": {
-    "title": "فارم کا خلاصہ",
-    "emptyTitle": "ابھی تک کوئی فارم نہیں",
-    "emptyDescription": "موسمی خطرے اور پودوں کی صحت پر نظر رکھنے کے لیے فارم شامل کریں۔",
-    "registered": "{count, plural, one {فارم رجسٹرڈ ہے} other {فارم رجسٹرڈ ہیں}}",
-    "activeFarm": "منتخب فارم",
-    "selectActiveFarm": "تجزیوں اور موسم کی معلومات کے لیے ایک فارم منتخب کریں۔"
-  },
-  "notificationsPreview": {
-    "title": "اطلاعات",
-    "unread": "{count, plural, one {# نئی اطلاع} other {# نئی اطلاعات}}",
-    "empty": "ابھی تک کوئی اطلاع نہیں",
-    "description": "موسمی انتباہات، تجزیوں کی خبریں اور نظام کے اعلانات یہاں نظر آتے ہیں۔",
-    "viewAll": "سب دیکھیں"
-  },
-  "quickActions": {
-    "addFarm": "فارم شامل کریں",
-    "predictionHistory": "تجزیوں کی تاریخ",
-    "weatherDashboard": "موسم کا ڈیش بورڈ",
+  "account": {
+    "menu": "اکاؤنٹ",
     "profile": "پروفائل",
-    "comingSoon": "جلد آ رہا ہے"
+    "farmCount": "{count, plural, one {# فارم} other {# فارم}}"
   },
-  "weatherCard": {
-    "title": "موسمی معلومات",
-    "refresh": "موسم کی معلومات تازہ کریں",
-    "noFarmDescription": "تازہ موسم اور خطرات دیکھنے کے لیے فارم منتخب کریں یا نیا فارم بنائیں۔",
-    "loadError": "موسم کی معلومات نہیں کھل سکیں۔ براہ کرم دوبارہ کوشش کریں۔",
-    "fungalRisk": "پھپھوندی کا خطرہ",
-    "heatStress": "گرمی کا دباؤ",
-    "droughtRisk": "خشک سالی کا خطرہ"
+  "switcher": {
+    "label": "فارم منتخب کریں"
+  },
+  "status": {
+    "healthy": "صحت مند",
+    "watch": "نظر رکھیں",
+    "risk": "خطرہ",
+    "critical": "شدید خطرہ",
+    "unknown": "ابھی کوئی جانچ نہیں"
+  },
+  "farmStatus": {
+    "today": "{farm} · آج",
+    "disease": "<name></name> ملی",
+    "unclear": "آخری پتے کی تصویر واضح نہیں تھی",
+    "risk": "{risk} کا خطرہ {level} ہے",
+    "clear": "آج کوئی مسئلہ نہیں ملا",
+    "empty": "اس فارم پر ابھی کوئی جانچ نہیں",
+    "and": " اور ",
+    "openReport": "رپورٹ کھولیں",
+    "retake": "دوبارہ تصویر لیں",
+    "seeWeather": "موسم دیکھیں",
+    "checkLeaf": "پتے کی جانچ کریں",
+    "riskNames": {
+      "drought": "خشک سالی",
+      "fungal": "پھپھوندی کی بیماری",
+      "heat": "گرمی کا دباؤ"
+    }
+  },
+  "levels": {
+    "Low": "کم",
+    "Moderate": "درمیانہ",
+    "High": "زیادہ"
+  },
+  "legend": {
+    "label": "فارم کی حالت"
+  },
+  "weather": {
+    "label": "موسم اور ماحول",
+    "tomorrow": "کل {value}°C",
+    "humidityValue": "نمی {value}%",
+    "humidity": "نمی",
+    "rain": "بارش · 7 دن",
+    "wind": "ہوا",
+    "noFarm": "موسم دیکھنے کے لیے فارم منتخب کریں۔",
+    "unavailable": "اس وقت موسم دستیاب نہیں۔",
+    "retry": "دوبارہ کوشش کریں",
+    "risks": {
+      "drought": "خشک سالی",
+      "fungal": "پھپھوندی کی بیماری",
+      "heat": "گرمی کا دباؤ"
+    }
+  },
+  "recent": {
+    "title": "حالیہ جانچیں",
+    "seeAll": "سب دیکھیں",
+    "diseasedTitle": "<name></name> ملی",
+    "uncertainTitle": "تصویر واضح نہیں تھی",
+    "healthyTitle": "پتا صحت مند ہے",
+    "pendingTitle": "پتے کی جانچ",
+    "confident": "{value}% یقین",
+    "thisFarm": "یہ فارم",
+    "empty": "آپ کی پتوں کی جانچیں یہاں نظر آئیں گی۔",
+    "loadError": "حالیہ جانچیں نہیں کھل سکیں۔"
+  },
+  "actions": {
+    "label": "جانچ شروع کریں",
+    "leaf": "پتے کا ٹیسٹ",
+    "leafSub": "ایک پتے کی تصویر لیں",
+    "soil": "مٹی کا ٹیسٹ",
+    "soilNone": "چند آسان سوالات۔",
+    "weather": "موسم کا ٹیسٹ",
+    "weatherSub": "خطرات اور کل کا موسم",
+    "needFarm": "پہلے فارم شامل کریں",
+    "leafTag": "تصویر سے تشخیص",
+    "leafLastDisease": "پچھلی بار: <name></name>، {value}% یقین، {date}۔",
+    "leafLastDiseaseNoScore": "پچھلی بار: <name></name>، {date}۔",
+    "leafLastHealthy": "پچھلی جانچ: پتا صحت مند تھا، {date}۔",
+    "leafLastUnclear": "پچھلی تصویر واضح نہیں تھی۔ اچھی روشنی میں دوبارہ لیں۔",
+    "leafGo": "تصویر لیں",
+    "addFarm": "فارم شامل کریں",
+    "soilTag": "رہنمائی والی جانچ",
+    "weatherTag": "آج",
+    "weatherWorst": "{risk} کا خطرہ {level} ہے۔",
+    "weatherAllLow": "خشک سالی، پھپھوندی اور گرمی، تینوں کا خطرہ کم ہے۔",
+    "weatherGo": "موسم دیکھیں",
+    "gauge": {
+      "drought": "خشکی",
+      "fungal": "پھپھوندی",
+      "heat": "گرمی"
+    },
+    "soilGo": "سوالنامہ پُر کریں"
+  },
+  "map": {
+    "label": "آپ کے فارموں کا نقشہ",
+    "note": "علامتی نقشہ",
+    "empty": "نقشے پر دیکھنے کے لیے فارم شامل کریں۔"
   }
 }
