@@ -48,15 +48,10 @@ export function LeafGuide() {
 const RULER_TOP = Array.from({ length: 41 }, (_, index) => index);
 const RULER_SIDE = Array.from({ length: 21 }, (_, index) => index);
 
-/**
- * The empty photo box as a calm measuring instrument over a blurred field:
- * rulers, a crosshair, a reticle with one turning arc and a sweeping line.
- * Decoration only; no analysis runs here.
- */
-function InstrumentScene({ cropLabel }: { cropLabel: string }) {
-  const t = useTranslations("leafTest.scene");
+/** The upload box's backdrop: a blurred field under Kombu, with rulers on three edges. */
+function SceneBackdrop() {
   return (
-    <div className={styles.scene}>
+    <>
       <div className={styles.sceneField} aria-hidden="true" />
       <div className={cn(styles.ruler, styles.rulerTop)} aria-hidden="true">
         {RULER_TOP.map((index) => (
@@ -73,17 +68,24 @@ function InstrumentScene({ cropLabel }: { cropLabel: string }) {
           <i key={index} />
         ))}
       </div>
+    </>
+  );
+}
+
+/** The reticle with its turning arc and sweeping line. Decoration only; no text, no analysis. */
+function Reticle() {
+  return (
+    <div className={styles.reticleBlock} aria-hidden="true">
       <svg
         className={styles.reticle}
-        viewBox="0 0 800 400"
+        viewBox="200 0 400 400"
         preserveAspectRatio="xMidYMid meet"
-        aria-hidden="true"
       >
         <line
           className={styles.reticleCross}
-          x1="0"
+          x1="200"
           y1="200"
-          x2="800"
+          x2="600"
           y2="200"
         />
         <line
@@ -105,14 +107,7 @@ function InstrumentScene({ cropLabel }: { cropLabel: string }) {
         />
         <circle className={styles.reticleDot} cx="400" cy="200" r="3" />
       </svg>
-      <span className={styles.sceneScan} aria-hidden="true" />
-      <p className={cn(styles.sceneLabel, styles.sceneLabelTop)}>
-        <i className={styles.sceneLed} aria-hidden="true" />
-        {t("ready")} · {cropLabel}
-      </p>
-      <p className={cn(styles.sceneLabel, styles.sceneLabelBottom)}>
-        {t("tips")}
-      </p>
+      <span className={styles.reticleScan} />
     </div>
   );
 }
@@ -274,75 +269,106 @@ export function LeafTestFlow({ farm, onComplete }: LeafTestFlowProps) {
         </div>
       </div>
 
-      {!image && (
-        <div className={styles.instructions}>
-          <p className={styles.guideTitle}>{t("photo.guideTitle")}</p>
-          <p className={styles.guideText}>
-            {t("photo.guideText")} {t("photo.dropText")}
-          </p>
-        </div>
-      )}
-
-      <div className={styles.actions}>
+      <div
+        className={cn(
+          styles.dropBox,
+          !image && styles.dropBoxScene,
+          dragging && styles.dropBoxActive,
+        )}
+        onDragOver={(event) => {
+          event.preventDefault();
+          setDragging(true);
+        }}
+        onDragLeave={() => setDragging(false)}
+        onDrop={(event) => {
+          event.preventDefault();
+          setDragging(false);
+          void handleFile(event.dataTransfer.files?.[0]);
+        }}
+      >
         {image ? (
-          <>
-            <button
-              type="button"
-              className={cn(styles.btn, styles.btnPrimary)}
-              onClick={() =>
-                analyze
-                  .mutateAsync({ image: image.file, crop })
-                  .then(onComplete)
-                  .catch(() => {})
-              }
-            >
-              <Leaf strokeWidth={1.75} aria-hidden="true" />
-              {t("photo.submit")}
-            </button>
-            <button
-              type="button"
-              className={cn(styles.btn, styles.btnSecondary)}
-              onClick={clearImage}
-            >
-              <ImagePlus strokeWidth={1.75} aria-hidden="true" />
-              {t("photo.change")}
-            </button>
-          </>
+          <div className={styles.previewFrame}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className={styles.stagePhoto}
+              src={image.previewUrl}
+              alt={t("photo.previewAlt")}
+            />
+            <Corners />
+          </div>
         ) : (
           <>
-            <button
-              type="button"
-              className={cn(styles.btn, styles.btnPrimary)}
-              onClick={() => cameraRef.current?.click()}
-            >
-              <Camera strokeWidth={1.75} aria-hidden="true" />
-              {t("photo.take")}
-            </button>
-            <button
-              type="button"
-              className={cn(styles.btn, styles.btnSecondary)}
-              onClick={() => galleryRef.current?.click()}
-            >
-              <Images strokeWidth={1.75} aria-hidden="true" />
-              {t("photo.choose")}
-            </button>
+            <SceneBackdrop />
+            <Reticle />
+            <p className={styles.dropTitle}>{tUpload("title")}</p>
+            <p className={styles.dropText}>{tUpload("description")}</p>
           </>
         )}
-      </div>
 
-      {error && (
-        <p className={styles.error} role="alert">
-          <AlertCircle strokeWidth={1.75} aria-hidden="true" />
-          {tUpload(`errors.${error}`, { width: MIN_WIDTH, height: MIN_HEIGHT })}
-        </p>
-      )}
-      {analyze.isError && (
-        <p className={styles.error} role="alert">
-          <AlertCircle strokeWidth={1.75} aria-hidden="true" />
-          {parseApiError(analyze.error).message}
-        </p>
-      )}
-      {!image && !error && <p className={styles.hint}>{t("photo.hint")}</p>}
+        <div className={styles.actions}>
+          {image ? (
+            <>
+              <button
+                type="button"
+                className={cn(styles.btn, styles.btnPrimary)}
+                onClick={() =>
+                  analyze
+                    .mutateAsync({ image: image.file, crop })
+                    .then(onComplete)
+                    .catch(() => {})
+                }
+              >
+                <Leaf strokeWidth={1.75} aria-hidden="true" />
+                {t("photo.submit")}
+              </button>
+              <button
+                type="button"
+                className={cn(styles.btn, styles.btnSecondary)}
+                onClick={clearImage}
+              >
+                <ImagePlus strokeWidth={1.75} aria-hidden="true" />
+                {t("photo.change")}
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                type="button"
+                className={cn(styles.btn, styles.heroPrimary)}
+                onClick={() => cameraRef.current?.click()}
+              >
+                <Camera strokeWidth={1.75} aria-hidden="true" />
+                {t("photo.take")}
+              </button>
+              <button
+                type="button"
+                className={cn(styles.btn, styles.heroSecondary)}
+                onClick={() => galleryRef.current?.click()}
+              >
+                <Images strokeWidth={1.75} aria-hidden="true" />
+                {t("photo.choose")}
+              </button>
+            </>
+          )}
+        </div>
+
+        {error && (
+          <p className={styles.error} role="alert">
+            <AlertCircle strokeWidth={1.75} aria-hidden="true" />
+            {tUpload(`errors.${error}`, {
+              width: MIN_WIDTH,
+              height: MIN_HEIGHT,
+            })}
+          </p>
+        )}
+        {analyze.isError && (
+          <p className={styles.error} role="alert">
+            <AlertCircle strokeWidth={1.75} aria-hidden="true" />
+            {parseApiError(analyze.error).message}
+          </p>
+        )}
+        {!image && !error && <p className={styles.hint}>{tUpload("hint")}</p>}
+      </div>
 
       <ul className={styles.tips}>
         <li>
@@ -367,32 +393,6 @@ export function LeafTestFlow({ farm, onComplete }: LeafTestFlowProps) {
           </div>
         </li>
       </ul>
-
-      <div
-        className={cn(styles.stage, dragging && styles.stageDrop)}
-        onDragOver={(event) => {
-          event.preventDefault();
-          setDragging(true);
-        }}
-        onDragLeave={() => setDragging(false)}
-        onDrop={(event) => {
-          event.preventDefault();
-          setDragging(false);
-          void handleFile(event.dataTransfer.files?.[0]);
-        }}
-      >
-        {image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            className={styles.stagePhoto}
-            src={image.previewUrl}
-            alt={t("photo.previewAlt")}
-          />
-        ) : (
-          <InstrumentScene cropLabel={cropLabel ?? t("crop.notSure")} />
-        )}
-        {image && <Corners />}
-      </div>
 
       <input
         ref={cameraRef}

@@ -5,7 +5,6 @@ import {
   History,
   LogOut,
   Menu,
-  ScanLine,
   ShieldCheck,
   Sprout,
 } from "lucide-react";
@@ -30,7 +29,6 @@ import { useAuth } from "@/providers/auth-provider";
 const NAV_LINKS = [
   { href: "/dashboard", labelKey: "dashboard" },
   { href: "/quick-scan", labelKey: "quickScan" },
-  { href: "/module1", labelKey: "diseaseCheck", icon: ScanLine },
   { href: "/farms", labelKey: "farms" },
   { href: "/module2", labelKey: "soilHealth" },
   { href: "/history", labelKey: "history", icon: History },
@@ -60,12 +58,18 @@ export function AppNavbar() {
   return (
     <header className="sticky top-0 z-10 border-b border-border bg-card/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center 2xl:max-w-none justify-between gap-2 px-3 sm:gap-3 sm:px-6">
-        <Link href="/dashboard" className="flex items-center gap-2 font-heading text-lg font-bold text-primary">
+        <Link
+          href="/dashboard"
+          className="flex items-center gap-2 font-heading text-lg font-bold text-primary"
+        >
           <Sprout className="size-5" />
           <span className="max-[380px]:sr-only">{tCommon("appName")}</span>
         </Link>
 
-        <nav aria-label={t("mainNavigation")} className="hidden items-center gap-1 xl:flex">
+        <nav
+          aria-label={t("mainNavigation")}
+          className="hidden items-center gap-1 xl:flex"
+        >
           {NAV_LINKS.map((link) => (
             <LinkButton
               href={link.href}
@@ -73,7 +77,9 @@ export function AppNavbar() {
               variant="ghost"
               size="sm"
             >
-              {"icon" in link && <link.icon className="hidden size-4 2xl:block" />}
+              {"icon" in link && (
+                <link.icon className="hidden size-4 2xl:block" />
+              )}
               {t(link.labelKey)}
             </LinkButton>
           ))}
@@ -127,7 +133,10 @@ export function AppNavbar() {
               <SheetHeader>
                 <SheetTitle>{t("menu")}</SheetTitle>
               </SheetHeader>
-              <nav aria-label={t("mainNavigation")} className="flex flex-1 flex-col gap-1">
+              <nav
+                aria-label={t("mainNavigation")}
+                className="flex flex-1 flex-col gap-1"
+              >
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.href}
@@ -140,12 +149,20 @@ export function AppNavbar() {
                   </Link>
                 ))}
                 {user?.role === "Admin" && (
-                  <Link href="/admin" onClick={closeMobileMenu} className={MOBILE_LINK_CLASS}>
+                  <Link
+                    href="/admin"
+                    onClick={closeMobileMenu}
+                    className={MOBILE_LINK_CLASS}
+                  >
                     <ShieldCheck className="size-4" />
                     {t("admin")}
                   </Link>
                 )}
-                <Link href="/profile" onClick={closeMobileMenu} className={MOBILE_LINK_CLASS}>
+                <Link
+                  href="/profile"
+                  onClick={closeMobileMenu}
+                  className={MOBILE_LINK_CLASS}
+                >
                   {t("profile")}
                 </Link>
               </nav>

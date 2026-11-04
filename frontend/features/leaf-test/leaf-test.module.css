@@ -458,6 +458,113 @@
   50% { opacity: 0.35; }
 }
 
+/* The upload box: dashed, with the small scanner, the words, buttons and file note inside. */
+.dropBox {
+  display: grid;
+  justify-items: center;
+  gap: var(--gg-space-3);
+  padding: var(--gg-space-6) var(--gg-space-5);
+  border: 1.5px dashed var(--gg-control-border);
+  border-radius: var(--gg-radius-panel);
+  text-align: center;
+  transition: border-color var(--gg-duration-state), background-color var(--gg-duration-state);
+}
+
+.dropBoxActive {
+  border-style: solid;
+  border-color: var(--gg-kombu-green);
+  background: var(--gg-hairline);
+}
+
+.dropTitle {
+  margin: var(--gg-space-2) 0 0;
+  font-family: var(--gg-font-serif);
+  font-size: 28px;
+  line-height: 32px;
+  color: var(--gg-ink-strong);
+}
+
+.dropText {
+  max-width: 52ch;
+  margin: 0 0 var(--gg-space-2);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--gg-ink-muted);
+}
+
+/* No photo yet: the whole box is the scanner, with the words and buttons in it. */
+.dropBoxScene {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 520px;
+  padding-top: var(--gg-space-7);
+  border-color: rgba(229, 215, 196, 0.5);
+  background: var(--gg-kombu-green);
+  color: var(--gg-bone);
+}
+
+.dropBoxScene.dropBoxActive {
+  border-color: var(--gg-bone);
+  background: var(--gg-kombu-green);
+  box-shadow: inset 0 0 0 2px var(--gg-bone);
+}
+
+.dropBoxScene .dropTitle {
+  color: var(--gg-bone);
+}
+
+.dropBoxScene .dropText,
+.dropBoxScene .hint {
+  color: var(--gg-tan);
+}
+
+.dropBoxScene .error {
+  color: #f7a99c;
+}
+
+.reticleBlock {
+  position: relative;
+  width: 260px;
+  height: 260px;
+}
+
+.reticleBlock .reticle {
+  position: absolute;
+  inset: 0;
+}
+
+/* One hairline sweeping across the reticle's ring (118 of 400 units). */
+.reticleScan {
+  position: absolute;
+  top: calc(50% - 77px);
+  left: 50%;
+  width: 154px;
+  height: 1px;
+  margin-left: -77px;
+  background: var(--gg-bone);
+  animation: reticle-scan 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes reticle-scan {
+  to { top: calc(50% + 77px); }
+}
+
+@keyframes reticle-scan-sm {
+  to { top: calc(50% + 62px); }
+}
+
+/* After a photo is chosen it fills the box. */
+.previewFrame {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--gg-radius-panel);
+  background: var(--gg-kombu-green);
+}
+
 /* What to do, under the box. */
 .instructions {
   display: grid;
@@ -1225,6 +1332,23 @@
     width: 128px;
   }
 
+  .reticleBlock {
+    width: 210px;
+    height: 210px;
+  }
+
+  .reticleScan {
+    top: calc(50% - 62px);
+    width: 124px;
+    margin-left: -62px;
+    animation-name: reticle-scan-sm;
+  }
+
+  .dropBoxScene {
+    min-height: 0;
+    padding-top: var(--gg-space-6);
+  }
+
   .checkingView {
     padding-top: var(--gg-space-6);
   }
@@ -1277,6 +1401,7 @@
   .bar i,
   .reticleArc,
   .sceneScan,
+  .reticleScan,
   .sceneLed {
     animation: none;
   }
